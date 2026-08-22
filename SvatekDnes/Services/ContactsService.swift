@@ -104,10 +104,24 @@ final class ContactsService: ObservableObject {
 						return
 					}
 
+					// Evaluate all candidates and keep the strongest match –
+					// an exact nickname must beat a fuzzy guess on the given name.
+					func rank(_ kind: NameMatching.Kind) -> Int {
+						switch kind {
+						case .exact: return 3
+						case .diminutive: return 2
+						case .fuzzy: return 1
+						}
+					}
 					var found: NameMatching.Match?
 					for candidate in candidates {
-						if let match = NameMatching.match(givenName: candidate) {
+						guard let match = NameMatching.match(givenName: candidate) else {
+							continue
+						}
+						if found == nil || rank(match.kind) > rank(found!.kind) {
 							found = match
+						}
+						if match.kind == .exact {
 							break
 						}
 					}

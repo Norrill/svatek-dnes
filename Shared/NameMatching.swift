@@ -123,26 +123,40 @@ enum NameMatching {
 		"ik", "ek", "ka", "ca",
 	]
 
+	/// Suffixes that form masculine diminutives (Vojtík, Adámek…).
+	private static let masculineSuffixes: Set<String> = ["ousek", "icek", "inek", "anek", "ik", "ek"]
+
+	private static func hasFeminineEnding(_ foldedName: String) -> Bool {
+		foldedName.hasSuffix("a") || foldedName.hasSuffix("e")
+	}
+
 	/// Strips a typical diminutive suffix and looks for calendar names
 	/// starting with the stem. A match counts only when every candidate
 	/// points to one single calendar day – ambiguous stems ("mar", "alex")
-	/// never match.
+	/// never match. Stems derived from a gendered suffix additionally
+	/// require a matching gender ending, so "Bertík" never maps to Berta.
 	private static func fuzzyMatch(folded: String, index: Index) -> Match? {
-		var stems: [String] = []
+		var stems: [(stem: String, suffix: String?)] = []
 		if folded.count >= 4 {
-			stems.append(folded) // "kristy" -> Kristýna
+			stems.append((folded, nil)) // "kristy" -> Kristýna
 		}
 		for suffix in foldedSuffixes where folded.hasSuffix(suffix) {
 			let stem = String(folded.dropLast(suffix.count))
 			if stem.count >= 3 {
-				stems.append(stem)
+				stems.append((stem, suffix))
 			}
 		}
 
-		for stem in stems {
+		for (stem, suffix) in stems {
 			var days = Set<Int>()
 			var best: Match?
 			for (key, match) in index.folded where key.hasPrefix(stem) {
+				if let suffix {
+					let feminine = hasFeminineEnding(key)
+					if masculineSuffixes.contains(suffix) ? feminine : !feminine {
+						continue
+					}
+				}
 				days.insert(match.month * 100 + match.day)
 				if best == nil || match.calendarName.count < best!.calendarName.count {
 					best = match
