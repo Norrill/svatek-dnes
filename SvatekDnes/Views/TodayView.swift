@@ -278,8 +278,13 @@ struct TodayView: View {
 
 			Spacer(minLength: 8)
 
-			if !contacts.matches(month: info.entry.m, day: info.entry.d).isEmpty {
-				Text("🎉")
+			let names = upcomingContactNames(info)
+			if !names.isEmpty {
+				Text("🎉 " + names.joinedCzech)
+					.font(.caption)
+					.foregroundStyle(.secondary)
+					.lineLimit(1)
+					.layoutPriority(-1)
 			}
 
 			Image(systemName: "chevron.right")
@@ -289,6 +294,13 @@ struct TodayView: View {
 		.padding(.horizontal, 16)
 		.padding(.vertical, 12)
 		.contentShape(Rectangle())
+	}
+
+	private func upcomingContactNames(_ info: DayInfo) -> [String] {
+		var seen = Set<String>()
+		return contacts.matches(month: info.entry.m, day: info.entry.d)
+			.map(\.givenName)
+			.filter { !$0.isEmpty && seen.insert($0).inserted }
 	}
 
 	/// "zítra", or the weekday alone ("neděle") for later days.

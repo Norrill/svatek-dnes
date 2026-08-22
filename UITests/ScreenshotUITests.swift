@@ -30,6 +30,23 @@ final class ScreenshotUITests: XCTestCase {
 		}
 		snap("3-lide")
 
+		// Assign a nameday to an unmatched contact (John Appleseed -> 24. 6. Jan).
+		let johnRow = app.buttons.containing(NSPredicate(format: "label CONTAINS %@", "John Appleseed")).firstMatch
+		if johnRow.waitForExistence(timeout: 2) {
+			johnRow.tap()
+			let search = app.searchFields.firstMatch
+			if search.waitForExistence(timeout: 4) {
+				search.tap()
+				search.typeText("Jan")
+				let dayRow = app.buttons.containing(NSPredicate(format: "label CONTAINS %@", "24. 6.")).firstMatch
+				if dayRow.waitForExistence(timeout: 4) {
+					dayRow.tap()
+					sleep(2)
+					snap("3b-lide-assigned")
+				}
+			}
+		}
+
 		app.tabBars.buttons["Nastavení"].tap()
 		sleep(1)
 		snap("4-nastaveni")

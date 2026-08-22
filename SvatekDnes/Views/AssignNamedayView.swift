@@ -1,0 +1,88 @@
+import SwiftUI
+
+/// Full-year day picker used to assign a nameday to a contact
+/// the matcher could not place automatically.
+struct AssignNamedayView: View {
+	let contact: UnmatchedContact
+
+	@Environment(\.dismiss) private var dismiss
+	@State private var query = ""
+
+	private var trimmedQuery: String {
+		query.trimmingCharacters(in: .whitespaces)
+	}
+
+	var body: some View {
+		NavigationStack {
+			List {
+				if trimmedQuery.isEmpty {
+					ForEach(1...12, id: \.self) { month in
+						Section(CzechFormat.monthName(month).capitalized(with: CzechFormat.locale)) {
+							ForEach(NamedayStore.shared.month(month), id: \.self) { entry in
+								row(entry)
+							}
+						}
+					}
+				} else {
+					let results = NamedayStore.shared.search(trimmedQuery)
+					if results.isEmpty {
+						ContentUnavailableView.search(text: trimmedQuery)
+					} else {
+						ForEach(results, id: \.self) { entry in
+							row(entry)
+						}
+					}
+				}
+			}
+			.searchable(text: $query, prompt: "Hledat jméno")
+			.navigationTitle("Svátek pro \(contact.givenName)")
+			.navigationBarTitleDisplayMode(.inline)
+			.toolbar {
+				ToolbarItem(placement: .cancellationAction) {
+					Button("Zrušit") {
+						dismiss()
+					}
+				}
+			}
+		}
+	}
+
+	private func row(_ entry: NamedayEntry) -> some View {
+		Button {
+			assign(entry)
+		} label: {
+			HStack(spacing: 12) {
+				Text(CzechFormat.shortDate(month: entry.m, day: entry.d))
+					.font(.subheadline.monospacedDigit())
+					.foregroundStyle(.secondary)
+					.frame(width: 56, alignment: .leading)
+				VStack(alignment: .leading, spacing: 2) {
+					if entry.displayText.isEmpty {
+						Text("bez jmenin")
+							.foregroundStyle(.secondary)
+					} else {
+						Text(entry.displayText)
+							.foregroundStyle(.primary)
+					}
+					if let variants = entry.variantsText {
+						Text(variants)
+							.font(.caption)
+							.foregroundStyle(.secondary)
+					}
+				}
+			}
+		}
+	}
+
+	private func assign(_ entry: NamedayEntry) {
+		ManualAssignmentStore.assign(contactId: contact.id, month: entry.m, day: entry.d)
+		dismiss()
+		Task { @MainActor in
+			await AppRefresher.contactsChanged()
+		}
+	}
+}
+
+#Preview {
+	AssignNamedayView(contact: UnmatchedContact(id: "x", givenName: "Kate", familyName: "Bell"))
+}

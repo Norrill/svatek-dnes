@@ -21,4 +21,13 @@ enum AppRefresher {
 		WidgetCenter.shared.reloadAllTimelines()
 		AppBackgroundTasks.schedule()
 	}
+
+	/// Lightweight refresh after the user changed a manual assignment –
+	/// no remote fetch, no debounce.
+	static func contactsChanged() async {
+		await ContactsService.shared.reloadIfAuthorized()
+		SnapshotStore.update(with: ContactsService.shared.matched)
+		await NotificationScheduler.shared.rescheduleAll()
+		WidgetCenter.shared.reloadAllTimelines()
+	}
 }

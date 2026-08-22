@@ -11,6 +11,7 @@ struct PeopleView: View {
 	@State private var showExportError = false
 	@State private var toastVisible = false
 	@State private var toastTask: Task<Void, Never>?
+	@State private var assigningContact: UnmatchedContact?
 
 	var body: some View {
 		NavigationStack {
@@ -26,6 +27,9 @@ struct PeopleView: View {
 				} message: {
 					Text(exportErrorMessage ?? "Zkuste to prosím znovu.")
 				}
+				.sheet(item: $assigningContact) { contact in
+					AssignNamedayView(contact: contact)
+				}
 		}
 	}
 
@@ -35,7 +39,7 @@ struct PeopleView: View {
 			requestAccessState
 		} else if !contacts.isAuthorized {
 			deniedState
-		} else if contacts.matched.isEmpty {
+		} else if contacts.matched.isEmpty && contacts.unmatched.isEmpty {
 			noMatchesState
 		} else {
 			peopleList
@@ -83,9 +87,7 @@ struct PeopleView: View {
 			EmptyStateView(
 				systemImage: "person.crop.circle.badge.questionmark",
 				title: "Žádný kontakt se svátkem jsme nenašli",
-				message: contacts.unmatchedCount > 0
-					? unmatchedFooterText(contacts.unmatchedCount)
-					: "V kontaktech jsme nenašli žádné křestní jméno z kalendáře jmenin."
+				message: "V kontaktech jsme nenašli žádné křestní jméno."
 			) {
 				EmptyView()
 			}
@@ -124,6 +126,13 @@ struct PeopleView: View {
 							} label: {
 								Label("Přidat do kalendáře", systemImage: "calendar.badge.plus")
 							}
+							if contact.isManual {
+								Button(role: .destructive) {
+									removeAssignment(contact)
+								} label: {
+									Label("Zrušit přiřazený svátek", systemImage: "xmark.circle")
+								}
+							}
 						}
 					}
 				} header: {
@@ -132,15 +141,50 @@ struct PeopleView: View {
 						.fontWeight(isToday ? .semibold : .regular)
 				}
 			}
-			if contacts.unmatchedCount > 0 {
-				Section {
-				} footer: {
-					Text(unmatchedFooterText(contacts.unmatchedCount))
-				}
+			if !contacts.unmatched.isEmpty {
+				unmatchedSection
 			}
 		}
 		.refreshable {
 			await contacts.reloadIfAuthorized()
+		}
+	}
+
+	private var unmatchedSection: some View {
+		Section {
+			ForEach(contacts.unmatched) { contact in
+				Button {
+					assigningContact = contact
+				} label: {
+					HStack(spacing: 12) {
+						ZStack {
+							Circle()
+								.fill(Color(.systemFill))
+							Text(initials(given: contact.givenName, family: contact.familyName))
+								.font(.subheadline.weight(.semibold))
+								.foregroundStyle(.secondary)
+						}
+						.frame(width: 40, height: 40)
+						VStack(alignment: .leading, spacing: 2) {
+							Text(contact.fullName)
+								.foregroundStyle(.primary)
+							Text("svátek se nepodařilo určit")
+								.font(.footnote)
+								.foregroundStyle(.secondary)
+						}
+						Spacer()
+						Text("Přiřadit")
+							.font(.subheadline.weight(.medium))
+							.foregroundStyle(Color.brandGreen)
+					}
+					.padding(.vertical, 2)
+				}
+				.buttonStyle(.plain)
+			}
+		} header: {
+			Text("Bez přiřazeného svátku")
+		} footer: {
+			Text("Vyberte den, kdy má kontakt svátek – započítáme ho do oznámení i widgetu.")
 		}
 	}
 
@@ -196,7 +240,29 @@ struct PeopleView: View {
 		if relative == "dnes" || relative == "zítra" {
 			return capitalizedFirst(relative) + " – " + CzechFormat.dayMonth(date)
 		}
-		return capitalizedFirst(relative)
+		let calendar = Calendar.czech
+		let days = calendar.dateComponents(
+			[.day],
+			from: calendar.startOfDay(for: Date()),
+			to: calendar.startOfDay(for: date)
+		).day ?? 0
+		let unit = czechPlural(days, one: "den", few: "dny", many: "dní")
+		return capitalizedFirst(relative) + " – za \(days) \(unit)"
+	}
+
+	private func initials(given: String, family: String) -> String {
+		let combined = [given, family]
+			.compactMap { $0.first.map(String.init) }
+			.joined()
+			.uppercased(with: CzechFormat.locale)
+		return combined.isEmpty ? "?" : combined
+	}
+
+	private func removeAssignment(_ contact: MatchedContact) {
+		ManualAssignmentStore.remove(contactId: contact.id)
+		Task { @MainActor in
+			await AppRefresher.contactsChanged()
+		}
 	}
 
 	/// Uppercases only the first letter (String.capitalized would also
@@ -220,10 +286,6 @@ struct PeopleView: View {
 		}
 	}
 
-	private func unmatchedFooterText(_ n: Int) -> String {
-		let noun = czechPlural(n, one: "kontaktu", few: "kontaktů", many: "kontaktů")
-		return "U \(n) \(noun) se nepodařilo svátek určit."
-	}
 }
 
 // MARK: - Row
@@ -261,7 +323,11 @@ private struct PersonRow: View {
 			.frame(width: 40, height: 40)
 			VStack(alignment: .leading, spacing: 2) {
 				Text(contact.fullName)
-				if showsMatchedName {
+				if contact.isManual {
+					Text("přiřazeno ručně")
+						.font(.footnote)
+						.foregroundStyle(.secondary)
+				} else if showsMatchedName {
 					Text("v kalendáři jako \(contact.matchedName)")
 						.font(.footnote)
 						.foregroundStyle(.secondary)

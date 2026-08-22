@@ -1,6 +1,18 @@
 import Foundation
 import Contacts
 
+/// A contact whose first name could not be matched to the calendar
+/// (candidate for a manual nameday assignment).
+struct UnmatchedContact: Identifiable, Hashable {
+	let id: String
+	let givenName: String
+	let familyName: String
+
+	var fullName: String {
+		[givenName, familyName].filter { !$0.isEmpty }.joined(separator: " ")
+	}
+}
+
 /// Reads given names (and nicknames) from the user's contacts and matches
 /// them against the nameday calendar. Contact data never leaves the device.
 @MainActor
@@ -9,7 +21,9 @@ final class ContactsService: ObservableObject {
 
 	@Published private(set) var status: CNAuthorizationStatus
 	@Published private(set) var matched: [MatchedContact] = []
-	@Published private(set) var unmatchedCount: Int = 0
+	@Published private(set) var unmatched: [UnmatchedContact] = []
+
+	var unmatchedCount: Int { unmatched.count }
 
 	private init() {
 		status = CNContactStore.authorizationStatus(for: .contacts)
@@ -53,7 +67,7 @@ final class ContactsService: ObservableObject {
 	}
 
 	private func reload() async {
-		let result = await Task.detached(priority: .userInitiated) { () -> (matched: [MatchedContact], unmatched: Int)? in
+		let result = await Task.detached(priority: .userInitiated) { () -> (matched: [MatchedContact], unmatched: [UnmatchedContact])? in
 			let store = CNContactStore()
 			let keys: [CNKeyDescriptor] = [
 				CNContactIdentifierKey as CNKeyDescriptor,
@@ -63,8 +77,9 @@ final class ContactsService: ObservableObject {
 			]
 			let request = CNContactFetchRequest(keysToFetch: keys)
 			request.sortOrder = .givenName
+			let assignments = ManualAssignmentStore.all()
 			var matched: [MatchedContact] = []
-			var unmatched = 0
+			var unmatched: [UnmatchedContact] = []
 			do {
 				try store.enumerateContacts(with: request) { contact, _ in
 					let candidates = [contact.givenName, contact.nickname]
@@ -72,6 +87,23 @@ final class ContactsService: ObservableObject {
 					guard !candidates.isEmpty else {
 						return
 					}
+					let displayGiven = contact.givenName.isEmpty ? contact.nickname : contact.givenName
+
+					// A manual assignment always wins over automatic matching.
+					if let manual = assignments[contact.identifier] {
+						let entry = NamedayStore.shared.entry(month: manual.month, day: manual.day)
+						matched.append(MatchedContact(
+							id: contact.identifier,
+							givenName: displayGiven,
+							familyName: contact.familyName,
+							matchedName: entry.names.first ?? displayGiven,
+							month: manual.month,
+							day: manual.day,
+							isManual: true
+						))
+						return
+					}
+
 					var found: NameMatching.Match?
 					for candidate in candidates {
 						if let match = NameMatching.match(givenName: candidate) {
@@ -82,14 +114,18 @@ final class ContactsService: ObservableObject {
 					if let match = found {
 						matched.append(MatchedContact(
 							id: contact.identifier,
-							givenName: contact.givenName.isEmpty ? contact.nickname : contact.givenName,
+							givenName: displayGiven,
 							familyName: contact.familyName,
 							matchedName: match.calendarName,
 							month: match.month,
 							day: match.day
 						))
 					} else {
-						unmatched += 1
+						unmatched.append(UnmatchedContact(
+							id: contact.identifier,
+							givenName: displayGiven,
+							familyName: contact.familyName
+						))
 					}
 				}
 			} catch {
@@ -103,7 +139,7 @@ final class ContactsService: ObservableObject {
 			return
 		}
 		matched = result.matched
-		unmatchedCount = result.unmatched
+		unmatched = result.unmatched
 	}
 
 	/// Contacts having their nameday on the given calendar day.

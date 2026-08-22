@@ -61,6 +61,8 @@ struct MatchedContact: Identifiable, Hashable, Codable {
 	let matchedName: String
 	let month: Int
 	let day: Int
+	/// True when the user assigned the day by hand instead of auto-matching.
+	var isManual: Bool = false
 
 	var fullName: String {
 		[givenName, familyName].filter { !$0.isEmpty }.joined(separator: " ")
