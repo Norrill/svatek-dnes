@@ -49,7 +49,7 @@ Both the app and the widget compile the `Shared/` core: models,
    present, it replaces the fixed holiday list, the movable feasts for the
    listed years, and individual nameday entries (`namedayOverrides`).
 3. **Refresh cycle** – a `BGAppRefreshTask`
-   (`cz.dubax.svatekdnes.refresh`) runs roughly weekly;
+   (`cz.fh.svatekdnes.refresh`) runs roughly weekly;
    `HolidayUpdateService` re-downloads the file once the stored copy is
    older than **30 days** (failed attempts retry at most once a day). The
    downloaded file is stored in the app group container so the widget sees

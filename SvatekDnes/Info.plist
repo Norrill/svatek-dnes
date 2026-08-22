@@ -39,7 +39,7 @@
 	<string>Aplikace přidá událost se svátkem do vašeho kalendáře.</string>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>cz.dubax.svatekdnes.refresh</string>
+		<string>cz.fh.svatekdnes.refresh</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

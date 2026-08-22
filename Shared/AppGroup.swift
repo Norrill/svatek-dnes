@@ -2,8 +2,8 @@ import Foundation
 
 /// Central constants shared by the app and the widget extension.
 enum AppGroup {
-	static let identifier = "group.cz.dubax.svatekdnes"
-	static let refreshTaskIdentifier = "cz.dubax.svatekdnes.refresh"
+	static let identifier = "group.cz.fh.svatekdnes"
+	static let refreshTaskIdentifier = "cz.fh.svatekdnes.refresh"
 
 	/// Remote data file used for the monthly refresh of holiday/nameday data.
 	/// Hosted in the app's own GitHub repository under `data/svatky.json`.

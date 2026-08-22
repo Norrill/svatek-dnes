@@ -1,6 +1,6 @@
 name: SvatekDnes
 options:
-  bundleIdPrefix: cz.dubax
+  bundleIdPrefix: cz.fh
   deploymentTarget:
     iOS: "17.0"
   developmentLanguage: cs
@@ -21,7 +21,7 @@ targets:
       - path: Shared
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: cz.dubax.svatekdnes
+        PRODUCT_BUNDLE_IDENTIFIER: cz.fh.svatekdnes
         PRODUCT_NAME: SvatekDnes
         INFOPLIST_FILE: SvatekDnes/Info.plist
         CODE_SIGN_ENTITLEMENTS: SvatekDnes/SvatekDnes.entitlements
@@ -38,7 +38,7 @@ targets:
       - path: Shared
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: cz.dubax.svatekdnes.widget
+        PRODUCT_BUNDLE_IDENTIFIER: cz.fh.svatekdnes.widget
         INFOPLIST_FILE: SvatekWidget/Info.plist
         CODE_SIGN_ENTITLEMENTS: SvatekWidget/SvatekWidget.entitlements
         TARGETED_DEVICE_FAMILY: "1"
@@ -50,7 +50,7 @@ targets:
       - path: Tests
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: cz.dubax.svatekdnes-tests
+        PRODUCT_BUNDLE_IDENTIFIER: cz.fh.svatekdnes-tests
         GENERATE_INFOPLIST_FILE: YES
     dependencies:
       - target: SvatekDnes
@@ -61,7 +61,7 @@ targets:
       - path: UITests
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: cz.dubax.svatekdnes-uitests
+        PRODUCT_BUNDLE_IDENTIFIER: cz.fh.svatekdnes-uitests
         GENERATE_INFOPLIST_FILE: YES
     dependencies:
       - target: SvatekDnes
