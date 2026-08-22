@@ -1,0 +1,311 @@
+import SwiftUI
+import Combine
+
+/// "Dnes" tab: hero card for today, calendar export, contacts teaser
+/// and a preview of the upcoming days.
+struct TodayView: View {
+	@EnvironmentObject var contacts: ContactsService
+	@Environment(\.scenePhase) private var scenePhase
+
+	@State private var today = Date()
+	@State private var addedToCalendar = false
+	@State private var exportErrorMessage = ""
+	@State private var showsExportError = false
+
+	var body: some View {
+		NavigationStack {
+			ScrollView {
+				VStack(alignment: .leading, spacing: 20) {
+					heroCard(for: todayInfo)
+					addToCalendarButton
+					if contacts.canRequestAccess {
+						contactsTeaser
+					}
+					upcomingSection
+				}
+				.padding(.horizontal)
+				.padding(.top, 4)
+				.padding(.bottom, 24)
+			}
+			.background(Color(.systemGroupedBackground))
+			.navigationTitle("Dnes")
+			.navigationBarTitleDisplayMode(.large)
+		}
+		.onAppear {
+			today = Date()
+		}
+		.onChange(of: scenePhase) { _, phase in
+			if phase == .active {
+				today = Date()
+			}
+		}
+		.onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged)) { _ in
+			// Midnight, DST or timezone change while the app stays foregrounded.
+			today = Date()
+		}
+		.alert("Nepodařilo se přidat do kalendáře", isPresented: $showsExportError) {
+			Button("OK", role: .cancel) {}
+		} message: {
+			Text(exportErrorMessage)
+		}
+	}
+
+	private var todayInfo: DayInfo {
+		CalendarComposer.info(for: today)
+	}
+
+	// MARK: - Hero card
+
+	private func heroCard(for info: DayInfo) -> some View {
+		VStack(alignment: .leading, spacing: 10) {
+			Text(capitalizedFirst(CzechFormat.weekdayDayMonth(info.date)))
+				.font(.headline)
+				.foregroundStyle(.white.opacity(0.85))
+
+			Text(heroTitle(for: info))
+				.font(.system(size: 40, weight: .bold, design: .rounded))
+				.foregroundStyle(.white)
+				.lineLimit(3)
+				.minimumScaleFactor(0.5)
+
+			if let variants = info.entry.variantsText {
+				Text(variants)
+					.font(.subheadline)
+					.foregroundStyle(.white.opacity(0.85))
+			}
+
+			if !info.holidays.isEmpty {
+				holidayBadges(info.holidays)
+					.padding(.top, 2)
+			}
+
+			if !todayContactNames.isEmpty {
+				Text(contactLine)
+					.font(.subheadline.weight(.semibold))
+					.foregroundStyle(.white)
+					.padding(.top, 2)
+			}
+		}
+		.frame(maxWidth: .infinity, alignment: .leading)
+		.padding(20)
+		.background(
+			LinearGradient(
+				colors: [Color.brandGreen, Color.brandGreen.opacity(0.75)],
+				startPoint: .topLeading,
+				endPoint: .bottomTrailing
+			)
+		)
+		.clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+	}
+
+	private func heroTitle(for info: DayInfo) -> String {
+		if !info.entry.displayText.isEmpty {
+			return info.entry.displayText
+		}
+		if let holiday = info.primaryHoliday {
+			return holiday.shortName
+		}
+		return "Bez jmenin"
+	}
+
+	private func holidayBadges(_ holidays: [Holiday]) -> some View {
+		VStack(alignment: .leading, spacing: 6) {
+			ForEach(holidays) { holiday in
+				Text("\(holiday.kindLabel) – \(holiday.shortName)")
+					.font(.caption.weight(.semibold))
+					.padding(.horizontal, 10)
+					.padding(.vertical, 5)
+					.background(
+						holiday.isDayOff ? Color.red.opacity(0.85) : Color.white.opacity(0.2),
+						in: Capsule()
+					)
+					.foregroundStyle(.white)
+			}
+		}
+	}
+
+	private var todayContactNames: [String] {
+		var seen = Set<String>()
+		return contacts.matches(month: todayInfo.entry.m, day: todayInfo.entry.d)
+			.map(\.givenName)
+			.filter { !$0.isEmpty && seen.insert($0).inserted }
+	}
+
+	private var contactLine: String {
+		let names = todayContactNames
+		if names.count == 1 {
+			return "🎉 Svátek má váš kontakt \(names[0])"
+		}
+		return "🎉 Svátek mají vaše kontakty \(names.joinedCzech)"
+	}
+
+	// MARK: - Calendar export
+
+	@ViewBuilder
+	private var addToCalendarButton: some View {
+		if let title = eventTitle(for: todayInfo) {
+			Button {
+				addTodayToCalendar(title: title)
+			} label: {
+				Label(
+					addedToCalendar ? "Přidáno do kalendáře" : "Přidat do kalendáře",
+					systemImage: addedToCalendar ? "checkmark" : "calendar.badge.plus"
+				)
+				.frame(maxWidth: .infinity)
+			}
+			.buttonStyle(.borderedProminent)
+			.controlSize(.large)
+			.tint(Color.brandGreen)
+			.disabled(addedToCalendar)
+		}
+	}
+
+	private func eventTitle(for info: DayInfo) -> String? {
+		if !info.entry.names.isEmpty {
+			let joined = info.entry.names.joinedCzech
+			return info.entry.names.count > 1 ? "Svátek mají \(joined)" : "Svátek má \(joined)"
+		}
+		if let holiday = info.primaryHoliday {
+			return holiday.name
+		}
+		return nil
+	}
+
+	private func addTodayToCalendar(title: String) {
+		Task { @MainActor in
+			do {
+				try await CalendarExporter.shared.addAllDayEvent(title: title, date: today)
+				withAnimation {
+					addedToCalendar = true
+				}
+				try? await Task.sleep(for: .seconds(3))
+				withAnimation {
+					addedToCalendar = false
+				}
+			} catch {
+				exportErrorMessage = error.localizedDescription
+				showsExportError = true
+			}
+		}
+	}
+
+	// MARK: - Contacts teaser
+
+	private var contactsTeaser: some View {
+		VStack(alignment: .leading, spacing: 8) {
+			Label("Propojte kontakty", systemImage: "person.2.circle")
+				.font(.headline)
+			Text("Aplikace porovná jména ve vašich kontaktech s kalendářem a připomene vám, kdo má svátek.")
+				.font(.subheadline)
+				.foregroundStyle(.secondary)
+			Button("Povolit přístup") {
+				Task {
+					await contacts.requestAccessAndLoad()
+				}
+			}
+			.buttonStyle(.bordered)
+			.tint(Color.brandGreen)
+		}
+		.frame(maxWidth: .infinity, alignment: .leading)
+		.padding(16)
+		.background(
+			Color(.secondarySystemGroupedBackground),
+			in: RoundedRectangle(cornerRadius: 16, style: .continuous)
+		)
+	}
+
+	// MARK: - Upcoming days
+
+	private var upcomingSection: some View {
+		VStack(alignment: .leading, spacing: 10) {
+			Text("Nadcházející dny")
+				.font(.title3.weight(.semibold))
+
+			let days = Array(CalendarComposer.upcoming(days: 8, from: today).dropFirst())
+			VStack(spacing: 0) {
+				ForEach(days) { info in
+					NavigationLink {
+						DayDetailView(info: info)
+					} label: {
+						upcomingRow(info)
+					}
+					.buttonStyle(.plain)
+
+					if info.id != days.last?.id {
+						Divider()
+							.padding(.leading, 16)
+					}
+				}
+			}
+			.background(
+				Color(.secondarySystemGroupedBackground),
+				in: RoundedRectangle(cornerRadius: 16, style: .continuous)
+			)
+		}
+	}
+
+	private func upcomingRow(_ info: DayInfo) -> some View {
+		HStack(spacing: 12) {
+			VStack(alignment: .leading, spacing: 2) {
+				Text(dayLabel(info.date))
+					.font(.subheadline.weight(.semibold))
+				Text(CzechFormat.shortDate(month: info.entry.m, day: info.entry.d))
+					.font(.caption)
+					.foregroundStyle(.secondary)
+			}
+			.frame(width: 72, alignment: .leading)
+
+			VStack(alignment: .leading, spacing: 3) {
+				if info.entry.displayText.isEmpty {
+					Text("bez jmenin")
+						.font(.body)
+						.foregroundStyle(.secondary)
+				} else {
+					Text(info.entry.displayText)
+						.font(.body.weight(.medium))
+				}
+				if let holiday = info.primaryHoliday {
+					HStack(spacing: 5) {
+						Circle()
+							.fill(holiday.isDayOff ? Color.red : Color.brandGreen)
+							.frame(width: 7, height: 7)
+						Text(holiday.shortName)
+							.font(.caption)
+							.foregroundStyle(holiday.isDayOff ? Color.red : Color.brandGreen)
+					}
+				}
+			}
+
+			Spacer(minLength: 8)
+
+			if !contacts.matches(month: info.entry.m, day: info.entry.d).isEmpty {
+				Text("🎉")
+			}
+
+			Image(systemName: "chevron.right")
+				.font(.caption.weight(.semibold))
+				.foregroundStyle(.tertiary)
+		}
+		.padding(.horizontal, 16)
+		.padding(.vertical, 12)
+		.contentShape(Rectangle())
+	}
+
+	/// "zítra", or the weekday alone ("neděle") for later days.
+	private func dayLabel(_ date: Date) -> String {
+		let relative = CzechFormat.relativeDay(date, reference: today)
+		return relative.split(separator: " ").first.map(String.init) ?? relative
+	}
+
+	private func capitalizedFirst(_ text: String) -> String {
+		guard let first = text.first else {
+			return text
+		}
+		return String(first).uppercased(with: CzechFormat.locale) + text.dropFirst()
+	}
+}
+
+#Preview {
+	TodayView()
+		.environmentObject(ContactsService.shared)
+}

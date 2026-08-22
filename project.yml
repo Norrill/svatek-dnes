@@ -1,0 +1,79 @@
+name: SvatekDnes
+options:
+  bundleIdPrefix: cz.dubax
+  deploymentTarget:
+    iOS: "17.0"
+  developmentLanguage: cs
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    CODE_SIGN_STYLE: Automatic
+    CURRENT_PROJECT_VERSION: "1"
+    MARKETING_VERSION: "1.0.0"
+    ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+targets:
+  SvatekDnes:
+    type: application
+    platform: iOS
+    sources:
+      - path: SvatekDnes
+      - path: Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: cz.dubax.svatekdnes
+        PRODUCT_NAME: SvatekDnes
+        INFOPLIST_FILE: SvatekDnes/Info.plist
+        CODE_SIGN_ENTITLEMENTS: SvatekDnes/SvatekDnes.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        TARGETED_DEVICE_FAMILY: "1"
+    dependencies:
+      - target: SvatekWidget
+        embed: true
+  SvatekWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: SvatekWidget
+      - path: Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: cz.dubax.svatekdnes.widget
+        INFOPLIST_FILE: SvatekWidget/Info.plist
+        CODE_SIGN_ENTITLEMENTS: SvatekWidget/SvatekWidget.entitlements
+        TARGETED_DEVICE_FAMILY: "1"
+        SKIP_INSTALL: YES
+  SvatekDnesTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: cz.dubax.svatekdnes-tests
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: SvatekDnes
+  SvatekDnesUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: UITests
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: cz.dubax.svatekdnes-uitests
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: SvatekDnes
+schemes:
+  SvatekDnes:
+    build:
+      targets:
+        SvatekDnes: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - SvatekDnesTests
+        - SvatekDnesUITests

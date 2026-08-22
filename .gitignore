@@ -1,0 +1,19 @@
+# Xcode
+*.xcodeproj/
+!*.xcodeproj/project.pbxproj.keep
+xcuserdata/
+DerivedData/
+build/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# macOS
+.DS_Store
+
+# XcodeGen output is regenerated from project.yml
+SvatekDnes.xcodeproj/

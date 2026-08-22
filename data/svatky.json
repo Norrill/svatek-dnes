@@ -1,0 +1,247 @@
+{
+ "version": 1,
+ "updated": "2026-08-22",
+ "fixedHolidays": [
+  {
+   "m": 1,
+   "d": 1,
+   "name": "Den obnovy samostatného českého státu",
+   "shortName": "Nový rok",
+   "kind": "state"
+  },
+  {
+   "m": 5,
+   "d": 1,
+   "name": "Svátek práce",
+   "shortName": "Svátek práce",
+   "kind": "other"
+  },
+  {
+   "m": 5,
+   "d": 8,
+   "name": "Den vítězství",
+   "shortName": "Den vítězství",
+   "kind": "state"
+  },
+  {
+   "m": 7,
+   "d": 5,
+   "name": "Den slovanských věrozvěstů Cyrila a Metoděje",
+   "shortName": "Cyril a Metoděj",
+   "kind": "state"
+  },
+  {
+   "m": 7,
+   "d": 6,
+   "name": "Den upálení mistra Jana Husa",
+   "shortName": "Jan Hus",
+   "kind": "state"
+  },
+  {
+   "m": 9,
+   "d": 28,
+   "name": "Den české státnosti",
+   "shortName": "Den české státnosti",
+   "kind": "state"
+  },
+  {
+   "m": 10,
+   "d": 28,
+   "name": "Den vzniku samostatného československého státu",
+   "shortName": "Vznik Československa",
+   "kind": "state"
+  },
+  {
+   "m": 11,
+   "d": 17,
+   "name": "Den boje za svobodu a demokracii a Mezinárodní den studentstva",
+   "shortName": "Den boje za svobodu",
+   "kind": "state"
+  },
+  {
+   "m": 12,
+   "d": 24,
+   "name": "Štědrý den",
+   "shortName": "Štědrý den",
+   "kind": "other"
+  },
+  {
+   "m": 12,
+   "d": 25,
+   "name": "1. svátek vánoční",
+   "shortName": "1. svátek vánoční",
+   "kind": "other"
+  },
+  {
+   "m": 12,
+   "d": 26,
+   "name": "2. svátek vánoční",
+   "shortName": "2. svátek vánoční",
+   "kind": "other"
+  },
+  {
+   "m": 1,
+   "d": 6,
+   "name": "Tři králové",
+   "shortName": "Tři králové",
+   "kind": "significant"
+  },
+  {
+   "m": 3,
+   "d": 8,
+   "name": "Mezinárodní den žen",
+   "shortName": "Mezinárodní den žen",
+   "kind": "significant"
+  },
+  {
+   "m": 6,
+   "d": 1,
+   "name": "Mezinárodní den dětí",
+   "shortName": "Den dětí",
+   "kind": "significant"
+  },
+  {
+   "m": 11,
+   "d": 2,
+   "name": "Památka zesnulých (Dušičky)",
+   "shortName": "Památka zesnulých",
+   "kind": "significant"
+  }
+ ],
+ "movable": {
+  "2026": [
+   {
+    "m": 4,
+    "d": 3,
+    "name": "Velký pátek",
+    "shortName": "Velký pátek",
+    "kind": "other"
+   },
+   {
+    "m": 4,
+    "d": 6,
+    "name": "Velikonoční pondělí",
+    "shortName": "Velikonoční pondělí",
+    "kind": "other"
+   },
+   {
+    "m": 5,
+    "d": 10,
+    "name": "Den matek",
+    "shortName": "Den matek",
+    "kind": "significant"
+   }
+  ],
+  "2027": [
+   {
+    "m": 3,
+    "d": 26,
+    "name": "Velký pátek",
+    "shortName": "Velký pátek",
+    "kind": "other"
+   },
+   {
+    "m": 3,
+    "d": 29,
+    "name": "Velikonoční pondělí",
+    "shortName": "Velikonoční pondělí",
+    "kind": "other"
+   },
+   {
+    "m": 5,
+    "d": 9,
+    "name": "Den matek",
+    "shortName": "Den matek",
+    "kind": "significant"
+   }
+  ],
+  "2028": [
+   {
+    "m": 4,
+    "d": 14,
+    "name": "Velký pátek",
+    "shortName": "Velký pátek",
+    "kind": "other"
+   },
+   {
+    "m": 4,
+    "d": 17,
+    "name": "Velikonoční pondělí",
+    "shortName": "Velikonoční pondělí",
+    "kind": "other"
+   },
+   {
+    "m": 5,
+    "d": 14,
+    "name": "Den matek",
+    "shortName": "Den matek",
+    "kind": "significant"
+   }
+  ],
+  "2029": [
+   {
+    "m": 3,
+    "d": 30,
+    "name": "Velký pátek",
+    "shortName": "Velký pátek",
+    "kind": "other"
+   },
+   {
+    "m": 4,
+    "d": 2,
+    "name": "Velikonoční pondělí",
+    "shortName": "Velikonoční pondělí",
+    "kind": "other"
+   },
+   {
+    "m": 5,
+    "d": 13,
+    "name": "Den matek",
+    "shortName": "Den matek",
+    "kind": "significant"
+   }
+  ],
+  "2030": [
+   {
+    "m": 4,
+    "d": 19,
+    "name": "Velký pátek",
+    "shortName": "Velký pátek",
+    "kind": "other"
+   },
+   {
+    "m": 4,
+    "d": 22,
+    "name": "Velikonoční pondělí",
+    "shortName": "Velikonoční pondělí",
+    "kind": "other"
+   },
+   {
+    "m": 5,
+    "d": 12,
+    "name": "Den matek",
+    "shortName": "Den matek",
+    "kind": "significant"
+   }
+  ]
+ },
+ "namedayOverrides": [
+  {
+   "m": 2,
+   "d": 17,
+   "names": [
+    "Miloslava"
+   ],
+   "alt": []
+  },
+  {
+   "m": 12,
+   "d": 7,
+   "names": [
+    "Ambrož",
+    "Benjamín"
+   ],
+   "alt": []
+  }
+ ]
+}
