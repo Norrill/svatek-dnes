@@ -18,6 +18,7 @@ struct TodayView: View {
 				VStack(alignment: .leading, spacing: 20) {
 					heroCard(for: todayInfo)
 					addToCalendarButton
+					contactNamedaysSection
 					if contacts.canRequestAccess {
 						contactsTeaser
 					}
@@ -212,6 +213,101 @@ struct TodayView: View {
 			Color(.secondarySystemGroupedBackground),
 			in: RoundedRectangle(cornerRadius: 16, style: .continuous)
 		)
+	}
+
+	// MARK: - Contact namedays
+
+	/// The next three contact namedays.
+	@ViewBuilder
+	private var contactNamedaysSection: some View {
+		let groups = Array(contacts.upcoming(from: today).prefix(3))
+		if !groups.isEmpty {
+			VStack(alignment: .leading, spacing: 10) {
+				Text("Svátky vašich lidí")
+					.font(.title3.weight(.semibold))
+
+				VStack(spacing: 0) {
+					ForEach(groups, id: \.date) { group in
+						NavigationLink {
+							DayDetailView(info: CalendarComposer.info(for: group.date))
+						} label: {
+							contactGroupRow(group)
+						}
+						.buttonStyle(.plain)
+
+						if group.date != groups.last?.date {
+							Divider()
+								.padding(.leading, 16)
+						}
+					}
+				}
+				.background(
+					Color(.secondarySystemGroupedBackground),
+					in: RoundedRectangle(cornerRadius: 16, style: .continuous)
+				)
+			}
+		}
+	}
+
+	private func contactGroupRow(_ group: (date: Date, contacts: [MatchedContact])) -> some View {
+		let isToday = Calendar.czech.isDate(group.date, inSameDayAs: today)
+		return HStack(spacing: 12) {
+			VStack(alignment: .leading, spacing: 2) {
+				Text(countdownLabel(group.date))
+					.font(.subheadline.weight(.semibold))
+					.foregroundStyle(isToday ? Color.brandGreen : Color.primary)
+				Text(CzechFormat.dayMonth(group.date))
+					.font(.caption)
+					.foregroundStyle(.secondary)
+			}
+			.frame(width: 88, alignment: .leading)
+
+			Text(groupNames(group.contacts))
+				.font(.body.weight(.medium))
+				.lineLimit(2)
+
+			Spacer(minLength: 8)
+
+			if isToday {
+				Text("🎉")
+			}
+			Image(systemName: "chevron.right")
+				.font(.caption.weight(.semibold))
+				.foregroundStyle(.tertiary)
+		}
+		.padding(.horizontal, 16)
+		.padding(.vertical, 12)
+		.contentShape(Rectangle())
+	}
+
+	private func groupNames(_ list: [MatchedContact]) -> String {
+		if list.count == 1 {
+			return list[0].fullName
+		}
+		var seen = Set<String>()
+		return list.map(\.givenName)
+			.filter { !$0.isEmpty && seen.insert($0).inserted }
+			.joinedCzech
+	}
+
+	/// "dnes", "zítra", "za 5 dní" – for the contact nameday rows.
+	private func countdownLabel(_ date: Date) -> String {
+		let relative = CzechFormat.relativeDay(date, reference: today)
+		if relative == "dnes" || relative == "zítra" {
+			return relative
+		}
+		let calendar = Calendar.czech
+		let days = calendar.dateComponents(
+			[.day],
+			from: calendar.startOfDay(for: today),
+			to: calendar.startOfDay(for: date)
+		).day ?? 0
+		switch days {
+		case 2...4:
+			return "za \(days) dny"
+		default:
+			return "za \(days) dní"
+		}
 	}
 
 	// MARK: - Upcoming days

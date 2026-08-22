@@ -39,7 +39,7 @@ struct DayDetailView: View {
 		Section {
 			VStack(alignment: .leading, spacing: 6) {
 				if info.entry.displayText.isEmpty {
-					Text("V tento den nemá svátek nikdo.")
+					Text("V kalendáři jmenin není na tento den žádné jméno.")
 						.font(.body)
 						.foregroundStyle(.secondary)
 				} else {

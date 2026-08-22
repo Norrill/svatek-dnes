@@ -99,7 +99,7 @@ final class ContactsService: ObservableObject {
 							matchedName: entry.names.first ?? displayGiven,
 							month: manual.month,
 							day: manual.day,
-							isManual: true
+							kind: .manual
 						))
 						return
 					}
@@ -118,7 +118,8 @@ final class ContactsService: ObservableObject {
 							familyName: contact.familyName,
 							matchedName: match.calendarName,
 							month: match.month,
-							day: match.day
+							day: match.day,
+							kind: ContactMatchKind(rawValue: match.kind.rawValue) ?? .exact
 						))
 					} else {
 						unmatched.append(UnmatchedContact(

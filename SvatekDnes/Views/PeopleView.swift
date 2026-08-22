@@ -11,7 +11,7 @@ struct PeopleView: View {
 	@State private var showExportError = false
 	@State private var toastVisible = false
 	@State private var toastTask: Task<Void, Never>?
-	@State private var assigningContact: UnmatchedContact?
+	@State private var assigningContact: AssignmentTarget?
 
 	var body: some View {
 		NavigationStack {
@@ -27,8 +27,8 @@ struct PeopleView: View {
 				} message: {
 					Text(exportErrorMessage ?? "Zkuste to prosím znovu.")
 				}
-				.sheet(item: $assigningContact) { contact in
-					AssignNamedayView(contact: contact)
+				.sheet(item: $assigningContact) { target in
+					AssignNamedayView(target: target)
 				}
 		}
 	}
@@ -126,6 +126,11 @@ struct PeopleView: View {
 							} label: {
 								Label("Přidat do kalendáře", systemImage: "calendar.badge.plus")
 							}
+							Button {
+								assigningContact = AssignmentTarget(id: contact.id, givenName: contact.givenName)
+							} label: {
+								Label("Změnit svátek", systemImage: "pencil")
+							}
 							if contact.isManual {
 								Button(role: .destructive) {
 									removeAssignment(contact)
@@ -154,7 +159,7 @@ struct PeopleView: View {
 		Section {
 			ForEach(contacts.unmatched) { contact in
 				Button {
-					assigningContact = contact
+					assigningContact = AssignmentTarget(id: contact.id, givenName: contact.givenName)
 				} label: {
 					HStack(spacing: 12) {
 						ZStack {
@@ -325,6 +330,10 @@ private struct PersonRow: View {
 				Text(contact.fullName)
 				if contact.isManual {
 					Text("přiřazeno ručně")
+						.font(.footnote)
+						.foregroundStyle(.secondary)
+				} else if contact.kind == .fuzzy {
+					Text("pravděpodobně \(contact.matchedName)")
 						.font(.footnote)
 						.foregroundStyle(.secondary)
 				} else if showsMatchedName {

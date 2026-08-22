@@ -52,6 +52,18 @@ struct Holiday: Identifiable, Hashable {
 	}
 }
 
+/// How a contact was linked to its calendar day.
+enum ContactMatchKind: String, Codable {
+	/// The first name is a calendar name (incl. diacritic-folded form).
+	case exact
+	/// Known diminutive from the dictionary ("Káťa" -> Kateřina).
+	case diminutive
+	/// Unambiguous stem guess ("Klárka" -> Klára) – shown as tentative.
+	case fuzzy
+	/// Assigned by the user.
+	case manual
+}
+
 /// A contact whose given name (or nickname) matches a calendar name.
 struct MatchedContact: Identifiable, Hashable, Codable {
 	let id: String
@@ -61,8 +73,9 @@ struct MatchedContact: Identifiable, Hashable, Codable {
 	let matchedName: String
 	let month: Int
 	let day: Int
-	/// True when the user assigned the day by hand instead of auto-matching.
-	var isManual: Bool = false
+	var kind: ContactMatchKind = .exact
+
+	var isManual: Bool { kind == .manual }
 
 	var fullName: String {
 		[givenName, familyName].filter { !$0.isEmpty }.joined(separator: " ")

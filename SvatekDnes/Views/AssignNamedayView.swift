@@ -1,9 +1,15 @@
 import SwiftUI
 
-/// Full-year day picker used to assign a nameday to a contact
-/// the matcher could not place automatically.
+/// A contact the assignment sheet is opened for – either an unmatched
+/// contact or a matched one whose day the user wants to change.
+struct AssignmentTarget: Identifiable {
+	let id: String
+	let givenName: String
+}
+
+/// Full-year day picker used to assign a nameday to a contact.
 struct AssignNamedayView: View {
-	let contact: UnmatchedContact
+	let target: AssignmentTarget
 
 	@Environment(\.dismiss) private var dismiss
 	@State private var query = ""
@@ -35,7 +41,7 @@ struct AssignNamedayView: View {
 				}
 			}
 			.searchable(text: $query, prompt: "Hledat jméno")
-			.navigationTitle("Svátek pro \(contact.givenName)")
+			.navigationTitle("Svátek – \(target.givenName)")
 			.navigationBarTitleDisplayMode(.inline)
 			.toolbar {
 				ToolbarItem(placement: .cancellationAction) {
@@ -75,7 +81,7 @@ struct AssignNamedayView: View {
 	}
 
 	private func assign(_ entry: NamedayEntry) {
-		ManualAssignmentStore.assign(contactId: contact.id, month: entry.m, day: entry.d)
+		ManualAssignmentStore.assign(contactId: target.id, month: entry.m, day: entry.d)
 		dismiss()
 		Task { @MainActor in
 			await AppRefresher.contactsChanged()
@@ -84,5 +90,5 @@ struct AssignNamedayView: View {
 }
 
 #Preview {
-	AssignNamedayView(contact: UnmatchedContact(id: "x", givenName: "Kate", familyName: "Bell"))
+	AssignNamedayView(target: AssignmentTarget(id: "x", givenName: "Kate"))
 }
