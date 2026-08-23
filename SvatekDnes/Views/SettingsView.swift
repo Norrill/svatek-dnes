@@ -10,7 +10,7 @@ struct SettingsView: View {
 
 	private static let updateDateFormatter: DateFormatter = {
 		let f = DateFormatter()
-		f.locale = CzechFormat.locale
+		f.locale = AppFormat.locale
 		f.dateStyle = .medium
 		f.timeStyle = .short
 		return f
@@ -39,7 +39,7 @@ struct SettingsView: View {
 		if let date = settings.lastRemoteUpdate {
 			return Self.updateDateFormatter.string(from: date)
 		}
-		return "zatím nikdy – vestavěná data"
+		return String(localized: "zatím nikdy – vestavěná data")
 	}
 
 	private var appVersion: String {
@@ -109,7 +109,9 @@ struct SettingsView: View {
 				runUpdate()
 			} label: {
 				HStack {
-					Text(isUpdating ? "Aktualizuji…" : "Aktualizovat nyní")
+					Text(isUpdating
+						? String(localized: "Aktualizuji…")
+						: String(localized: "Aktualizovat nyní"))
 					if isUpdating {
 						Spacer()
 						ProgressView()
@@ -132,7 +134,7 @@ struct SettingsView: View {
 	private var aboutSection: some View {
 		Section {
 			LabeledContent("Verze", value: appVersion)
-			LabeledContent("Zdroj dat", value: "český občanský kalendář")
+			LabeledContent("Zdroj dat", value: String(localized: "český občanský kalendář"))
 		} header: {
 			Text("O aplikaci")
 		} footer: {
@@ -160,8 +162,8 @@ struct SettingsView: View {
 			isUpdating = false
 			updateSucceeded = ok
 			updateMessage = ok
-				? "Data byla aktualizována."
-				: "Aktualizace se nepodařila – zkusíme to později automaticky."
+				? String(localized: "Data byla aktualizována.")
+				: String(localized: "Aktualizace se nepodařila – zkusíme to později automaticky.")
 
 			// Hide the result text after a while, unless a newer run replaced it.
 			let token = UUID()

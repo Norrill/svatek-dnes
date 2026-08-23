@@ -52,9 +52,9 @@ private extension SvatekDayData {
 	/// Big display line: the names, or the holiday on days without a nameday.
 	var headline: String {
 		if !names.isEmpty {
-			return names.joinedCzech
+			return names.joinedNames
 		}
-		return holidayShortName ?? "Bez jmenin"
+		return holidayShortName ?? String(localized: "Bez jmenin")
 	}
 
 	/// The holiday badge is shown only when the holiday is not already the headline.
@@ -64,7 +64,7 @@ private extension SvatekDayData {
 
 	/// "22. 8." – Czech short date with spaces.
 	var shortDateText: String {
-		CzechFormat.shortDate(month: month, day: day)
+		AppFormat.shortDate(month: month, day: day)
 	}
 
 	/// First calendar name, falling back to the holiday; nil when the day has neither.
@@ -85,7 +85,7 @@ struct SvatekSmallView: View {
 
 	var body: some View {
 		VStack(alignment: .leading, spacing: 4) {
-			Text(CzechFormat.weekdayDayMonth(day.date).uppercased(with: CzechFormat.locale))
+			Text(AppFormat.weekdayDayMonth(day.date).uppercased(with: AppFormat.locale))
 				.font(.caption2.weight(.semibold))
 				.foregroundStyle(.secondary)
 				.lineLimit(1)
@@ -116,7 +116,7 @@ struct SvatekSmallView: View {
 					}
 				}
 				if !day.contactNames.isEmpty {
-					Text("🎉 " + day.contactNames.joinedCzech)
+					Text("🎉 " + day.contactNames.joinedNames)
 						.font(.caption)
 						.lineLimit(1)
 						.minimumScaleFactor(0.8)
@@ -186,7 +186,7 @@ struct SvatekInlineView: View {
 
 	var body: some View {
 		if !day.names.isEmpty {
-			Text("Svátek: " + day.names.joinedCzech)
+			Text(String(localized: "Svátek: \(day.names.joinedNames)"))
 		} else if let shortName = day.holidayShortName {
 			Text(shortName)
 		} else {
@@ -207,13 +207,13 @@ struct SvatekRectangularView: View {
 				.lineLimit(1)
 				.minimumScaleFactor(0.7)
 			if let tomorrow = entry.upcoming.first, let name = tomorrow.previewName {
-				Text("zítra " + name)
+				Text(String(localized: "zítra \(name)"))
 					.font(.caption)
 					.foregroundStyle(.secondary)
 					.lineLimit(1)
 			}
 			if !entry.today.contactNames.isEmpty {
-				Text("🎉 " + entry.today.contactNames.joinedCzech)
+				Text("🎉 " + entry.today.contactNames.joinedNames)
 					.font(.caption)
 					.lineLimit(1)
 			}
@@ -227,7 +227,7 @@ struct SvatekCircularView: View {
 
 	var body: some View {
 		VStack(spacing: -1) {
-			Text("\(day.day)")
+			Text(verbatim: "\(day.day)")
 				.font(.title2.weight(.bold))
 				.fontDesign(.rounded)
 				.widgetAccentable()

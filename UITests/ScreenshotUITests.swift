@@ -10,6 +10,9 @@ final class ScreenshotUITests: XCTestCase {
 
 	func testWalkTabsAndTakeScreenshots() throws {
 		let app = XCUIApplication()
+		// The walk-through taps Czech labels; force the Czech localization
+		// regardless of the simulator language.
+		app.launchArguments += ["-AppleLanguages", "(cs)"]
 		app.launch()
 
 		allowSystemAlertIfPresent(timeout: 6)

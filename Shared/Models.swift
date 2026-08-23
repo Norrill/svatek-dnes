@@ -12,11 +12,11 @@ struct NamedayEntry: Codable, Hashable {
 	var allNames: [String] { names + alt }
 
 	/// "Karina", "Petr a Pavel", "" for days without a nameday.
-	var displayText: String { names.joinedCzech }
+	var displayText: String { names.joinedNames }
 
 	/// Variants text for secondary UI lines: "též Vasil, Ábel a Dětmar".
 	var variantsText: String? {
-		alt.isEmpty ? nil : "též " + alt.joinedCzech
+		alt.isEmpty ? nil : String(localized: "též \(alt.joinedNames)")
 	}
 }
 
@@ -42,12 +42,12 @@ struct Holiday: Identifiable, Hashable {
 	var isDayOff: Bool { kind != .significant }
 	var id: String { "\(month)-\(day)-\(shortName)" }
 
-	/// Czech label of the category.
+	/// Localized label of the category.
 	var kindLabel: String {
 		switch kind {
-		case .state: return "státní svátek"
-		case .other: return "den pracovního klidu"
-		case .significant: return "významný den"
+		case .state: return String(localized: "státní svátek")
+		case .other: return String(localized: "den pracovního klidu")
+		case .significant: return String(localized: "významný den")
 		}
 	}
 }
@@ -83,15 +83,15 @@ struct MatchedContact: Identifiable, Hashable, Codable {
 }
 
 extension Array where Element == String {
-	/// Joins names the Czech way: "Karina", "Petr a Pavel", "Rut, Matylda a Vlastibor".
-	var joinedCzech: String {
+	/// Locale-aware name list: "Petr a Pavel" / "Petr and Pavel" / "Petr und Pavel".
+	var joinedNames: String {
 		switch count {
 		case 0:
 			return ""
 		case 1:
 			return self[0]
 		default:
-			return dropLast().joined(separator: ", ") + " a " + last!
+			return ListFormatter.localizedString(byJoining: self)
 		}
 	}
 }

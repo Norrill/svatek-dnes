@@ -59,7 +59,7 @@ struct TodayView: View {
 
 	private func heroCard(for info: DayInfo) -> some View {
 		VStack(alignment: .leading, spacing: 10) {
-			Text(capitalizedFirst(CzechFormat.weekdayDayMonth(info.date)))
+			Text(capitalizedFirst(AppFormat.weekdayDayMonth(info.date)))
 				.font(.headline)
 				.foregroundStyle(.white.opacity(0.85))
 
@@ -106,13 +106,13 @@ struct TodayView: View {
 		if let holiday = info.primaryHoliday {
 			return holiday.shortName
 		}
-		return "Bez jmenin"
+		return String(localized: "Bez jmenin")
 	}
 
 	private func holidayBadges(_ holidays: [Holiday]) -> some View {
 		VStack(alignment: .leading, spacing: 6) {
 			ForEach(holidays) { holiday in
-				Text("\(holiday.kindLabel) – \(holiday.shortName)")
+				Text(verbatim: "\(holiday.kindLabel) – \(holiday.shortName)")
 					.font(.caption.weight(.semibold))
 					.padding(.horizontal, 10)
 					.padding(.vertical, 5)
@@ -135,9 +135,9 @@ struct TodayView: View {
 	private var contactLine: String {
 		let names = todayContactNames
 		if names.count == 1 {
-			return "🎉 Svátek má váš kontakt \(names[0])"
+			return String(localized: "🎉 Svátek má váš kontakt \(names[0])")
 		}
-		return "🎉 Svátek mají vaše kontakty \(names.joinedCzech)"
+		return String(localized: "🎉 Svátek mají vaše kontakty \(names.joinedNames)")
 	}
 
 	// MARK: - Calendar export
@@ -163,8 +163,10 @@ struct TodayView: View {
 
 	private func eventTitle(for info: DayInfo) -> String? {
 		if !info.entry.names.isEmpty {
-			let joined = info.entry.names.joinedCzech
-			return info.entry.names.count > 1 ? "Svátek mají \(joined)" : "Svátek má \(joined)"
+			let joined = info.entry.names.joinedNames
+			return info.entry.names.count > 1
+				? String(localized: "Svátek mají \(joined)")
+				: String(localized: "Svátek má \(joined)")
 		}
 		if let holiday = info.primaryHoliday {
 			return holiday.name
@@ -256,11 +258,15 @@ struct TodayView: View {
 				Text(countdownLabel(group.date))
 					.font(.subheadline.weight(.semibold))
 					.foregroundStyle(isToday ? Color.brandGreen : Color.primary)
-				Text(CzechFormat.dayMonth(group.date))
+					.lineLimit(1)
+					.minimumScaleFactor(0.75)
+				Text(AppFormat.dayMonth(group.date))
 					.font(.caption)
 					.foregroundStyle(.secondary)
+					.lineLimit(1)
+					.minimumScaleFactor(0.75)
 			}
-			.frame(width: 88, alignment: .leading)
+			.frame(width: 92, alignment: .leading)
 
 			Text(groupNames(group.contacts))
 				.font(.body.weight(.medium))
@@ -287,26 +293,16 @@ struct TodayView: View {
 		var seen = Set<String>()
 		return list.map(\.givenName)
 			.filter { !$0.isEmpty && seen.insert($0).inserted }
-			.joinedCzech
+			.joinedNames
 	}
 
 	/// "dnes", "zítra", "za 5 dní" – for the contact nameday rows.
 	private func countdownLabel(_ date: Date) -> String {
-		let relative = CzechFormat.relativeDay(date, reference: today)
-		if relative == "dnes" || relative == "zítra" {
-			return relative
-		}
-		let calendar = Calendar.czech
-		let days = calendar.dateComponents(
-			[.day],
-			from: calendar.startOfDay(for: today),
-			to: calendar.startOfDay(for: date)
-		).day ?? 0
-		switch days {
-		case 2...4:
-			return "za \(days) dny"
-		default:
-			return "za \(days) dní"
+		switch AppFormat.relativeKind(date, reference: today) {
+		case .today, .tomorrow:
+			return AppFormat.relativeDay(date, reference: today)
+		case .other:
+			return AppFormat.inDays(AppFormat.daysUntil(date, reference: today))
 		}
 	}
 
@@ -345,7 +341,7 @@ struct TodayView: View {
 			VStack(alignment: .leading, spacing: 2) {
 				Text(dayLabel(info.date))
 					.font(.subheadline.weight(.semibold))
-				Text(CzechFormat.shortDate(month: info.entry.m, day: info.entry.d))
+				Text(AppFormat.shortDate(month: info.entry.m, day: info.entry.d))
 					.font(.caption)
 					.foregroundStyle(.secondary)
 			}
@@ -376,7 +372,7 @@ struct TodayView: View {
 
 			let names = upcomingContactNames(info)
 			if !names.isEmpty {
-				Text("🎉 " + names.joinedCzech)
+				Text(verbatim: "🎉 " + names.joinedNames)
 					.font(.caption)
 					.foregroundStyle(.secondary)
 					.lineLimit(1)
@@ -401,15 +397,19 @@ struct TodayView: View {
 
 	/// "zítra", or the weekday alone ("neděle") for later days.
 	private func dayLabel(_ date: Date) -> String {
-		let relative = CzechFormat.relativeDay(date, reference: today)
-		return relative.split(separator: " ").first.map(String.init) ?? relative
+		switch AppFormat.relativeKind(date, reference: today) {
+		case .today, .tomorrow:
+			return AppFormat.relativeDay(date, reference: today)
+		case .other:
+			return AppFormat.weekday(date)
+		}
 	}
 
 	private func capitalizedFirst(_ text: String) -> String {
 		guard let first = text.first else {
 			return text
 		}
-		return String(first).uppercased(with: CzechFormat.locale) + text.dropFirst()
+		return String(first).uppercased(with: AppFormat.locale) + text.dropFirst()
 	}
 }
 

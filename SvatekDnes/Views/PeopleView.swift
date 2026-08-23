@@ -25,7 +25,7 @@ struct PeopleView: View {
 				.alert("Nepodařilo se přidat do kalendáře", isPresented: $showExportError) {
 					Button("OK", role: .cancel) {}
 				} message: {
-					Text(exportErrorMessage ?? "Zkuste to prosím znovu.")
+					Text(exportErrorMessage ?? String(localized: "Zkuste to prosím znovu."))
 				}
 				.sheet(item: $assigningContact) { target in
 					AssignNamedayView(target: target)
@@ -211,7 +211,7 @@ struct PeopleView: View {
 		Task {
 			do {
 				try await CalendarExporter.shared.addAllDayEvent(
-					title: "Svátek má \(contact.givenName)",
+					title: String(localized: "Svátek má \(contact.givenName)"),
 					date: date,
 					yearly: false
 				)
@@ -238,28 +238,23 @@ struct PeopleView: View {
 
 	// MARK: - Helpers
 
-	/// "Dnes – 22. srpna", "Zítra – 23. srpna", otherwise "Pátek 29. srpna"
-	/// (the weekday form already contains the date, so it is not repeated).
+	/// "Dnes – 22. srpna", "Zítra – 23. srpna", otherwise
+	/// "Pátek 29. srpna – za 7 dní".
 	private func sectionTitle(for date: Date) -> String {
-		let relative = CzechFormat.relativeDay(date)
-		if relative == "dnes" || relative == "zítra" {
-			return capitalizedFirst(relative) + " – " + CzechFormat.dayMonth(date)
+		let relative = capitalizedFirst(AppFormat.relativeDay(date))
+		switch AppFormat.relativeKind(date) {
+		case .today, .tomorrow:
+			return relative + " – " + AppFormat.dayMonth(date)
+		case .other:
+			return relative + " – " + AppFormat.inDays(AppFormat.daysUntil(date))
 		}
-		let calendar = Calendar.czech
-		let days = calendar.dateComponents(
-			[.day],
-			from: calendar.startOfDay(for: Date()),
-			to: calendar.startOfDay(for: date)
-		).day ?? 0
-		let unit = czechPlural(days, one: "den", few: "dny", many: "dní")
-		return capitalizedFirst(relative) + " – za \(days) \(unit)"
 	}
 
 	private func initials(given: String, family: String) -> String {
 		let combined = [given, family]
 			.compactMap { $0.first.map(String.init) }
 			.joined()
-			.uppercased(with: CzechFormat.locale)
+			.uppercased(with: AppFormat.locale)
 		return combined.isEmpty ? "?" : combined
 	}
 
@@ -276,21 +271,8 @@ struct PeopleView: View {
 		guard let first = text.first else {
 			return text
 		}
-		return String(first).uppercased(with: CzechFormat.locale) + text.dropFirst()
+		return String(first).uppercased(with: AppFormat.locale) + text.dropFirst()
 	}
-
-	/// Czech plural selection: 1 → one, 2–4 → few, otherwise many.
-	private func czechPlural(_ n: Int, one: String, few: String, many: String) -> String {
-		switch n {
-		case 1:
-			return one
-		case 2...4:
-			return few
-		default:
-			return many
-		}
-	}
-
 }
 
 // MARK: - Row
@@ -305,14 +287,14 @@ private struct PersonRow: View {
 			contact.givenName,
 			options: [.caseInsensitive],
 			range: nil,
-			locale: CzechFormat.locale
+			locale: AppFormat.locale
 		) != .orderedSame
 	}
 
 	private var initials: String {
 		let given = contact.givenName.first.map(String.init) ?? ""
 		let family = contact.familyName.first.map(String.init) ?? ""
-		let combined = (given + family).uppercased(with: CzechFormat.locale)
+		let combined = (given + family).uppercased(with: AppFormat.locale)
 		return combined.isEmpty ? "?" : combined
 	}
 
@@ -360,8 +342,8 @@ private struct PersonRow: View {
 
 private struct EmptyStateView<Actions: View>: View {
 	let systemImage: String
-	let title: String
-	let message: String
+	let title: LocalizedStringKey
+	let message: LocalizedStringKey
 	@ViewBuilder let actions: () -> Actions
 
 	var body: some View {

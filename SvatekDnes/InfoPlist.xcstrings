@@ -1,0 +1,78 @@
+{
+  "sourceLanguage" : "cs",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "comment" : "Bundle display name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Svátek dnes"
+          }
+        }
+      }
+    },
+    "CFBundleName" : {
+      "comment" : "Bundle name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "SvatekDnes"
+          }
+        }
+      }
+    },
+    "NSCalendarsWriteOnlyAccessUsageDescription" : {
+      "comment" : "Privacy - Calendars Write Only Usage Description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Aplikace přidá událost se svátkem do vašeho kalendáře."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Die App fügt Ihrem Kalender ein Namenstag-Ereignis hinzu."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "The app adds a name day event to your calendar."
+          }
+        }
+      }
+    },
+    "NSContactsUsageDescription" : {
+      "comment" : "Privacy - Contacts Usage Description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Svátek dnes čte křestní jména z vašich kontaktů, aby vám připomněl, kdo má svátek. Kontakty nikam neodesíláme – vše zůstává ve vašem telefonu."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Svátek dnes liest die Vornamen aus Ihren Kontakten, um Sie daran zu erinnern, wer Namenstag hat. Kontakte werden nirgendwohin gesendet – alles bleibt auf Ihrem Telefon."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Svátek dnes reads the first names from your contacts to remind you who has a name day. Contacts are never uploaded – everything stays on your phone."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

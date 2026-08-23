@@ -24,7 +24,7 @@ struct DayDetailView: View {
 				calendarSection
 			}
 		}
-		.navigationTitle(CzechFormat.dayMonth(info.date))
+		.navigationTitle(AppFormat.dayMonth(info.date))
 		.navigationBarTitleDisplayMode(.inline)
 		.alert("Nepodařilo se přidat do kalendáře", isPresented: $showsExportError) {
 			Button("OK", role: .cancel) {}
@@ -61,11 +61,11 @@ struct DayDetailView: View {
 	private var namesHeader: String {
 		switch info.entry.names.count {
 		case 0:
-			return "Jmeniny"
+			return String(localized: "Jmeniny")
 		case 1:
-			return "Svátek má"
+			return String(localized: "Svátek má")
 		default:
-			return "Svátek mají"
+			return String(localized: "Svátek mají")
 		}
 	}
 
@@ -108,7 +108,7 @@ struct DayDetailView: View {
 	}
 
 	private var contactsSection: some View {
-		Section(matchedContacts.count > 1 ? "Svátek mají vaše kontakty" : "Svátek má váš kontakt") {
+		Section {
 			ForEach(matchedContacts) { contact in
 				HStack(spacing: 12) {
 					initialsAvatar(for: contact)
@@ -124,6 +124,10 @@ struct DayDetailView: View {
 				}
 				.padding(.vertical, 2)
 			}
+		} header: {
+			Text(matchedContacts.count > 1
+				? String(localized: "Svátek mají vaše kontakty")
+				: String(localized: "Svátek má váš kontakt"))
 		}
 	}
 
@@ -134,7 +138,7 @@ struct DayDetailView: View {
 		return ZStack {
 			Circle()
 				.fill(Color.brandGreen)
-			Text(initials.uppercased(with: CzechFormat.locale))
+			Text(initials.uppercased(with: AppFormat.locale))
 				.font(.subheadline.weight(.semibold))
 				.foregroundStyle(.white)
 		}
@@ -165,8 +169,10 @@ struct DayDetailView: View {
 
 	private var eventTitle: String? {
 		if !info.entry.names.isEmpty {
-			let joined = info.entry.names.joinedCzech
-			return info.entry.names.count > 1 ? "Svátek mají \(joined)" : "Svátek má \(joined)"
+			let joined = info.entry.names.joinedNames
+			return info.entry.names.count > 1
+				? String(localized: "Svátek mají \(joined)")
+				: String(localized: "Svátek má \(joined)")
 		}
 		if let holiday = info.primaryHoliday {
 			return holiday.name

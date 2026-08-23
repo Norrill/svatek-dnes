@@ -73,18 +73,14 @@ final class HolidayCalendarTests: XCTestCase {
 	}
 
 	func testKindLabels() {
-		XCTAssertEqual(
+		// Labels are localized – assert they exist and are pairwise distinct.
+		let labels = [
 			Holiday(name: "Nový rok", shortName: "Nový rok", kind: .state, month: 1, day: 1).kindLabel,
-			"státní svátek"
-		)
-		XCTAssertEqual(
 			Holiday(name: "Velký pátek", shortName: "Velký pátek", kind: .other, month: 4, day: 3).kindLabel,
-			"den pracovního klidu"
-		)
-		XCTAssertEqual(
 			Holiday(name: "Tři králové", shortName: "Tři králové", kind: .significant, month: 1, day: 6).kindLabel,
-			"významný den"
-		)
+		]
+		XCTAssertTrue(labels.allSatisfy { !$0.isEmpty })
+		XCTAssertEqual(Set(labels).count, labels.count)
 	}
 
 	// MARK: - nextDayOff

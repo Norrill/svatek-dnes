@@ -44,7 +44,7 @@ final class NamedayStoreTests: XCTestCase {
 	}
 
 	func testDisplayTextJoinsNamesCzechWay() {
-		XCTAssertEqual(store.entry(month: 12, day: 24).displayText, "Adam a Eva")
+		XCTAssertEqual(store.entry(month: 12, day: 24).names, ["Adam", "Eva"])
 		XCTAssertEqual(store.entry(month: 2, day: 1).displayText, "Hynek")
 		XCTAssertEqual(store.entry(month: 1, day: 1).displayText, "")
 	}
@@ -83,17 +83,20 @@ final class NamedayStoreTests: XCTestCase {
 		XCTAssertTrue(store.search("Xyzabc").isEmpty)
 	}
 
-	// MARK: - joinedCzech
+	// MARK: - joinedNames
 
-	func testJoinedCzech() {
-		let cases: [(input: [String], expected: String)] = [
-			([], ""),
-			(["Karina"], "Karina"),
-			(["Petr", "Pavel"], "Petr a Pavel"),
-			(["Rut", "Matylda", "Vlastibor"], "Rut, Matylda a Vlastibor"),
-		]
-		for c in cases {
-			XCTAssertEqual(c.input.joinedCzech, c.expected)
+	func testJoinedNames() {
+		// The multi-name join is locale-dependent (ListFormatter), so only
+		// assert the locale-independent behavior and containment.
+		XCTAssertEqual([String]().joinedNames, "")
+		XCTAssertEqual(["Karina"].joinedNames, "Karina")
+
+		let pair = ["Petr", "Pavel"].joinedNames
+		XCTAssertTrue(pair.contains("Petr") && pair.contains("Pavel"))
+
+		let triple = ["Rut", "Matylda", "Vlastibor"].joinedNames
+		for name in ["Rut", "Matylda", "Vlastibor"] {
+			XCTAssertTrue(triple.contains(name))
 		}
 	}
 }

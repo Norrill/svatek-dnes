@@ -74,7 +74,7 @@ struct CalendarListView: View {
 		return Button {
 			selectedMonth = month
 		} label: {
-			Text(CzechFormat.monthName(month).capitalized(with: CzechFormat.locale))
+			Text(AppFormat.monthName(month).capitalized(with: AppFormat.locale))
 				.font(.subheadline.weight(selected ? .semibold : .regular))
 				.padding(.horizontal, 14)
 				.padding(.vertical, 7)
@@ -181,7 +181,7 @@ struct CalendarListView: View {
 
 	private func searchRowLabel(_ entry: NamedayEntry) -> some View {
 		VStack(alignment: .leading, spacing: 2) {
-			Text(verbatim: CzechFormat.shortDate(month: entry.m, day: entry.d))
+			Text(verbatim: AppFormat.shortDate(month: entry.m, day: entry.d))
 				.foregroundStyle(.secondary)
 				+ Text(verbatim: " – ")
 				.foregroundStyle(.secondary)
@@ -203,7 +203,7 @@ struct CalendarListView: View {
 		var result = Text(verbatim: "")
 		for (index, name) in entry.names.enumerated() {
 			if index > 0 {
-				result = result + Text(verbatim: index == entry.names.count - 1 ? " a " : ", ")
+				result = result + Text(verbatim: index == entry.names.count - 1 ? String(localized: " a ") : ", ")
 			}
 			var piece = Text(verbatim: name)
 			if NameMatching.fold(name).hasPrefix(folded) {
@@ -220,10 +220,10 @@ struct CalendarListView: View {
 		guard entry.alt.contains(where: { NameMatching.fold($0).hasPrefix(folded) }) else {
 			return nil
 		}
-		var result = Text(verbatim: "též ")
+		var result = Text(verbatim: String(localized: "též") + " ")
 		for (index, name) in entry.alt.enumerated() {
 			if index > 0 {
-				result = result + Text(verbatim: index == entry.alt.count - 1 ? " a " : ", ")
+				result = result + Text(verbatim: index == entry.alt.count - 1 ? String(localized: " a ") : ", ")
 			}
 			var piece = Text(verbatim: name)
 			if NameMatching.fold(name).hasPrefix(folded) {

@@ -63,14 +63,15 @@ final class NotificationScheduler {
 			if settings.notifyContacts {
 				let names = contactsByDay[WidgetSnapshot.key(month: month, day: day)] ?? []
 				if !names.isEmpty {
-					let verb = names.count == 1 ? "má" : "mají"
-					title = "Dnes \(verb) svátek \(names.joinedCzech) 🎉"
+					title = names.count == 1
+						? String(localized: "Dnes má svátek \(names.joinedNames) 🎉")
+						: String(localized: "Dnes mají svátek \(names.joinedNames) 🎉")
 				}
 			}
 			if settings.notifyHolidays, let holiday = info.primaryHoliday, holiday.isDayOff {
 				let line = "\(holiday.shortName) – \(holiday.kindLabel)"
 				if title == nil {
-					title = "Dnes je \(holiday.shortName)"
+					title = String(localized: "Dnes je \(holiday.shortName)")
 					if holiday.name != holiday.shortName {
 						lines.append(holiday.name)
 					}
@@ -80,7 +81,7 @@ final class NotificationScheduler {
 				}
 			}
 			if settings.notifyAllNamedays, !info.entry.names.isEmpty {
-				let text = "Svátek má \(info.entry.names.joinedCzech)"
+				let text = String(localized: "Svátek má \(info.entry.names.joinedNames)")
 				if title == nil {
 					title = text
 				} else if !(settings.notifyContacts && title?.contains(info.entry.names[0]) == true) {
@@ -111,12 +112,14 @@ final class NotificationScheduler {
 					let dayBefore = calendar.date(byAdding: .day, value: -1, to: info.date),
 					let evening = calendar.date(bySettingHour: 19, minute: 0, second: 0, of: dayBefore),
 					evening > now {
-					let verb = names.count == 1 ? "má" : "mají"
+					let title = names.count == 1
+						? String(localized: "Zítra má svátek \(names.joinedNames)")
+						: String(localized: "Zítra mají svátek \(names.joinedNames)")
 					schedule(
 						center: center,
 						identifier: "before-\(comps.year!)-\(month)-\(day)",
-						title: "Zítra \(verb) svátek \(names.joinedCzech)",
-						body: "Nezapomeňte popřát.",
+						title: title,
+						body: String(localized: "Nezapomeňte popřát."),
 						fireDate: evening
 					)
 					scheduled += 1

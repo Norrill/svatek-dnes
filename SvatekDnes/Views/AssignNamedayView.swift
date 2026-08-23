@@ -23,7 +23,7 @@ struct AssignNamedayView: View {
 			List {
 				if trimmedQuery.isEmpty {
 					ForEach(1...12, id: \.self) { month in
-						Section(CzechFormat.monthName(month).capitalized(with: CzechFormat.locale)) {
+						Section(AppFormat.monthName(month).capitalized(with: AppFormat.locale)) {
 							ForEach(NamedayStore.shared.month(month), id: \.self) { entry in
 								row(entry)
 							}
@@ -58,7 +58,7 @@ struct AssignNamedayView: View {
 			assign(entry)
 		} label: {
 			HStack(spacing: 12) {
-				Text(CzechFormat.shortDate(month: entry.m, day: entry.d))
+				Text(AppFormat.shortDate(month: entry.m, day: entry.d))
 					.font(.subheadline.monospacedDigit())
 					.foregroundStyle(.secondary)
 					.frame(width: 56, alignment: .leading)
