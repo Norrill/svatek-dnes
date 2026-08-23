@@ -22,11 +22,11 @@ struct CalendarListView: View {
 					monthBrowser
 				}
 			}
-			.navigationTitle("Kalendář")
+			.navigationTitle("calendar_title")
 			.navigationDestination(for: Date.self) { date in
 				DayDetailView(info: CalendarComposer.info(for: date))
 			}
-			.searchable(text: $searchText, prompt: "Hledat jméno")
+			.searchable(text: $searchText, prompt: "search_name_prompt")
 		}
 	}
 
@@ -120,7 +120,7 @@ struct CalendarListView: View {
 			Spacer(minLength: 0)
 			if !contacts.matches(month: entry.m, day: entry.d).isEmpty {
 				Text(verbatim: "🎉")
-					.accessibilityLabel("Někdo z kontaktů má tento den svátek")
+					.accessibilityLabel("calendar_contact_marker_a11y")
 			}
 		}
 	}
@@ -152,9 +152,9 @@ struct CalendarListView: View {
 		let results = NamedayStore.shared.search(searchText)
 		if results.isEmpty {
 			ContentUnavailableView {
-				Label("Nic nenalezeno", systemImage: "magnifyingglass")
+				Label("search_empty_title", systemImage: "magnifyingglass")
 			} description: {
-				Text("Žádné jméno v kalendáři neodpovídá hledání „\(searchText.trimmingCharacters(in: .whitespacesAndNewlines))“.")
+				Text(String(format: String(localized: "search_empty_message"), searchText.trimmingCharacters(in: .whitespacesAndNewlines)))
 			}
 			.background(Color(.systemGroupedBackground))
 		} else {
@@ -203,7 +203,7 @@ struct CalendarListView: View {
 		var result = Text(verbatim: "")
 		for (index, name) in entry.names.enumerated() {
 			if index > 0 {
-				result = result + Text(verbatim: index == entry.names.count - 1 ? String(localized: " a ") : ", ")
+				result = result + Text(verbatim: index == entry.names.count - 1 ? String(localized: "names_final_separator") : ", ")
 			}
 			var piece = Text(verbatim: name)
 			if NameMatching.fold(name).hasPrefix(folded) {
@@ -220,10 +220,10 @@ struct CalendarListView: View {
 		guard entry.alt.contains(where: { NameMatching.fold($0).hasPrefix(folded) }) else {
 			return nil
 		}
-		var result = Text(verbatim: String(localized: "též") + " ")
+		var result = Text(verbatim: String(localized: "nameday_variants_prefix") + " ")
 		for (index, name) in entry.alt.enumerated() {
 			if index > 0 {
-				result = result + Text(verbatim: index == entry.alt.count - 1 ? String(localized: " a ") : ", ")
+				result = result + Text(verbatim: index == entry.alt.count - 1 ? String(localized: "names_final_separator") : ", ")
 			}
 			var piece = Text(verbatim: name)
 			if NameMatching.fold(name).hasPrefix(folded) {

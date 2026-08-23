@@ -107,8 +107,8 @@ struct SvatekWidget: Widget {
 		StaticConfiguration(kind: "SvatekWidget", provider: SvatekProvider()) { entry in
 			SvatekWidgetEntryView(entry: entry)
 		}
-		.configurationDisplayName("Svátek dnes")
-		.description("Kdo má dnes svátek a jaké svátky nás čekají.")
+		.configurationDisplayName("widget_display_name")
+		.description("widget_description")
 		.supportedFamilies([
 			.systemSmall,
 			.systemMedium,

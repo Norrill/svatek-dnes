@@ -1,1391 +1,1306 @@
 {
-  "sourceLanguage": "cs",
-  "strings": {
-    " a ": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": " and "
+  "sourceLanguage" : "cs",
+  "strings" : {
+    "assign_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svátek – %@"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": " und "
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name day – %@"
           }
-        }
-      }
-    },
-    "🎉": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🎉"
-          }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🎉"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namenstag – %@"
           }
         }
       }
     },
-    "🎉 Svátek má váš kontakt %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🎉 Your contact %@ has a name day today"
+    "calendar_contact_marker_a11y" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Někdo z kontaktů má tento den svátek"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🎉 Ihr Kontakt %@ hat heute Namenstag"
-          }
-        }
-      }
-    },
-    "🎉 Svátek mají vaše kontakty %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🎉 Your contacts %@ have their name day today"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "One of your contacts has a name day on this day"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "🎉 Ihre Kontakte %@ haben heute Namenstag"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einer Ihrer Kontakte hat an diesem Tag Namenstag"
           }
         }
       }
     },
-    "Aktualizace se nepodařila – zkusíme to později automaticky.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The update failed – we'll retry automatically later."
+    "calendar_export_add" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přidat do kalendáře"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Die Aktualisierung ist fehlgeschlagen – wir versuchen es später automatisch erneut."
-          }
-        }
-      }
-    },
-    "Aktualizovat nyní": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Update now"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to calendar"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jetzt aktualisieren"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zum Kalender hinzufügen"
           }
         }
       }
     },
-    "Aktualizuji…": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Updating…"
+    "calendar_export_added" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přidáno do kalendáře"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Aktualisiere…"
-          }
-        }
-      }
-    },
-    "Aplikace nemá přístup ke kalendáři. Povolte jej v Nastavení.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The app has no access to your calendar. You can allow it in Settings."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Added to calendar"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Die App hat keinen Zugriff auf Ihren Kalender. Sie können ihn in den Einstellungen erlauben."
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zum Kalender hinzugefügt"
           }
         }
       }
     },
-    "Aplikace porovná jména ve vašich kontaktech s kalendářem a připomene vám, kdo má svátek.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The app matches the first names in your contacts with the calendar and reminds you who has a name day."
+    "calendar_export_error_denied" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aplikace nemá přístup ke kalendáři. Povolte jej v Nastavení."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Die App vergleicht die Vornamen Ihrer Kontakte mit dem Kalender und erinnert Sie daran, wer Namenstag hat."
-          }
-        }
-      }
-    },
-    "Aplikace porovná křestní jména z vašich kontaktů s kalendářem jmenin a ukáže, kdo má kdy svátek. Vše probíhá jen ve vašem zařízení – kontakty nikam neodesíláme.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The app matches the first names from your contacts with the name day calendar and shows who celebrates when. Everything happens on your device – contacts are never uploaded."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The app has no access to your calendar. You can allow it in Settings."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Die App vergleicht die Vornamen Ihrer Kontakte mit dem Namenstagskalender und zeigt, wer wann feiert. Alles geschieht nur auf Ihrem Gerät – Kontakte werden nirgendwohin gesendet."
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die App hat keinen Zugriff auf Ihren Kalender. Sie können ihn in den Einstellungen erlauben."
           }
         }
       }
     },
-    "bez jmenin": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "no name day"
+    "calendar_export_error_retry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zkuste to prosím znovu."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "kein Namenstag"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please try again."
           }
-        }
-      }
-    },
-    "Bez jmenin": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No name day"
-          }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kein Namenstag"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitte versuchen Sie es erneut."
           }
         }
       }
     },
-    "Bez přiřazeného svátku": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No name day assigned"
+    "calendar_export_error_save_failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Událost se nepodařilo uložit."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ohne zugewiesenen Namenstag"
-          }
-        }
-      }
-    },
-    "Bez přístupu ke kontaktům nemůžeme zjistit, kdo z vašich blízkých slaví svátek. Přístup můžete kdykoli povolit v Nastavení.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Without access to your contacts we cannot tell who of your loved ones celebrates a name day. You can allow access anytime in Settings."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The event could not be saved."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ohne Zugriff auf Ihre Kontakte können wir nicht feststellen, wer von Ihren Liebsten Namenstag feiert. Sie können den Zugriff jederzeit in den Einstellungen erlauben."
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Ereignis konnte nicht gespeichert werden."
           }
         }
       }
     },
-    "Čas oznámení": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Notification time"
+    "calendar_export_error_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nepodařilo se přidat do kalendáře"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zeit der Mitteilung"
-          }
-        }
-      }
-    },
-    "český občanský kalendář": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Czech civil calendar"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not add to calendar"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "tschechischer bürgerlicher Kalender"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konnte nicht zum Kalender hinzugefügt werden"
           }
         }
       }
     },
-    "Data byla aktualizována.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The data has been updated."
+    "calendar_export_once" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jen tento rok"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Die Daten wurden aktualisiert."
-          }
-        }
-      }
-    },
-    "Data svátků": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Holiday data"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This year only"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Feiertagsdaten"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur dieses Jahr"
           }
         }
       }
     },
-    "den pracovního klidu": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "day off"
+    "calendar_export_yearly" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opakovat každý rok"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "arbeitsfreier Tag"
-          }
-        }
-      }
-    },
-    "dnes": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "today"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Repeat every year"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "heute"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jedes Jahr wiederholen"
           }
         }
       }
     },
-    "Dnes": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Today"
+    "calendar_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalendář"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Heute"
-          }
-        }
-      }
-    },
-    "Dnes bez jmenin": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No name day today"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calendar"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Heute kein Namenstag"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalender"
           }
         }
       }
     },
-    "Dnes je %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Today is %@"
+    "common_cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zrušit"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Heute ist %@"
-          }
-        }
-      }
-    },
-    "Dnes má svátek %@ 🎉": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Today is %@'s name day 🎉"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Heute hat %@ Namenstag 🎉"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbrechen"
           }
         }
       }
     },
-    "Dnes mají svátek %@ 🎉": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Today is the name day of %@ 🎉"
+    "common_ok" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Heute haben %@ Namenstag 🎉"
-          }
-        }
-      }
-    },
-    "Hledat jméno": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Search for a name"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Namen suchen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
           }
         }
       }
     },
-    "Jen tento rok": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This year only"
+    "contact_assigned_manually" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "přiřazeno ručně"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nur dieses Jahr"
-          }
-        }
-      }
-    },
-    "Jmeniny": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Name day"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "assigned manually"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Namenstag"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "manuell zugewiesen"
           }
         }
       }
     },
-    "Kalendář": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Calendar"
+    "contact_match_calendar_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "v kalendáři jako %@"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kalender"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "in the calendar as %@"
           }
-        }
-      }
-    },
-    "Kalendář svátků se aktualizuje automaticky přibližně jednou měsíčně.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The holiday calendar updates automatically about once a month."
-          }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Der Feiertagskalender wird automatisch etwa einmal im Monat aktualisiert."
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "im Kalender als %@"
           }
         }
       }
     },
-    "Každodenní jmeniny": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Daily name days"
+    "contact_match_probable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pravděpodobně %@"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tägliche Namenstage"
-          }
-        }
-      }
-    },
-    "Kdo má dnes svátek a jaké svátky nás čekají.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Who has a name day today and which holidays are ahead."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "probably %@"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wer heute Namenstag hat und welche Feiertage bevorstehen."
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "wahrscheinlich %@"
           }
         }
       }
     },
-    "Kontakty zůstávají ve vašem zařízení. Aplikace neodesílá žádná osobní data.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Contacts stay on your device. The app does not send any personal data."
+    "day_contacts_header_multiple" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svátek mají vaše kontakty"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kontakte bleiben auf Ihrem Gerät. Die App sendet keine persönlichen Daten."
-          }
-        }
-      }
-    },
-    "Lidé": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "People"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your contacts' name days"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Personen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namenstage Ihrer Kontakte"
           }
         }
       }
     },
-    "Nadcházející dny": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Upcoming days"
+    "day_contacts_header_single" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svátek má váš kontakt"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kommende Tage"
-          }
-        }
-      }
-    },
-    "Nastavení": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Settings"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your contact's name day"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Einstellungen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namenstag Ihres Kontakts"
           }
         }
       }
     },
-    "Někdo z kontaktů má tento den svátek": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "One of your contacts has a name day on this day"
+    "day_holidays_header" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svátky a významné dny"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Einer Ihrer Kontakte hat an diesem Tag Namenstag"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Holidays and notable days"
           }
-        }
-      }
-    },
-    "Nepodařilo se přidat do kalendáře": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Could not add to calendar"
-          }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Konnte nicht zum Kalender hinzugefügt werden"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feiertage und Gedenktage"
           }
         }
       }
     },
-    "Nezapomeňte popřát.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Don't forget to send your wishes."
+    "day_names_header_empty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jmeniny"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vergessen Sie nicht zu gratulieren."
-          }
-        }
-      }
-    },
-    "Nic nenalezeno": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nothing found"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name day"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Nichts gefunden"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namenstag"
           }
         }
       }
     },
-    "O aplikaci": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "About"
+    "day_names_header_multiple" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svátek mají"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Über die App"
-          }
-        }
-      }
-    },
-    "OK": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "OK"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name day of"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "OK"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namenstag von"
           }
         }
       }
     },
-    "Opakovat každý rok": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Repeat every year"
+    "day_names_header_single" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svátek má"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Jedes Jahr wiederholen"
-          }
-        }
-      }
-    },
-    "Otevřít Nastavení": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Open Settings"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name day of"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Einstellungen öffnen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namenstag von"
           }
         }
       }
     },
-    "Oznámení": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Notifications"
+    "day_no_name_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "V kalendáři jmenin není na tento den žádné jméno."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mitteilungen"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The name day calendar has no name for this day."
           }
-        }
-      }
-    },
-    "Oznámení o svátku pošleme každý den – i když jméno nemáte v kontaktech.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "We'll send a name day notification every day – even when the name is not in your contacts."
-          }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wir senden jeden Tag eine Namenstags-Mitteilung – auch wenn der Name nicht in Ihren Kontakten ist."
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Namenstagskalender hat für diesen Tag keinen Namen."
           }
         }
       }
     },
-    "Poslední aktualizace": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Last update"
+    "holiday_kind_day_off" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "den pracovního klidu"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Letzte Aktualisierung"
-          }
-        }
-      }
-    },
-    "Povolit přístup": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Allow access"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "day off"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zugriff erlauben"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "arbeitsfreier Tag"
           }
         }
       }
     },
-    "Povolit přístup ke kontaktům": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Allow access to contacts"
+    "holiday_kind_significant" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "významný den"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zugriff auf Kontakte erlauben"
-          }
-        }
-      }
-    },
-    "pravděpodobně %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "probably %@"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "notable day"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "wahrscheinlich %@"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gedenktag"
           }
         }
       }
     },
-    "Přidáno do kalendáře": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Added to calendar"
+    "holiday_kind_state" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "státní svátek"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zum Kalender hinzugefügt"
-          }
-        }
-      }
-    },
-    "Přidat do kalendáře": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Add to calendar"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "public holiday"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zum Kalender hinzufügen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "gesetzlicher Feiertag"
           }
         }
       }
     },
-    "Připomenout večer předem": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Remind me the evening before"
+    "nameday_has_multiple" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svátek mají %@"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Am Vorabend erinnern"
-          }
-        }
-      }
-    },
-    "Připomínka přijde den předem v 19.00.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The reminder arrives the day before at 7 p.m."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name day of %@"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Die Erinnerung kommt am Vortag um 19 Uhr."
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namenstag von %@"
           }
         }
       }
     },
-    "Přiřadit": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Assign"
+    "nameday_has_single" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svátek má %@"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zuweisen"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name day of %@"
           }
-        }
-      }
-    },
-    "přiřazeno ručně": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "assigned manually"
-          }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "manuell zugewiesen"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namenstag von %@"
           }
         }
       }
     },
-    "Přístup ke kontaktům je odepřen": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Access to contacts is denied"
+    "nameday_none" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bez jmenin"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zugriff auf Kontakte verweigert"
-          }
-        }
-      }
-    },
-    "Propojte kontakty": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Connect your contacts"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No name day"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kontakte verbinden"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Namenstag"
           }
         }
       }
     },
-    "státní svátek": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "public holiday"
+    "nameday_none_inline" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bez jmenin"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "no name day"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "gesetzlicher Feiertag"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "kein Namenstag"
           }
         }
       }
     },
-    "Státní svátky a dny volna": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Public holidays and days off"
+    "nameday_variants_also" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "též %@"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Feiertage und freie Tage"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "also %@"
           }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "auch %@"
+          }
         }
       }
     },
-    "Svátek – %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Name day – %@"
+    "nameday_variants_prefix" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "též"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "also"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Namenstag – %@"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "auch"
           }
         }
       }
     },
-    "Svátek dnes": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Svátek dnes"
+    "names_final_separator" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " a "
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " and "
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Svátek dnes"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " und "
           }
         }
       }
     },
-    "Svátek má": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Name day of"
+    "notif_today_contact_multiple" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dnes mají svátek %@ 🎉"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Namenstag von"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today is the name day of %@ 🎉"
           }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute haben %@ Namenstag 🎉"
+          }
         }
       }
     },
-    "Svátek má %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Name day of %@"
+    "notif_today_contact_single" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dnes má svátek %@ 🎉"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Namenstag von %@"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today is %@'s name day 🎉"
           }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute hat %@ Namenstag 🎉"
+          }
         }
       }
     },
-    "Svátek má váš kontakt": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Your contact's name day"
+    "notif_today_holiday" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dnes je %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today is %@"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Namenstag Ihres Kontakts"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute ist %@"
           }
         }
       }
     },
-    "Svátek mají": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Name day of"
+    "notif_tomorrow_body" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nezapomeňte popřát."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't forget to send your wishes."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Namenstag von"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vergessen Sie nicht zu gratulieren."
           }
         }
       }
     },
-    "Svátek mají %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Name day of %@"
+    "notif_tomorrow_contact_multiple" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zítra mají svátek %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tomorrow is the name day of %@"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Namenstag von %@"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Morgen haben %@ Namenstag"
           }
         }
       }
     },
-    "Svátek mají vaše kontakty": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Your contacts' name days"
+    "notif_tomorrow_contact_single" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zítra má svátek %@"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Namenstage Ihrer Kontakte"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tomorrow is %@'s name day"
           }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Morgen hat %@ Namenstag"
+          }
         }
       }
     },
-    "svátek se nepodařilo určit": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "name day could not be determined"
+    "people_assign_action" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přiřadit"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Namenstag konnte nicht bestimmt werden"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assign"
           }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zuweisen"
+          }
         }
       }
     },
-    "Svátek: %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Name day: %@"
+    "people_change_nameday" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Změnit svátek"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change name day"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Namenstag: %@"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namenstag ändern"
           }
         }
       }
     },
-    "Svátky a významné dny": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Holidays and notable days"
+    "people_denied_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bez přístupu ke kontaktům nemůžeme zjistit, kdo z vašich blízkých slaví svátek. Přístup můžete kdykoli povolit v Nastavení."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Without access to your contacts we cannot tell who of your loved ones celebrates a name day. You can allow access anytime in Settings."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Feiertage und Gedenktage"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ohne Zugriff auf Ihre Kontakte können wir nicht feststellen, wer von Ihren Liebsten Namenstag feiert. Sie können den Zugriff jederzeit in den Einstellungen erlauben."
           }
         }
       }
     },
-    "Svátky vašich blízkých": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Name days of your loved ones"
+    "people_denied_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přístup ke kontaktům je odepřen"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Namenstage Ihrer Liebsten"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Access to contacts is denied"
           }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zugriff auf Kontakte verweigert"
+          }
         }
       }
     },
-    "Svátky vašich kontaktů": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Your contacts' name days"
+    "people_empty_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "V kontaktech jsme nenašli žádné křestní jméno."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We did not find any first names in your contacts."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Namenstage Ihrer Kontakte"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wir haben in Ihren Kontakten keine Vornamen gefunden."
           }
         }
       }
     },
-    "Svátky vašich lidí": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Your people's name days"
+    "people_empty_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Žádný kontakt se svátkem jsme nenašli"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We found no contact with a name day"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Namenstage Ihrer Liebsten"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Kontakt mit Namenstag gefunden"
           }
         }
       }
     },
-    "též": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "also"
+    "people_intro_allow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povolit přístup ke kontaktům"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow access to contacts"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "auch"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zugriff auf Kontakte erlauben"
           }
         }
       }
     },
-    "též %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "also %@"
+    "people_intro_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aplikace porovná křestní jména z vašich kontaktů s kalendářem jmenin a ukáže, kdo má kdy svátek. Vše probíhá jen ve vašem zařízení – kontakty nikam neodesíláme."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "auch %@"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The app matches the first names from your contacts with the name day calendar and shows who celebrates when. Everything happens on your device – contacts are never uploaded."
           }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die App vergleicht die Vornamen Ihrer Kontakte mit dem Namenstagskalender und zeigt, wer wann feiert. Alles geschieht nur auf Ihrem Gerät – Kontakte werden nirgendwohin gesendet."
+          }
         }
       }
     },
-    "Událost se nepodařilo uložit.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The event could not be saved."
+    "people_intro_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svátky vašich blízkých"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Das Ereignis konnte nicht gespeichert werden."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name days of your loved ones"
           }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namenstage Ihrer Liebsten"
+          }
         }
       }
     },
-    "v kalendáři jako %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "in the calendar as %@"
+    "people_open_settings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otevřít Nastavení"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Settings"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "im Kalender als %@"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen öffnen"
           }
         }
       }
     },
-    "V kalendáři jmenin není na tento den žádné jméno.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "The name day calendar has no name for this day."
+    "people_remove_assignment" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zrušit přiřazený svátek"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove assigned name day"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Der Namenstagskalender hat für diesen Tag keinen Namen."
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zugewiesenen Namenstag entfernen"
           }
         }
       }
     },
-    "V kontaktech jsme nenašli žádné křestní jméno.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "We did not find any first names in your contacts."
+    "people_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lidé"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "People"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wir haben in Ihren Kontakten keine Vornamen gefunden."
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personen"
           }
         }
       }
     },
-    "Verze": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Version"
+    "people_unmatched_footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vyberte den, kdy má kontakt svátek – započítáme ho do oznámení i widgetu."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Version"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pick the day of the contact's name day – it will be included in notifications and the widget."
           }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wählen Sie den Tag, an dem der Kontakt Namenstag hat – er wird in Mitteilungen und im Widget berücksichtigt."
+          }
         }
       }
     },
-    "Vyberte den, kdy má kontakt svátek – započítáme ho do oznámení i widgetu.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pick the day of the contact's name day – it will be included in notifications and the widget."
+    "people_unmatched_header" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bez přiřazeného svátku"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No name day assigned"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wählen Sie den Tag, an dem der Kontakt Namenstag hat – er wird in Mitteilungen und im Widget berücksichtigt."
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ohne zugewiesenen Namenstag"
           }
         }
       }
     },
-    "významný den": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "notable day"
+    "people_unmatched_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "svátek se nepodařilo určit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "name day could not be determined"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gedenktag"
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namenstag konnte nicht bestimmt werden"
           }
         }
       }
     },
-    "za %lld dní": {
-      "localizations": {
-        "cs": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "za %lld den"
+    "relative_in_days" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "za %lld den"
                 }
               },
-              "few": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "za %lld dny"
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "za %lld dny"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "za %lld dní"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "za %lld dní"
                 }
               }
             }
           }
         },
-        "en": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "in %lld day"
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "in %lld day"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "in %lld days"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "in %lld days"
                 }
               }
             }
           }
         },
-        "de": {
-          "variations": {
-            "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "in %lld Tag"
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "in %lld Tag"
                 }
               },
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "in %lld Tagen"
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "in %lld Tagen"
                 }
               }
             }
@@ -1393,198 +1308,1018 @@
         }
       }
     },
-    "Žádné jméno v kalendáři neodpovídá hledání „%@“.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "No name in the calendar matches “%@”."
+    "relative_today" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dnes"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kein Name im Kalender entspricht der Suche „%@“."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "today"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "heute"
           }
         }
       }
     },
-    "Žádný kontakt se svátkem jsme nenašli": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "We found no contact with a name day"
+    "relative_tomorrow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "zítra"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kein Kontakt mit Namenstag gefunden"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tomorrow"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "morgen"
           }
         }
       }
     },
-    "zatím nikdy – vestavěná data": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "never yet – built-in data"
+    "search_empty_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Žádné jméno v kalendáři neodpovídá hledání „%@“."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "noch nie – integrierte Daten"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No name in the calendar matches “%@”."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kein Name im Kalender entspricht der Suche „%@“."
           }
         }
       }
     },
-    "Zdroj dat": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Data source"
+    "search_empty_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nic nenalezeno"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Datenquelle"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing found"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nichts gefunden"
           }
         }
       }
     },
-    "zítra": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "tomorrow"
+    "search_name_prompt" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hledat jméno"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "morgen"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search for a name"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namen suchen"
           }
         }
       }
     },
-    "zítra %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "tomorrow %@"
+    "settings_about_header" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O aplikaci"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "morgen %@"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Über die App"
           }
         }
       }
     },
-    "Zítra má svátek %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tomorrow is %@'s name day"
+    "settings_data_footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalendář svátků se aktualizuje automaticky přibližně jednou měsíčně."
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Morgen hat %@ Namenstag"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The holiday calendar updates automatically about once a month."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Feiertagskalender wird automatisch etwa einmal im Monat aktualisiert."
           }
         }
       }
     },
-    "Zítra mají svátek %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tomorrow is the name day of %@"
+    "settings_data_header" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data svátků"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Morgen haben %@ Namenstag"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Holiday data"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feiertagsdaten"
           }
         }
       }
     },
-    "Zkuste to prosím znovu.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Please try again."
+    "settings_data_source" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zdroj dat"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Bitte versuchen Sie es erneut."
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data source"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datenquelle"
           }
         }
       }
     },
-    "Změnit svátek": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Change name day"
+    "settings_data_source_value" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "český občanský kalendář"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Namenstag ändern"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czech civil calendar"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tschechischer bürgerlicher Kalender"
           }
         }
       }
     },
-    "Zrušit": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cancel"
+    "settings_last_update" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poslední aktualizace"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Abbrechen"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last update"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Letzte Aktualisierung"
           }
         }
       }
     },
-    "Zrušit přiřazený svátek": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Remove assigned name day"
+    "settings_last_update_never" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "zatím nikdy – vestavěná data"
           }
         },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Zugewiesenen Namenstag entfernen"
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "never yet – built-in data"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "noch nie – integrierte Daten"
+          }
+        }
+      }
+    },
+    "settings_notification_time" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Čas oznámení"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notification time"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeit der Mitteilung"
+          }
+        }
+      }
+    },
+    "settings_notifications_header" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oznámení"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mitteilungen"
+          }
+        }
+      }
+    },
+    "settings_notify_all_footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oznámení o svátku pošleme každý den – i když jméno nemáte v kontaktech."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We'll send a name day notification every day – even when the name is not in your contacts."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wir senden jeden Tag eine Namenstags-Mitteilung – auch wenn der Name nicht in Ihren Kontakten ist."
+          }
+        }
+      }
+    },
+    "settings_notify_all_namedays" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Každodenní jmeniny"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daily name days"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tägliche Namenstage"
+          }
+        }
+      }
+    },
+    "settings_notify_contacts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svátky vašich kontaktů"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your contacts' name days"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namenstage Ihrer Kontakte"
+          }
+        }
+      }
+    },
+    "settings_notify_day_before" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Připomenout večer předem"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remind me the evening before"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Am Vorabend erinnern"
+          }
+        }
+      }
+    },
+    "settings_notify_day_before_footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Připomínka přijde den předem v 19.00."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The reminder arrives the day before at 7 p.m."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Erinnerung kommt am Vortag um 19 Uhr."
+          }
+        }
+      }
+    },
+    "settings_notify_holidays" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Státní svátky a dny volna"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Public holidays and days off"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feiertage und freie Tage"
+          }
+        }
+      }
+    },
+    "settings_privacy_footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontakty zůstávají ve vašem zařízení. Aplikace neodesílá žádná osobní data."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contacts stay on your device. The app does not send any personal data."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontakte bleiben auf Ihrem Gerät. Die App sendet keine persönlichen Daten."
+          }
+        }
+      }
+    },
+    "settings_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nastavení"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen"
+          }
+        }
+      }
+    },
+    "settings_update_failed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktualizace se nepodařila – zkusíme to později automaticky."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The update failed – we'll retry automatically later."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Aktualisierung ist fehlgeschlagen – wir versuchen es später automatisch erneut."
+          }
+        }
+      }
+    },
+    "settings_update_now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktualizovat nyní"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update now"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jetzt aktualisieren"
+          }
+        }
+      }
+    },
+    "settings_update_success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Data byla aktualizována."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The data has been updated."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Daten wurden aktualisiert."
+          }
+        }
+      }
+    },
+    "settings_updating" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktualizuji…"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updating…"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktualisiere…"
+          }
+        }
+      }
+    },
+    "settings_version" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verze"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version"
+          }
+        }
+      }
+    },
+    "tab_calendar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalendář"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calendar"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalender"
+          }
+        }
+      }
+    },
+    "tab_people" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lidé"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "People"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personen"
+          }
+        }
+      }
+    },
+    "tab_settings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nastavení"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einstellungen"
+          }
+        }
+      }
+    },
+    "tab_today" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dnes"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute"
+          }
+        }
+      }
+    },
+    "today_contact_nameday_multiple" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🎉 Svátek mají vaše kontakty %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🎉 Your contacts %@ have their name day today"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🎉 Ihre Kontakte %@ haben heute Namenstag"
+          }
+        }
+      }
+    },
+    "today_contact_nameday_single" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🎉 Svátek má váš kontakt %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🎉 Your contact %@ has a name day today"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🎉 Ihr Kontakt %@ hat heute Namenstag"
+          }
+        }
+      }
+    },
+    "today_contacts_section" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svátky vašich lidí"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your people's name days"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namenstage Ihrer Liebsten"
+          }
+        }
+      }
+    },
+    "today_teaser_allow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povolit přístup"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow access"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zugriff erlauben"
+          }
+        }
+      }
+    },
+    "today_teaser_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aplikace porovná jména ve vašich kontaktech s kalendářem a připomene vám, kdo má svátek."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The app matches the first names in your contacts with the calendar and reminds you who has a name day."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die App vergleicht die Vornamen Ihrer Kontakte mit dem Kalender und erinnert Sie daran, wer Namenstag hat."
+          }
+        }
+      }
+    },
+    "today_teaser_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Propojte kontakty"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect your contacts"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontakte verbinden"
+          }
+        }
+      }
+    },
+    "today_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dnes"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute"
+          }
+        }
+      }
+    },
+    "today_upcoming_section" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nadcházející dny"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upcoming days"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kommende Tage"
+          }
+        }
+      }
+    },
+    "widget_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kdo má dnes svátek a jaké svátky nás čekají."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Who has a name day today and which holidays are ahead."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wer heute Namenstag hat und welche Feiertage bevorstehen."
+          }
+        }
+      }
+    },
+    "widget_display_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svátek dnes"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svátek dnes"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svátek dnes"
+          }
+        }
+      }
+    },
+    "widget_inline_nameday" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Svátek: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name day: %@"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namenstag: %@"
+          }
+        }
+      }
+    },
+    "widget_inline_no_nameday" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dnes bez jmenin"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No name day today"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heute kein Namenstag"
+          }
+        }
+      }
+    },
+    "widget_tomorrow_preview" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "zítra %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "tomorrow %@"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "morgen %@"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

@@ -29,7 +29,7 @@ struct TodayView: View {
 				.padding(.bottom, 24)
 			}
 			.background(Color(.systemGroupedBackground))
-			.navigationTitle("Dnes")
+			.navigationTitle("today_title")
 			.navigationBarTitleDisplayMode(.large)
 		}
 		.onAppear {
@@ -44,8 +44,8 @@ struct TodayView: View {
 			// Midnight, DST or timezone change while the app stays foregrounded.
 			today = Date()
 		}
-		.alert("Nepodařilo se přidat do kalendáře", isPresented: $showsExportError) {
-			Button("OK", role: .cancel) {}
+		.alert("calendar_export_error_title", isPresented: $showsExportError) {
+			Button("common_ok", role: .cancel) {}
 		} message: {
 			Text(exportErrorMessage)
 		}
@@ -106,7 +106,7 @@ struct TodayView: View {
 		if let holiday = info.primaryHoliday {
 			return holiday.shortName
 		}
-		return String(localized: "Bez jmenin")
+		return String(localized: "nameday_none")
 	}
 
 	private func holidayBadges(_ holidays: [Holiday]) -> some View {
@@ -135,9 +135,9 @@ struct TodayView: View {
 	private var contactLine: String {
 		let names = todayContactNames
 		if names.count == 1 {
-			return String(localized: "🎉 Svátek má váš kontakt \(names[0])")
+			return String(format: String(localized: "today_contact_nameday_single"), names[0])
 		}
-		return String(localized: "🎉 Svátek mají vaše kontakty \(names.joinedNames)")
+		return String(format: String(localized: "today_contact_nameday_multiple"), names.joinedNames)
 	}
 
 	// MARK: - Calendar export
@@ -149,7 +149,7 @@ struct TodayView: View {
 				addTodayToCalendar(title: title)
 			} label: {
 				Label(
-					addedToCalendar ? "Přidáno do kalendáře" : "Přidat do kalendáře",
+					addedToCalendar ? "calendar_export_added" : "calendar_export_add",
 					systemImage: addedToCalendar ? "checkmark" : "calendar.badge.plus"
 				)
 				.frame(maxWidth: .infinity)
@@ -165,8 +165,8 @@ struct TodayView: View {
 		if !info.entry.names.isEmpty {
 			let joined = info.entry.names.joinedNames
 			return info.entry.names.count > 1
-				? String(localized: "Svátek mají \(joined)")
-				: String(localized: "Svátek má \(joined)")
+				? String(format: String(localized: "nameday_has_multiple"), joined)
+				: String(format: String(localized: "nameday_has_single"), joined)
 		}
 		if let holiday = info.primaryHoliday {
 			return holiday.name
@@ -196,12 +196,12 @@ struct TodayView: View {
 
 	private var contactsTeaser: some View {
 		VStack(alignment: .leading, spacing: 8) {
-			Label("Propojte kontakty", systemImage: "person.2.circle")
+			Label("today_teaser_title", systemImage: "person.2.circle")
 				.font(.headline)
-			Text("Aplikace porovná jména ve vašich kontaktech s kalendářem a připomene vám, kdo má svátek.")
+			Text("today_teaser_message")
 				.font(.subheadline)
 				.foregroundStyle(.secondary)
-			Button("Povolit přístup") {
+			Button("today_teaser_allow") {
 				Task {
 					await contacts.requestAccessAndLoad()
 				}
@@ -225,7 +225,7 @@ struct TodayView: View {
 		let groups = Array(contacts.upcoming(from: today).prefix(3))
 		if !groups.isEmpty {
 			VStack(alignment: .leading, spacing: 10) {
-				Text("Svátky vašich lidí")
+				Text("today_contacts_section")
 					.font(.title3.weight(.semibold))
 
 				VStack(spacing: 0) {
@@ -275,7 +275,7 @@ struct TodayView: View {
 			Spacer(minLength: 8)
 
 			if isToday {
-				Text("🎉")
+				Text(verbatim: "🎉")
 			}
 			Image(systemName: "chevron.right")
 				.font(.caption.weight(.semibold))
@@ -310,7 +310,7 @@ struct TodayView: View {
 
 	private var upcomingSection: some View {
 		VStack(alignment: .leading, spacing: 10) {
-			Text("Nadcházející dny")
+			Text("today_upcoming_section")
 				.font(.title3.weight(.semibold))
 
 			let days = Array(CalendarComposer.upcoming(days: 8, from: today).dropFirst())
@@ -349,7 +349,7 @@ struct TodayView: View {
 
 			VStack(alignment: .leading, spacing: 3) {
 				if info.entry.displayText.isEmpty {
-					Text("bez jmenin")
+					Text("nameday_none_inline")
 						.font(.body)
 						.foregroundStyle(.secondary)
 				} else {

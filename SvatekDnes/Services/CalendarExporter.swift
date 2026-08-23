@@ -13,9 +13,9 @@ final class CalendarExporter {
 		var errorDescription: String? {
 			switch self {
 			case .denied:
-				return String(localized: "Aplikace nemá přístup ke kalendáři. Povolte jej v Nastavení.")
+				return String(localized: "calendar_export_error_denied")
 			case .saveFailed:
-				return String(localized: "Událost se nepodařilo uložit.")
+				return String(localized: "calendar_export_error_save_failed")
 			}
 		}
 	}

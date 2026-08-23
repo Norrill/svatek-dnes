@@ -26,8 +26,8 @@ struct DayDetailView: View {
 		}
 		.navigationTitle(AppFormat.dayMonth(info.date))
 		.navigationBarTitleDisplayMode(.inline)
-		.alert("Nepodařilo se přidat do kalendáře", isPresented: $showsExportError) {
-			Button("OK", role: .cancel) {}
+		.alert("calendar_export_error_title", isPresented: $showsExportError) {
+			Button("common_ok", role: .cancel) {}
 		} message: {
 			Text(exportErrorMessage)
 		}
@@ -39,7 +39,7 @@ struct DayDetailView: View {
 		Section {
 			VStack(alignment: .leading, spacing: 6) {
 				if info.entry.displayText.isEmpty {
-					Text("V kalendáři jmenin není na tento den žádné jméno.")
+					Text("day_no_name_message")
 						.font(.body)
 						.foregroundStyle(.secondary)
 				} else {
@@ -61,18 +61,18 @@ struct DayDetailView: View {
 	private var namesHeader: String {
 		switch info.entry.names.count {
 		case 0:
-			return String(localized: "Jmeniny")
+			return String(localized: "day_names_header_empty")
 		case 1:
-			return String(localized: "Svátek má")
+			return String(localized: "day_names_header_single")
 		default:
-			return String(localized: "Svátek mají")
+			return String(localized: "day_names_header_multiple")
 		}
 	}
 
 	// MARK: - Holidays
 
 	private var holidaysSection: some View {
-		Section("Svátky a významné dny") {
+		Section("day_holidays_header") {
 			ForEach(info.holidays) { holiday in
 				VStack(alignment: .leading, spacing: 4) {
 					HStack(spacing: 8) {
@@ -116,15 +116,15 @@ struct DayDetailView: View {
 						Text(contact.fullName)
 							.font(.body.weight(.medium))
 						if contact.isManual {
-							Text("přiřazeno ručně")
+							Text("contact_assigned_manually")
 								.font(.caption)
 								.foregroundStyle(.secondary)
 						} else if contact.kind == .fuzzy {
-							Text("pravděpodobně \(contact.matchedName)")
+							Text(String(format: String(localized: "contact_match_probable"), contact.matchedName))
 								.font(.caption)
 								.foregroundStyle(.secondary)
 						} else if contact.matchedName != contact.givenName {
-							Text("v kalendáři jako \(contact.matchedName)")
+							Text(String(format: String(localized: "contact_match_calendar_name"), contact.matchedName))
 								.font(.caption)
 								.foregroundStyle(.secondary)
 						}
@@ -134,8 +134,8 @@ struct DayDetailView: View {
 			}
 		} header: {
 			Text(matchedContacts.count > 1
-				? String(localized: "Svátek mají vaše kontakty")
-				: String(localized: "Svátek má váš kontakt"))
+				? String(localized: "day_contacts_header_multiple")
+				: String(localized: "day_contacts_header_single"))
 		}
 	}
 
@@ -158,18 +158,18 @@ struct DayDetailView: View {
 	private var calendarSection: some View {
 		Section {
 			if addedToCalendar {
-				Label("Přidáno do kalendáře", systemImage: "checkmark.circle.fill")
+				Label("calendar_export_added", systemImage: "checkmark.circle.fill")
 					.foregroundStyle(Color.brandGreen)
 			} else {
 				Menu {
-					Button("Jen tento rok") {
+					Button("calendar_export_once") {
 						addToCalendar(yearly: false)
 					}
-					Button("Opakovat každý rok") {
+					Button("calendar_export_yearly") {
 						addToCalendar(yearly: true)
 					}
 				} label: {
-					Label("Přidat do kalendáře", systemImage: "calendar.badge.plus")
+					Label("calendar_export_add", systemImage: "calendar.badge.plus")
 				}
 			}
 		}
@@ -179,8 +179,8 @@ struct DayDetailView: View {
 		if !info.entry.names.isEmpty {
 			let joined = info.entry.names.joinedNames
 			return info.entry.names.count > 1
-				? String(localized: "Svátek mají \(joined)")
-				: String(localized: "Svátek má \(joined)")
+				? String(format: String(localized: "nameday_has_multiple"), joined)
+				: String(format: String(localized: "nameday_has_single"), joined)
 		}
 		if let holiday = info.primaryHoliday {
 			return holiday.name

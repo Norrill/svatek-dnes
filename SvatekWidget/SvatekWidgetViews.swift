@@ -54,7 +54,7 @@ private extension SvatekDayData {
 		if !names.isEmpty {
 			return names.joinedNames
 		}
-		return holidayShortName ?? String(localized: "Bez jmenin")
+		return holidayShortName ?? String(localized: "nameday_none")
 	}
 
 	/// The holiday badge is shown only when the holiday is not already the headline.
@@ -167,7 +167,7 @@ struct SvatekUpcomingRow: View {
 				.minimumScaleFactor(0.7)
 			Spacer(minLength: 0)
 			if !day.contactNames.isEmpty {
-				Text("🎉")
+				Text(verbatim: "🎉")
 					.font(.caption2)
 			}
 			if day.isDayOff {
@@ -186,11 +186,11 @@ struct SvatekInlineView: View {
 
 	var body: some View {
 		if !day.names.isEmpty {
-			Text(String(localized: "Svátek: \(day.names.joinedNames)"))
+			Text(String(format: String(localized: "widget_inline_nameday"), day.names.joinedNames))
 		} else if let shortName = day.holidayShortName {
 			Text(shortName)
 		} else {
-			Text("Dnes bez jmenin")
+			Text("widget_inline_no_nameday")
 		}
 	}
 }
@@ -207,7 +207,7 @@ struct SvatekRectangularView: View {
 				.lineLimit(1)
 				.minimumScaleFactor(0.7)
 			if let tomorrow = entry.upcoming.first, let name = tomorrow.previewName {
-				Text(String(localized: "zítra \(name)"))
+				Text(String(format: String(localized: "widget_tomorrow_preview"), name))
 					.font(.caption)
 					.foregroundStyle(.secondary)
 					.lineLimit(1)

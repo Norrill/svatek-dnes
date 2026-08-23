@@ -103,9 +103,9 @@ enum AppFormat {
 	static func relativeDay(_ date: Date, reference: Date = Date()) -> String {
 		switch relativeKind(date, reference: reference) {
 		case .today:
-			return String(localized: "dnes")
+			return String(localized: "relative_today")
 		case .tomorrow:
-			return String(localized: "zítra")
+			return String(localized: "relative_tomorrow")
 		case .other:
 			return weekdayDayMonth(date)
 		}
@@ -123,6 +123,6 @@ enum AppFormat {
 
 	/// "za 5 dní" / "in 5 days" / "in 5 Tagen" – plural-aware.
 	static func inDays(_ days: Int) -> String {
-		String(localized: "za \(days) dní")
+		String.localizedStringWithFormat(String(localized: "relative_in_days"), days)
 	}
 }

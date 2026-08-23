@@ -8,19 +8,19 @@ struct RootView: View {
 		TabView {
 			TodayView()
 				.tabItem {
-					Label("Dnes", systemImage: "sun.max")
+					Label("tab_today", systemImage: "sun.max")
 				}
 			CalendarListView()
 				.tabItem {
-					Label("Kalendář", systemImage: "calendar")
+					Label("tab_calendar", systemImage: "calendar")
 				}
 			PeopleView()
 				.tabItem {
-					Label("Lidé", systemImage: "person.2")
+					Label("tab_people", systemImage: "person.2")
 				}
 			SettingsView()
 				.tabItem {
-					Label("Nastavení", systemImage: "gearshape")
+					Label("tab_settings", systemImage: "gearshape")
 				}
 		}
 		.environmentObject(contacts)

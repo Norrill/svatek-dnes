@@ -16,16 +16,16 @@ struct PeopleView: View {
 	var body: some View {
 		NavigationStack {
 			content
-				.navigationTitle("Lidé")
+				.navigationTitle("people_title")
 				.overlay(alignment: .bottom) {
 					if toastVisible {
 						toast
 					}
 				}
-				.alert("Nepodařilo se přidat do kalendáře", isPresented: $showExportError) {
-					Button("OK", role: .cancel) {}
+				.alert("calendar_export_error_title", isPresented: $showExportError) {
+					Button("common_ok", role: .cancel) {}
 				} message: {
-					Text(exportErrorMessage ?? String(localized: "Zkuste to prosím znovu."))
+					Text(exportErrorMessage ?? String(localized: "calendar_export_error_retry"))
 				}
 				.sheet(item: $assigningContact) { target in
 					AssignNamedayView(target: target)
@@ -51,15 +51,15 @@ struct PeopleView: View {
 	private var requestAccessState: some View {
 		EmptyStateView(
 			systemImage: "person.2.badge.plus",
-			title: "Svátky vašich blízkých",
-			message: "Aplikace porovná křestní jména z vašich kontaktů s kalendářem jmenin a ukáže, kdo má kdy svátek. Vše probíhá jen ve vašem zařízení – kontakty nikam neodesíláme."
+			title: "people_intro_title",
+			message: "people_intro_message"
 		) {
 			Button {
 				Task {
 					await contacts.requestAccessAndLoad()
 				}
 			} label: {
-				Text("Povolit přístup ke kontaktům")
+				Text("people_intro_allow")
 					.fontWeight(.semibold)
 			}
 			.buttonStyle(.borderedProminent)
@@ -70,11 +70,11 @@ struct PeopleView: View {
 	private var deniedState: some View {
 		EmptyStateView(
 			systemImage: "person.2.slash",
-			title: "Přístup ke kontaktům je odepřen",
-			message: "Bez přístupu ke kontaktům nemůžeme zjistit, kdo z vašich blízkých slaví svátek. Přístup můžete kdykoli povolit v Nastavení."
+			title: "people_denied_title",
+			message: "people_denied_message"
 		) {
 			if let url = URL(string: UIApplication.openSettingsURLString) {
-				Link("Otevřít Nastavení", destination: url)
+				Link("people_open_settings", destination: url)
 					.fontWeight(.semibold)
 					.buttonStyle(.borderedProminent)
 					.controlSize(.large)
@@ -86,8 +86,8 @@ struct PeopleView: View {
 		ScrollView {
 			EmptyStateView(
 				systemImage: "person.crop.circle.badge.questionmark",
-				title: "Žádný kontakt se svátkem jsme nenašli",
-				message: "V kontaktech jsme nenašli žádné křestní jméno."
+				title: "people_empty_title",
+				message: "people_empty_message"
 			) {
 				EmptyView()
 			}
@@ -116,7 +116,7 @@ struct PeopleView: View {
 							Button {
 								addToCalendar(contact, date: group.date)
 							} label: {
-								Label("Přidat do kalendáře", systemImage: "calendar.badge.plus")
+								Label("calendar_export_add", systemImage: "calendar.badge.plus")
 							}
 							.tint(Color.brandGreen)
 						}
@@ -124,18 +124,18 @@ struct PeopleView: View {
 							Button {
 								addToCalendar(contact, date: group.date)
 							} label: {
-								Label("Přidat do kalendáře", systemImage: "calendar.badge.plus")
+								Label("calendar_export_add", systemImage: "calendar.badge.plus")
 							}
 							Button {
 								assigningContact = AssignmentTarget(id: contact.id, givenName: contact.givenName)
 							} label: {
-								Label("Změnit svátek", systemImage: "pencil")
+								Label("people_change_nameday", systemImage: "pencil")
 							}
 							if contact.isManual {
 								Button(role: .destructive) {
 									removeAssignment(contact)
 								} label: {
-									Label("Zrušit přiřazený svátek", systemImage: "xmark.circle")
+									Label("people_remove_assignment", systemImage: "xmark.circle")
 								}
 							}
 						}
@@ -173,12 +173,12 @@ struct PeopleView: View {
 						VStack(alignment: .leading, spacing: 2) {
 							Text(contact.fullName)
 								.foregroundStyle(.primary)
-							Text("svátek se nepodařilo určit")
+							Text("people_unmatched_subtitle")
 								.font(.footnote)
 								.foregroundStyle(.secondary)
 						}
 						Spacer()
-						Text("Přiřadit")
+						Text("people_assign_action")
 							.font(.subheadline.weight(.medium))
 							.foregroundStyle(Color.brandGreen)
 					}
@@ -187,14 +187,14 @@ struct PeopleView: View {
 				.buttonStyle(.plain)
 			}
 		} header: {
-			Text("Bez přiřazeného svátku")
+			Text("people_unmatched_header")
 		} footer: {
-			Text("Vyberte den, kdy má kontakt svátek – započítáme ho do oznámení i widgetu.")
+			Text("people_unmatched_footer")
 		}
 	}
 
 	private var toast: some View {
-		Label("Přidáno do kalendáře", systemImage: "checkmark.circle.fill")
+		Label("calendar_export_added", systemImage: "checkmark.circle.fill")
 			.font(.subheadline.weight(.semibold))
 			.foregroundStyle(.white)
 			.padding(.horizontal, 16)
@@ -211,7 +211,7 @@ struct PeopleView: View {
 		Task {
 			do {
 				try await CalendarExporter.shared.addAllDayEvent(
-					title: String(localized: "Svátek má \(contact.givenName)"),
+					title: String(format: String(localized: "nameday_has_single"), contact.givenName),
 					date: date,
 					yearly: false
 				)
@@ -311,15 +311,15 @@ private struct PersonRow: View {
 			VStack(alignment: .leading, spacing: 2) {
 				Text(contact.fullName)
 				if contact.isManual {
-					Text("přiřazeno ručně")
+					Text("contact_assigned_manually")
 						.font(.footnote)
 						.foregroundStyle(.secondary)
 				} else if contact.kind == .fuzzy {
-					Text("pravděpodobně \(contact.matchedName)")
+					Text(String(format: String(localized: "contact_match_probable"), contact.matchedName))
 						.font(.footnote)
 						.foregroundStyle(.secondary)
 				} else if showsMatchedName {
-					Text("v kalendáři jako \(contact.matchedName)")
+					Text(String(format: String(localized: "contact_match_calendar_name"), contact.matchedName))
 						.font(.footnote)
 						.foregroundStyle(.secondary)
 				}
@@ -328,10 +328,10 @@ private struct PersonRow: View {
 			if isExported {
 				Image(systemName: "checkmark.circle.fill")
 					.foregroundStyle(Color.brandGreen)
-					.accessibilityLabel("Přidáno do kalendáře")
+					.accessibilityLabel("calendar_export_added")
 			}
 			if isToday {
-				Text("🎉")
+				Text(verbatim: "🎉")
 			}
 		}
 		.padding(.vertical, 2)

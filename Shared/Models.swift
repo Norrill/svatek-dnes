@@ -16,7 +16,7 @@ struct NamedayEntry: Codable, Hashable {
 
 	/// Variants text for secondary UI lines: "též Vasil, Ábel a Dětmar".
 	var variantsText: String? {
-		alt.isEmpty ? nil : String(localized: "též \(alt.joinedNames)")
+		alt.isEmpty ? nil : String(format: String(localized: "nameday_variants_also"), alt.joinedNames)
 	}
 }
 
@@ -45,9 +45,9 @@ struct Holiday: Identifiable, Hashable {
 	/// Localized label of the category.
 	var kindLabel: String {
 		switch kind {
-		case .state: return String(localized: "státní svátek")
-		case .other: return String(localized: "den pracovního klidu")
-		case .significant: return String(localized: "významný den")
+		case .state: return String(localized: "holiday_kind_state")
+		case .other: return String(localized: "holiday_kind_day_off")
+		case .significant: return String(localized: "holiday_kind_significant")
 		}
 	}
 }

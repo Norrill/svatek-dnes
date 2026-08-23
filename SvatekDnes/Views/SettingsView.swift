@@ -39,7 +39,7 @@ struct SettingsView: View {
 		if let date = settings.lastRemoteUpdate {
 			return Self.updateDateFormatter.string(from: date)
 		}
-		return String(localized: "zatím nikdy – vestavěná data")
+		return String(localized: "settings_last_update_never")
 	}
 
 	private var appVersion: String {
@@ -56,7 +56,7 @@ struct SettingsView: View {
 				dataSection
 				aboutSection
 			}
-			.navigationTitle("Nastavení")
+			.navigationTitle("settings_title")
 			.tint(Color.brandGreen)
 		}
 		.onChange(of: settings.notifyContacts) { rescheduleNotifications() }
@@ -69,33 +69,33 @@ struct SettingsView: View {
 	// MARK: - Sections
 
 	private var notificationTogglesSection: some View {
-		Section("Oznámení") {
-			Toggle("Svátky vašich kontaktů", isOn: $settings.notifyContacts)
-			Toggle("Státní svátky a dny volna", isOn: $settings.notifyHolidays)
+		Section("settings_notifications_header") {
+			Toggle("settings_notify_contacts", isOn: $settings.notifyContacts)
+			Toggle("settings_notify_holidays", isOn: $settings.notifyHolidays)
 		}
 	}
 
 	private var allNamedaysSection: some View {
 		Section {
-			Toggle("Každodenní jmeniny", isOn: $settings.notifyAllNamedays)
+			Toggle("settings_notify_all_namedays", isOn: $settings.notifyAllNamedays)
 		} footer: {
-			Text("Oznámení o svátku pošleme každý den – i když jméno nemáte v kontaktech.")
+			Text("settings_notify_all_footer")
 		}
 	}
 
 	private var dayBeforeSection: some View {
 		Section {
-			Toggle("Připomenout večer předem", isOn: $settings.notifyDayBefore)
+			Toggle("settings_notify_day_before", isOn: $settings.notifyDayBefore)
 				.disabled(!settings.notifyContacts)
 		} footer: {
-			Text("Připomínka přijde den předem v 19.00.")
+			Text("settings_notify_day_before_footer")
 		}
 	}
 
 	private var notificationTimeSection: some View {
 		Section {
 			DatePicker(
-				"Čas oznámení",
+				"settings_notification_time",
 				selection: notificationTime,
 				displayedComponents: .hourAndMinute
 			)
@@ -104,14 +104,14 @@ struct SettingsView: View {
 
 	private var dataSection: some View {
 		Section {
-			LabeledContent("Poslední aktualizace", value: lastUpdateText)
+			LabeledContent("settings_last_update", value: lastUpdateText)
 			Button {
 				runUpdate()
 			} label: {
 				HStack {
 					Text(isUpdating
-						? String(localized: "Aktualizuji…")
-						: String(localized: "Aktualizovat nyní"))
+						? String(localized: "settings_updating")
+						: String(localized: "settings_update_now"))
 					if isUpdating {
 						Spacer()
 						ProgressView()
@@ -125,20 +125,20 @@ struct SettingsView: View {
 					.foregroundStyle(updateSucceeded ? Color.accentColor : Color.secondary)
 			}
 		} header: {
-			Text("Data svátků")
+			Text("settings_data_header")
 		} footer: {
-			Text("Kalendář svátků se aktualizuje automaticky přibližně jednou měsíčně.")
+			Text("settings_data_footer")
 		}
 	}
 
 	private var aboutSection: some View {
 		Section {
-			LabeledContent("Verze", value: appVersion)
-			LabeledContent("Zdroj dat", value: String(localized: "český občanský kalendář"))
+			LabeledContent("settings_version", value: appVersion)
+			LabeledContent("settings_data_source", value: String(localized: "settings_data_source_value"))
 		} header: {
-			Text("O aplikaci")
+			Text("settings_about_header")
 		} footer: {
-			Text("Kontakty zůstávají ve vašem zařízení. Aplikace neodesílá žádná osobní data.")
+			Text("settings_privacy_footer")
 		}
 	}
 
@@ -162,8 +162,8 @@ struct SettingsView: View {
 			isUpdating = false
 			updateSucceeded = ok
 			updateMessage = ok
-				? String(localized: "Data byla aktualizována.")
-				: String(localized: "Aktualizace se nepodařila – zkusíme to později automaticky.")
+				? String(localized: "settings_update_success")
+				: String(localized: "settings_update_failed")
 
 			// Hide the result text after a while, unless a newer run replaced it.
 			let token = UUID()

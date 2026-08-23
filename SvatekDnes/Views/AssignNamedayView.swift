@@ -40,12 +40,12 @@ struct AssignNamedayView: View {
 					}
 				}
 			}
-			.searchable(text: $query, prompt: "Hledat jméno")
-			.navigationTitle("Svátek – \(target.givenName)")
+			.searchable(text: $query, prompt: "search_name_prompt")
+			.navigationTitle(String(format: String(localized: "assign_title"), target.givenName))
 			.navigationBarTitleDisplayMode(.inline)
 			.toolbar {
 				ToolbarItem(placement: .cancellationAction) {
-					Button("Zrušit") {
+					Button("common_cancel") {
 						dismiss()
 					}
 				}
@@ -64,7 +64,7 @@ struct AssignNamedayView: View {
 					.frame(width: 56, alignment: .leading)
 				VStack(alignment: .leading, spacing: 2) {
 					if entry.displayText.isEmpty {
-						Text("bez jmenin")
+						Text("nameday_none_inline")
 							.foregroundStyle(.secondary)
 					} else {
 						Text(entry.displayText)

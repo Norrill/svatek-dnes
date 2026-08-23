@@ -64,14 +64,14 @@ final class NotificationScheduler {
 				let names = contactsByDay[WidgetSnapshot.key(month: month, day: day)] ?? []
 				if !names.isEmpty {
 					title = names.count == 1
-						? String(localized: "Dnes má svátek \(names.joinedNames) 🎉")
-						: String(localized: "Dnes mají svátek \(names.joinedNames) 🎉")
+						? String(format: String(localized: "notif_today_contact_single"), names.joinedNames)
+						: String(format: String(localized: "notif_today_contact_multiple"), names.joinedNames)
 				}
 			}
 			if settings.notifyHolidays, let holiday = info.primaryHoliday, holiday.isDayOff {
 				let line = "\(holiday.shortName) – \(holiday.kindLabel)"
 				if title == nil {
-					title = String(localized: "Dnes je \(holiday.shortName)")
+					title = String(format: String(localized: "notif_today_holiday"), holiday.shortName)
 					if holiday.name != holiday.shortName {
 						lines.append(holiday.name)
 					}
@@ -81,7 +81,7 @@ final class NotificationScheduler {
 				}
 			}
 			if settings.notifyAllNamedays, !info.entry.names.isEmpty {
-				let text = String(localized: "Svátek má \(info.entry.names.joinedNames)")
+				let text = String(format: String(localized: "nameday_has_single"), info.entry.names.joinedNames)
 				if title == nil {
 					title = text
 				} else if !(settings.notifyContacts && title?.contains(info.entry.names[0]) == true) {
@@ -113,13 +113,13 @@ final class NotificationScheduler {
 					let evening = calendar.date(bySettingHour: 19, minute: 0, second: 0, of: dayBefore),
 					evening > now {
 					let title = names.count == 1
-						? String(localized: "Zítra má svátek \(names.joinedNames)")
-						: String(localized: "Zítra mají svátek \(names.joinedNames)")
+						? String(format: String(localized: "notif_tomorrow_contact_single"), names.joinedNames)
+						: String(format: String(localized: "notif_tomorrow_contact_multiple"), names.joinedNames)
 					schedule(
 						center: center,
 						identifier: "before-\(comps.year!)-\(month)-\(day)",
 						title: title,
-						body: String(localized: "Nezapomeňte popřát."),
+						body: String(localized: "notif_tomorrow_body"),
 						fireDate: evening
 					)
 					scheduled += 1

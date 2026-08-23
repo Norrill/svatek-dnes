@@ -80,6 +80,8 @@ final class HolidayCalendarTests: XCTestCase {
 			Holiday(name: "Tři králové", shortName: "Tři králové", kind: .significant, month: 1, day: 6).kindLabel,
 		]
 		XCTAssertTrue(labels.allSatisfy { !$0.isEmpty })
+		// A label containing "_" means the catalog lookup fell back to the raw key.
+		XCTAssertTrue(labels.allSatisfy { !$0.contains("_") }, "raw key leaked: \(labels)")
 		XCTAssertEqual(Set(labels).count, labels.count)
 	}
 
