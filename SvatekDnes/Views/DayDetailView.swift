@@ -115,7 +115,15 @@ struct DayDetailView: View {
 					VStack(alignment: .leading, spacing: 2) {
 						Text(contact.fullName)
 							.font(.body.weight(.medium))
-						if contact.matchedName != contact.givenName {
+						if contact.isManual {
+							Text("přiřazeno ručně")
+								.font(.caption)
+								.foregroundStyle(.secondary)
+						} else if contact.kind == .fuzzy {
+							Text("pravděpodobně \(contact.matchedName)")
+								.font(.caption)
+								.foregroundStyle(.secondary)
+						} else if contact.matchedName != contact.givenName {
 							Text("v kalendáři jako \(contact.matchedName)")
 								.font(.caption)
 								.foregroundStyle(.secondary)
