@@ -115,16 +115,25 @@ Release steps:
    -destination 'generic/platform=iOS' archive`, then upload the archive
    with the Organizer or Transporter.)
 
-   **If the upload fails with error 90035 "Invalid Signature"** even
-   though signing is automatic: the direct upload path ships the
-   archive's development-signed binaries without re-signing (observed
-   with Xcode 26 / first upload on a fresh team). Work around it by
-   exporting first – `xcodebuild -exportArchive` with
+   Release builds are **manually signed** with the Apple Distribution
+   certificate and the `SvatekDnes App Store` / `SvatekDnes Widget App
+   Store` provisioning profiles (pinned in `project.yml`), so the
+   archive itself is store-signed and the direct upload works. This is
+   deliberate: Xcode 26's direct upload ships the archive's binaries
+   *without* re-signing, and a development-signed archive is rejected
+   with error 90035 "Invalid Signature".
+
+   Signing therefore needs, on this Mac: the Apple Distribution
+   certificate *with its private key* in the keychain (Xcode →
+   Settings → Accounts → Manage Certificates), and the two App Store
+   profiles installed. When they expire (24. 8. 2027) or entitlements
+   change, regenerate them in the developer portal **under the same
+   names** and double-click to install. If signing is broken and a
+   release can't wait, the fallback is `xcodebuild -exportArchive` with
    `method: app-store-connect`, `destination: export`,
-   `signingStyle: automatic` – which correctly re-signs the app and the
-   widget with the Apple Distribution certificate, and then upload the
-   resulting `.ipa` with the Transporter app (or
-   `xcrun altool --upload-app -f SvatekDnes.ipa -t ios`).
+   `signingStyle: automatic` (cloud-signs via Apple), then upload the
+   `.ipa` with Transporter or
+   `xcrun altool --upload-app -f SvatekDnes.ipa -t ios`.
 5. Smoke-test the build via TestFlight on a real device – notifications,
    the widget and the contacts flow behave differently than in the
    simulator.

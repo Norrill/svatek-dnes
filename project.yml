@@ -33,6 +33,19 @@ targets:
         CODE_SIGN_ENTITLEMENTS: SvatekDnes/SvatekDnes.entitlements
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         TARGETED_DEVICE_FAMILY: "1"
+      configs:
+        # Archives must be distribution-signed at build time: the Xcode 26
+        # direct-upload path ships the archive's binaries without
+        # re-signing, so a development-signed archive is rejected with
+        # error 90035 (see the release steps in the README). Uses the
+        # manually created App Store profiles from the developer portal –
+        # Xcode-managed profiles are not accepted by manual signing.
+        # Target-level because xcodegen's platform presets set a
+        # target-level CODE_SIGN_IDENTITY that beats project settings.
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: Apple Distribution
+          PROVISIONING_PROFILE_SPECIFIER: SvatekDnes App Store
     dependencies:
       - target: SvatekWidget
         embed: true
@@ -49,6 +62,11 @@ targets:
         CODE_SIGN_ENTITLEMENTS: SvatekWidget/SvatekWidget.entitlements
         TARGETED_DEVICE_FAMILY: "1"
         SKIP_INSTALL: YES
+      configs:
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: Apple Distribution
+          PROVISIONING_PROFILE_SPECIFIER: SvatekDnes Widget App Store
   SvatekDnesTests:
     type: bundle.unit-test
     platform: iOS
