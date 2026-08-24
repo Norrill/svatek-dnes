@@ -12,6 +12,7 @@ struct PeopleView: View {
 	@State private var toastVisible = false
 	@State private var toastTask: Task<Void, Never>?
 	@State private var assigningContact: AssignmentTarget?
+	@State private var searchText = ""
 	@StateObject private var contactActions = ContactActions()
 
 	@ScaledMetric(relativeTo: .subheadline) private var avatarSize: CGFloat = 40
@@ -105,8 +106,12 @@ struct PeopleView: View {
 	// MARK: - Main list
 
 	private var peopleList: some View {
-		let groups = contacts.upcoming()
+		let groups = filteredGroups
+		let unmatchedContacts = filteredUnmatched
 		return List {
+			if groups.isEmpty && unmatchedContacts.isEmpty && !searchText.isEmpty {
+				ContentUnavailableView.search(text: searchText)
+			}
 			ForEach(groups, id: \.date) { group in
 				let isToday = Calendar.current.isDateInToday(group.date)
 				Section {
@@ -131,6 +136,11 @@ struct PeopleView: View {
 								Label("calendar_export_add", systemImage: "calendar.badge.plus")
 							}
 							.tint(Color.brandGreen)
+							Button {
+								assigningContact = AssignmentTarget(id: contact.id, givenName: contact.givenName)
+							} label: {
+								Label("people_change_nameday", systemImage: "pencil")
+							}
 						}
 						.contextMenu {
 							ContactActionButtons(contact: contact, actions: contactActions)
@@ -160,18 +170,46 @@ struct PeopleView: View {
 						.fontWeight(isToday ? .semibold : .regular)
 				}
 			}
-			if !contacts.unmatched.isEmpty {
-				unmatchedSection
+			if !unmatchedContacts.isEmpty {
+				unmatchedSection(unmatchedContacts)
 			}
 		}
+		.searchable(text: $searchText, prompt: "people_search_prompt")
 		.refreshable {
 			await contacts.reloadIfAuthorized()
 		}
 	}
 
-	private var unmatchedSection: some View {
+	/// Groups filtered by the search query – matches the contact's name
+	/// as well as the assigned calendar name, diacritic-insensitively
+	/// ("Kateřina" finds Kate, "novak" finds Novák).
+	private var filteredGroups: [(date: Date, contacts: [MatchedContact])] {
+		let query = NameMatching.fold(searchText)
+		guard !query.isEmpty else {
+			return contacts.upcoming()
+		}
+		return contacts.upcoming().compactMap { group in
+			let filtered = group.contacts.filter {
+				NameMatching.fold($0.fullName).contains(query)
+					|| NameMatching.fold($0.matchedName).contains(query)
+			}
+			return filtered.isEmpty ? nil : (date: group.date, contacts: filtered)
+		}
+	}
+
+	private var filteredUnmatched: [UnmatchedContact] {
+		let query = NameMatching.fold(searchText)
+		guard !query.isEmpty else {
+			return contacts.unmatched
+		}
+		return contacts.unmatched.filter {
+			NameMatching.fold($0.fullName).contains(query)
+		}
+	}
+
+	private func unmatchedSection(_ list: [UnmatchedContact]) -> some View {
 		Section {
-			ForEach(contacts.unmatched) { contact in
+			ForEach(list) { contact in
 				Button {
 					assigningContact = AssignmentTarget(id: contact.id, givenName: contact.givenName)
 				} label: {

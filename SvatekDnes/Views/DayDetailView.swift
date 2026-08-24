@@ -10,6 +10,7 @@ struct DayDetailView: View {
 	@State private var addedToCalendar = false
 	@State private var exportErrorMessage = ""
 	@State private var showsExportError = false
+	@State private var assigningContact: AssignmentTarget?
 	@StateObject private var contactActions = ContactActions()
 
 	// Scale with Dynamic Type instead of staying fixed at large text sizes.
@@ -37,6 +38,9 @@ struct DayDetailView: View {
 			Text(exportErrorMessage)
 		}
 		.modifier(ContactActionsHost(actions: contactActions))
+		.sheet(item: $assigningContact) { target in
+			AssignNamedayView(target: target)
+		}
 	}
 
 	// MARK: - Names
@@ -148,12 +152,32 @@ struct DayDetailView: View {
 				.padding(.vertical, 2)
 				.contextMenu {
 					ContactActionButtons(contact: contact, actions: contactActions)
+					Divider()
+					Button {
+						assigningContact = AssignmentTarget(id: contact.id, givenName: contact.givenName)
+					} label: {
+						Label("people_change_nameday", systemImage: "pencil")
+					}
+					if contact.isManual {
+						Button(role: .destructive) {
+							removeAssignment(contact)
+						} label: {
+							Label("people_remove_assignment", systemImage: "xmark.circle")
+						}
+					}
 				}
 			}
 		} header: {
 			Text(matchedContacts.count > 1
 				? String(localized: "day_contacts_header_multiple")
 				: String(localized: "day_contacts_header_single"))
+		}
+	}
+
+	private func removeAssignment(_ contact: MatchedContact) {
+		ManualAssignmentStore.remove(contactId: contact.id)
+		Task { @MainActor in
+			await AppRefresher.contactsChanged()
 		}
 	}
 

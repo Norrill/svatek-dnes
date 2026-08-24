@@ -1266,6 +1266,29 @@
         }
       }
     },
+    "people_search_prompt" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hledat kontakt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search contacts"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontakte suchen"
+          }
+        }
+      }
+    },
     "people_title" : {
       "extractionState" : "manual",
       "localizations" : {
