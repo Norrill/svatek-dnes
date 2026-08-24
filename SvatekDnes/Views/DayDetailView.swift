@@ -82,17 +82,17 @@ struct DayDetailView: View {
 					HStack(spacing: 8) {
 						Text(holiday.shortName)
 							.font(.headline)
-							.foregroundStyle(holiday.isDayOff ? Color.red : Color.primary)
+							.foregroundStyle(holiday.isDayOff ? Color.brandRed : Color.primary)
 						Spacer(minLength: 8)
 						Text(holiday.kindLabel)
 							.font(.caption2.weight(.semibold))
 							.padding(.horizontal, 8)
 							.padding(.vertical, 4)
 							.background(
-								(holiday.isDayOff ? Color.red : Color.brandGreen).opacity(0.15),
+								(holiday.isDayOff ? Color.brandRed : Color.brandGreen).opacity(0.15),
 								in: Capsule()
 							)
-							.foregroundStyle(holiday.isDayOff ? Color.red : Color.brandGreen)
+							.foregroundStyle(holiday.isDayOff ? Color.brandRed : Color.brandGreen)
 					}
 					if holiday.name != holiday.shortName {
 						Text(holiday.name)

@@ -3,6 +3,32 @@ import SwiftUI
 extension Color {
 	/// Brand dark green (adapts slightly in dark mode, stays green).
 	static let brandGreen = Color("BrandGreen")
+
+	/// Day-off red. Darker than systemRed in light mode so that red *text*
+	/// meets the 4.5:1 WCAG contrast ratio on white (5.4:1 measured).
+	static let brandRed = Color("BrandRed")
+}
+
+/// Small holiday marker: filled circle for a day off, ring for a significant
+/// day – the shape carries the distinction, not just the colour
+/// (Differentiate Without Color Alone).
+struct HolidayDot: View {
+	let isDayOff: Bool
+	var size: CGFloat = 7
+
+	var body: some View {
+		Group {
+			if isDayOff {
+				Circle()
+					.fill(Color.brandRed)
+			} else {
+				Circle()
+					.strokeBorder(Color.brandGreen, lineWidth: 1.5)
+			}
+		}
+		.frame(width: size, height: size)
+		.accessibilityHidden(true)
+	}
 }
 
 extension Calendar {

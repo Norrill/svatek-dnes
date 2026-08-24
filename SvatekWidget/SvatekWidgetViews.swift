@@ -105,9 +105,7 @@ struct SvatekSmallView: View {
 			VStack(alignment: .leading, spacing: 3) {
 				if day.showsHolidayBadge, let shortName = day.holidayShortName {
 					HStack(spacing: 5) {
-						Circle()
-							.fill(day.isDayOff ? Color.red : Color.brandGreen)
-							.frame(width: 7, height: 7)
+						HolidayDot(isDayOff: day.isDayOff)
 						Text(shortName)
 							.font(.caption2)
 							.foregroundStyle(.secondary)
@@ -176,9 +174,7 @@ struct SvatekUpcomingRow: View {
 					.accessibilityLabel("calendar_contact_marker_a11y")
 			}
 			if day.isDayOff {
-				Circle()
-					.fill(Color.red)
-					.frame(width: 6, height: 6)
+				HolidayDot(isDayOff: true, size: 6)
 			}
 		}
 	}

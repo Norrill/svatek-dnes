@@ -112,11 +112,14 @@ struct CalendarListView: View {
 					Text(verbatim: entry.displayText)
 				}
 				ForEach(holidays) { holiday in
-					Text(verbatim: holiday.shortName)
-						.font(.footnote)
-						.foregroundStyle(holiday.isDayOff ? Color.red : Color.brandGreen)
-						// Day-off is encoded by colour only – say it out loud.
-						.accessibilityLabel(Text(verbatim: "\(holiday.shortName) – \(holiday.kindLabel)"))
+					HStack(spacing: 4) {
+						HolidayDot(isDayOff: holiday.isDayOff, size: 6)
+						Text(verbatim: holiday.shortName)
+							.font(.footnote)
+							.foregroundStyle(holiday.isDayOff ? Color.brandRed : Color.brandGreen)
+							// Day-off is encoded by colour only – say it out loud.
+							.accessibilityLabel(Text(verbatim: "\(holiday.shortName) – \(holiday.kindLabel)"))
+					}
 				}
 			}
 			Spacer(minLength: 0)
@@ -137,13 +140,13 @@ struct CalendarListView: View {
 					.fill(
 						isToday
 							? Color.brandGreen
-							: (isDayOff ? Color.red.opacity(0.15) : Color(.tertiarySystemFill))
+							: (isDayOff ? Color.brandRed.opacity(0.15) : Color(.tertiarySystemFill))
 					)
 			)
 			.foregroundStyle(
 				isToday
 					? Color.white
-					: (isDayOff ? Color.red : Color.primary)
+					: (isDayOff ? Color.brandRed : Color.primary)
 			)
 	}
 

@@ -125,7 +125,8 @@ struct TodayView: View {
 					.padding(.horizontal, 10)
 					.padding(.vertical, 5)
 					.background(
-						holiday.isDayOff ? Color.red.opacity(0.85) : Color.white.opacity(0.2),
+						// Both keep white caption text above 4.5:1 on the gradient.
+						holiday.isDayOff ? Color.brandRed : Color.black.opacity(0.2),
 						in: Capsule()
 					)
 					.foregroundStyle(.white)
@@ -369,12 +370,10 @@ struct TodayView: View {
 				}
 				if let holiday = info.primaryHoliday {
 					HStack(spacing: 5) {
-						Circle()
-							.fill(holiday.isDayOff ? Color.red : Color.brandGreen)
-							.frame(width: 7, height: 7)
+						HolidayDot(isDayOff: holiday.isDayOff)
 						Text(holiday.shortName)
 							.font(.caption)
-							.foregroundStyle(holiday.isDayOff ? Color.red : Color.brandGreen)
+							.foregroundStyle(holiday.isDayOff ? Color.brandRed : Color.brandGreen)
 					}
 					// The dot encodes day-off by colour only – say it out loud.
 					.accessibilityElement(children: .ignore)
