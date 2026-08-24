@@ -9,6 +9,21 @@ final class ScreenshotUITests: XCTestCase {
 	}
 
 	func testWalkTabsAndTakeScreenshots() throws {
+		// The dictation onboarding alert fires asynchronously a few seconds
+		// after the first typing. Decline it – XCUITest's default handler
+		// would tap the highlighted "O Siri, diktování a soukromí…" link
+		// and navigate away from the app.
+		addUIInterruptionMonitor(withDescription: "Diktování") { alert in
+			for label in ["Teď ne", "Not Now"] {
+				let button = alert.buttons[label]
+				if button.exists {
+					button.tap()
+					return true
+				}
+			}
+			return false
+		}
+
 		let app = XCUIApplication()
 		// The walk-through taps Czech labels; force the Czech localization
 		// regardless of the simulator language.
@@ -28,7 +43,7 @@ final class ScreenshotUITests: XCTestCase {
 		let allowButton = app.buttons["Povolit přístup ke kontaktům"]
 		if allowButton.waitForExistence(timeout: 2) {
 			allowButton.tap()
-			allowSystemAlertIfPresent(timeout: 6)
+			grantContactsAccess(app: app)
 			sleep(2)
 		}
 		snap("3-lide")
@@ -41,12 +56,18 @@ final class ScreenshotUITests: XCTestCase {
 			if search.waitForExistence(timeout: 4) {
 				search.tap()
 				search.typeText("Jan")
-				let dayRow = app.buttons.containing(NSPredicate(format: "label CONTAINS %@", "24. 6.")).firstMatch
-				if dayRow.waitForExistence(timeout: 4) {
-					dayRow.tap()
-					sleep(2)
-					snap("3b-lide-assigned")
-				}
+				// Match by name, not by date – the localized short date
+				// contains a narrow no-break space (U+202F), so a literal
+				// "24. 6." never matches.
+				let dayRow = app.buttons.matching(NSPredicate(format: "label ENDSWITH %@", ", Jan")).firstMatch
+				XCTAssertTrue(dayRow.waitForExistence(timeout: 4), "assign sheet must list Jan (24. 6.)")
+				dayRow.tap()
+				sleep(2)
+				// A tap flushes any pending system alert via the monitor
+				// before the screenshot is taken.
+				app.tabBars.buttons["Lidé"].tap()
+				sleep(1)
+				snap("3b-lide-assigned")
 			}
 		}
 
@@ -54,9 +75,31 @@ final class ScreenshotUITests: XCTestCase {
 		sleep(1)
 		snap("4-nastaveni")
 
+		// Back on Dnes the matched contacts must be visible – the shot has
+		// to show the "Svátky vašich lidí" section with upcoming namedays,
+		// so wait for it instead of snapping blindly.
 		app.tabBars.buttons["Dnes"].tap()
+		XCTAssertTrue(
+			app.staticTexts["Svátky vašich lidí"].waitForExistence(timeout: 8),
+			"Dnes must show upcoming contact namedays after assignment"
+		)
 		sleep(1)
-		snap("5-dnes-final")
+		snap("5-dnes-kontakty")
+	}
+
+	/// Handles both contacts-permission styles: the iOS 18+ full-screen
+	/// sheet ("Sdílet všechny kontakty" / "Vybrat kontakty") and the older
+	/// plain alert. The sheet choice may be followed by a confirmation
+	/// alert, so the alert pass always runs afterwards.
+	private func grantContactsAccess(app: XCUIApplication) {
+		let shareAll = app.buttons.matching(
+			NSPredicate(format: "label BEGINSWITH %@", "Sdílet všechny kontakty")
+		).firstMatch
+		if shareAll.waitForExistence(timeout: 4) {
+			shareAll.tap()
+			sleep(1)
+		}
+		allowSystemAlertIfPresent(timeout: 6)
 	}
 
 	private func allowSystemAlertIfPresent(timeout: TimeInterval) {
