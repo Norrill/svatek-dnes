@@ -12,6 +12,7 @@ struct PeopleView: View {
 	@State private var toastVisible = false
 	@State private var toastTask: Task<Void, Never>?
 	@State private var assigningContact: AssignmentTarget?
+	@StateObject private var contactActions = ContactActions()
 
 	@ScaledMetric(relativeTo: .subheadline) private var avatarSize: CGFloat = 40
 
@@ -32,6 +33,7 @@ struct PeopleView: View {
 				.sheet(item: $assigningContact) { target in
 					AssignNamedayView(target: target)
 				}
+				.modifier(ContactActionsHost(actions: contactActions))
 		}
 	}
 
@@ -114,6 +116,14 @@ struct PeopleView: View {
 							isToday: isToday,
 							isExported: exportedIDs.contains(contact.id)
 						)
+						.swipeActions(edge: .leading, allowsFullSwipe: true) {
+							Button {
+								contactActions.composeMessage(for: contact)
+							} label: {
+								Label("contact_send_message", systemImage: "message")
+							}
+							.tint(Color.brandGreen)
+						}
 						.swipeActions(edge: .trailing, allowsFullSwipe: false) {
 							Button {
 								addToCalendar(contact, date: group.date)
@@ -123,6 +133,8 @@ struct PeopleView: View {
 							.tint(Color.brandGreen)
 						}
 						.contextMenu {
+							ContactActionButtons(contact: contact, actions: contactActions)
+							Divider()
 							Button {
 								addToCalendar(contact, date: group.date)
 							} label: {

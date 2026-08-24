@@ -369,6 +369,98 @@
         }
       }
     },
+    "contact_message_unavailable_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontakt nemá telefonní číslo, nebo toto zařízení neumí odesílat zprávy."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The contact has no phone number, or this device cannot send messages."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Kontakt hat keine Telefonnummer, oder dieses Gerät kann keine Nachrichten senden."
+          }
+        }
+      }
+    },
+    "contact_message_unavailable_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zprávu nelze odeslat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cannot send the message"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nachricht kann nicht gesendet werden"
+          }
+        }
+      }
+    },
+    "contact_send_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Napsat zprávu"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send a message"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nachricht senden"
+          }
+        }
+      }
+    },
+    "contact_show_card" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit kontakt"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show contact"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontakt anzeigen"
+          }
+        }
+      }
+    },
     "day_contacts_header_multiple" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -595,6 +687,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "gesetzlicher Feiertag"
+          }
+        }
+      }
+    },
+    "message_nameday_wish" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Všechno nejlepší k svátku! 🎉"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Happy name day! 🎉"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alles Gute zum Namenstag! 🎉"
           }
         }
       }

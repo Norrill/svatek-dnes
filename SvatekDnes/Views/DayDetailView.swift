@@ -10,6 +10,7 @@ struct DayDetailView: View {
 	@State private var addedToCalendar = false
 	@State private var exportErrorMessage = ""
 	@State private var showsExportError = false
+	@StateObject private var contactActions = ContactActions()
 
 	// Scale with Dynamic Type instead of staying fixed at large text sizes.
 	@ScaledMetric(relativeTo: .largeTitle) private var namesSize: CGFloat = 32
@@ -35,6 +36,7 @@ struct DayDetailView: View {
 		} message: {
 			Text(exportErrorMessage)
 		}
+		.modifier(ContactActionsHost(actions: contactActions))
 	}
 
 	// MARK: - Names
@@ -133,8 +135,20 @@ struct DayDetailView: View {
 								.foregroundStyle(.secondary)
 						}
 					}
+					Spacer(minLength: 8)
+					Button {
+						contactActions.composeMessage(for: contact)
+					} label: {
+						Image(systemName: "message")
+							.foregroundStyle(Color.brandGreen)
+					}
+					.buttonStyle(.borderless)
+					.accessibilityLabel("contact_send_message")
 				}
 				.padding(.vertical, 2)
+				.contextMenu {
+					ContactActionButtons(contact: contact, actions: contactActions)
+				}
 			}
 		} header: {
 			Text(matchedContacts.count > 1
