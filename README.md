@@ -2,7 +2,7 @@
 
 Czech nameday & holiday app for iOS – shows who has their nameday (jmeniny)
 today, upcoming Czech public holidays, and matches namedays against the
-user's contacts. Czech-only UI, iOS 17+, SwiftUI.
+user's contacts. Localized UI (Czech, English, German), iOS 17+, SwiftUI.
 
 ## Features
 
@@ -36,7 +36,7 @@ Three targets, generated from `project.yml` by [XcodeGen](https://github.com/yon
 
 Both the app and the widget compile the `Shared/` core: models,
 `NamedayStore`, `HolidayCalendar` + `EasterCalculator`, `CalendarComposer`,
-`NameMatching`, `CzechFormat`/design system, and the app-group plumbing
+`NameMatching`, `AppFormat`/design system, and the app-group plumbing
 (`AppGroup`, `WidgetSnapshot`).
 
 ### Data flow
@@ -88,6 +88,41 @@ Run the tests:
 xcodebuild -project SvatekDnes.xcodeproj -scheme SvatekDnes \
 	-destination 'platform=iOS Simulator,name=iPhone 16' test
 ```
+
+## Releasing to the App Store
+
+Both version numbers live in `project.yml` under `settings.base` and are
+inherited by every target, so the app and the widget always ship the same
+version (Apple requires that they match). Bump them in **one place**:
+
+- `MARKETING_VERSION` – the user-facing version (`1.1.0`, semver).
+- `CURRENT_PROJECT_VERSION` – the build number. Must increase on **every**
+  upload to App Store Connect, even when the marketing version stays the
+  same (e.g. a rejected build resubmitted with a fix).
+
+Release steps:
+
+1. Bump the versions in `project.yml`, then `xcodegen generate`.
+2. Run the unit tests (command above) – they also guard the localization
+   catalog (raw-key leaks, plural formats, the 29. 2. leap-day rendering).
+3. If the UI changed, refresh the store screenshots: run
+   `ScreenshotUITests` on a **6.9-inch** simulator (iPhone 17 Pro Max);
+   the App Store requires 1320×2868 portrait for that size and scales the
+   rest down from it.
+4. Archive and upload: Xcode → Product → Archive → Distribute App →
+   App Store Connect. (CLI alternative:
+   `xcodebuild -project SvatekDnes.xcodeproj -scheme SvatekDnes
+   -destination 'generic/platform=iOS' archive`, then upload the archive
+   with the Organizer or Transporter.)
+5. Smoke-test the build via TestFlight on a real device – notifications,
+   the widget and the contacts flow behave differently than in the
+   simulator.
+6. Submit for review in App Store Connect with release notes for each
+   locale (cs, en, de), and tag the release: `git tag v1.1.0 && git push
+   --tags`.
+
+There is no CI and no fastlane – the process is deliberately manual; the
+whole release takes a few minutes of hands-on time.
 
 ## Updating the holiday data
 
