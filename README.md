@@ -114,6 +114,17 @@ Release steps:
    `xcodebuild -project SvatekDnes.xcodeproj -scheme SvatekDnes
    -destination 'generic/platform=iOS' archive`, then upload the archive
    with the Organizer or Transporter.)
+
+   **If the upload fails with error 90035 "Invalid Signature"** even
+   though signing is automatic: the direct upload path ships the
+   archive's development-signed binaries without re-signing (observed
+   with Xcode 26 / first upload on a fresh team). Work around it by
+   exporting first – `xcodebuild -exportArchive` with
+   `method: app-store-connect`, `destination: export`,
+   `signingStyle: automatic` – which correctly re-signs the app and the
+   widget with the Apple Distribution certificate, and then upload the
+   resulting `.ipa` with the Transporter app (or
+   `xcrun altool --upload-app -f SvatekDnes.ipa -t ios`).
 5. Smoke-test the build via TestFlight on a real device – notifications,
    the widget and the contacts flow behave differently than in the
    simulator.
