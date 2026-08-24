@@ -14,6 +14,8 @@ struct AssignNamedayView: View {
 	@Environment(\.dismiss) private var dismiss
 	@State private var query = ""
 
+	@ScaledMetric(relativeTo: .subheadline) private var dateColumnWidth: CGFloat = 56
+
 	private var trimmedQuery: String {
 		query.trimmingCharacters(in: .whitespaces)
 	}
@@ -61,7 +63,7 @@ struct AssignNamedayView: View {
 				Text(AppFormat.shortDate(month: entry.m, day: entry.d))
 					.font(.subheadline.monospacedDigit())
 					.foregroundStyle(.secondary)
-					.frame(width: 56, alignment: .leading)
+					.frame(width: dateColumnWidth, alignment: .leading)
 				VStack(alignment: .leading, spacing: 2) {
 					if entry.displayText.isEmpty {
 						Text("nameday_none_inline")

@@ -115,6 +115,8 @@ struct CalendarListView: View {
 					Text(verbatim: holiday.shortName)
 						.font(.footnote)
 						.foregroundStyle(holiday.isDayOff ? Color.red : Color.brandGreen)
+						// Day-off is encoded by colour only – say it out loud.
+						.accessibilityLabel(Text(verbatim: "\(holiday.shortName) – \(holiday.kindLabel)"))
 				}
 			}
 			Spacer(minLength: 0)

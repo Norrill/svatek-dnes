@@ -11,6 +11,10 @@ struct DayDetailView: View {
 	@State private var exportErrorMessage = ""
 	@State private var showsExportError = false
 
+	// Scale with Dynamic Type instead of staying fixed at large text sizes.
+	@ScaledMetric(relativeTo: .largeTitle) private var namesSize: CGFloat = 32
+	@ScaledMetric(relativeTo: .subheadline) private var avatarSize: CGFloat = 40
+
 	var body: some View {
 		List {
 			namesSection
@@ -44,7 +48,7 @@ struct DayDetailView: View {
 						.foregroundStyle(.secondary)
 				} else {
 					Text(info.entry.displayText)
-						.font(.system(size: 32, weight: .bold, design: .rounded))
+						.font(.system(size: namesSize, weight: .bold, design: .rounded))
 					if let variants = info.entry.variantsText {
 						Text(variants)
 							.font(.subheadline)
@@ -150,7 +154,9 @@ struct DayDetailView: View {
 				.font(.subheadline.weight(.semibold))
 				.foregroundStyle(.white)
 		}
-		.frame(width: 40, height: 40)
+		.frame(width: avatarSize, height: avatarSize)
+		// Decorative – the full name follows right next to it.
+		.accessibilityHidden(true)
 	}
 
 	// MARK: - Calendar export

@@ -12,6 +12,11 @@ struct TodayView: View {
 	@State private var exportErrorMessage = ""
 	@State private var showsExportError = false
 
+	// Scale with Dynamic Type instead of staying fixed at large text sizes.
+	@ScaledMetric(relativeTo: .largeTitle) private var heroNameSize: CGFloat = 40
+	@ScaledMetric(relativeTo: .subheadline) private var contactColumnWidth: CGFloat = 92
+	@ScaledMetric(relativeTo: .subheadline) private var upcomingColumnWidth: CGFloat = 72
+
 	var body: some View {
 		NavigationStack {
 			ScrollView {
@@ -64,7 +69,7 @@ struct TodayView: View {
 				.foregroundStyle(.white.opacity(0.85))
 
 			Text(heroTitle(for: info))
-				.font(.system(size: 40, weight: .bold, design: .rounded))
+				.font(.system(size: heroNameSize, weight: .bold, design: .rounded))
 				.foregroundStyle(.white)
 				.lineLimit(3)
 				.minimumScaleFactor(0.5)
@@ -97,6 +102,9 @@ struct TodayView: View {
 			)
 		)
 		.clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
+		// One VoiceOver element: date, names, badges and the contact line
+		// read as a single utterance instead of five swipes.
+		.accessibilityElement(children: .combine)
 	}
 
 	private func heroTitle(for info: DayInfo) -> String {
@@ -266,7 +274,7 @@ struct TodayView: View {
 					.lineLimit(1)
 					.minimumScaleFactor(0.75)
 			}
-			.frame(width: 92, alignment: .leading)
+			.frame(width: contactColumnWidth, alignment: .leading)
 
 			Text(groupNames(group.contacts))
 				.font(.body.weight(.medium))
@@ -275,11 +283,14 @@ struct TodayView: View {
 			Spacer(minLength: 8)
 
 			if isToday {
+				// Decorative – the countdown column already says "dnes".
 				Text(verbatim: "🎉")
+					.accessibilityHidden(true)
 			}
 			Image(systemName: "chevron.right")
 				.font(.caption.weight(.semibold))
 				.foregroundStyle(.tertiary)
+				.accessibilityHidden(true)
 		}
 		.padding(.horizontal, 16)
 		.padding(.vertical, 12)
@@ -345,7 +356,7 @@ struct TodayView: View {
 					.font(.caption)
 					.foregroundStyle(.secondary)
 			}
-			.frame(width: 72, alignment: .leading)
+			.frame(width: upcomingColumnWidth, alignment: .leading)
 
 			VStack(alignment: .leading, spacing: 3) {
 				if info.entry.displayText.isEmpty {
@@ -365,6 +376,9 @@ struct TodayView: View {
 							.font(.caption)
 							.foregroundStyle(holiday.isDayOff ? Color.red : Color.brandGreen)
 					}
+					// The dot encodes day-off by colour only – say it out loud.
+					.accessibilityElement(children: .ignore)
+					.accessibilityLabel(Text(verbatim: "\(holiday.shortName) – \(holiday.kindLabel)"))
 				}
 			}
 
@@ -377,11 +391,16 @@ struct TodayView: View {
 					.foregroundStyle(.secondary)
 					.lineLimit(1)
 					.layoutPriority(-1)
+					.accessibilityLabel(Text(String(
+						format: String(localized: names.count > 1 ? "nameday_has_multiple" : "nameday_has_single"),
+						names.joinedNames
+					)))
 			}
 
 			Image(systemName: "chevron.right")
 				.font(.caption.weight(.semibold))
 				.foregroundStyle(.tertiary)
+				.accessibilityHidden(true)
 		}
 		.padding(.horizontal, 16)
 		.padding(.vertical, 12)

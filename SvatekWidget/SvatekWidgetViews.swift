@@ -120,6 +120,10 @@ struct SvatekSmallView: View {
 						.font(.caption)
 						.lineLimit(1)
 						.minimumScaleFactor(0.8)
+						.accessibilityLabel(Text(String(
+							format: String(localized: day.contactNames.count > 1 ? "nameday_has_multiple" : "nameday_has_single"),
+							day.contactNames.joinedNames
+						)))
 				}
 			}
 		}
@@ -169,6 +173,7 @@ struct SvatekUpcomingRow: View {
 			if !day.contactNames.isEmpty {
 				Text(verbatim: "🎉")
 					.font(.caption2)
+					.accessibilityLabel("calendar_contact_marker_a11y")
 			}
 			if day.isDayOff {
 				Circle()
@@ -216,6 +221,10 @@ struct SvatekRectangularView: View {
 				Text("🎉 " + entry.today.contactNames.joinedNames)
 					.font(.caption)
 					.lineLimit(1)
+					.accessibilityLabel(Text(String(
+						format: String(localized: entry.today.contactNames.count > 1 ? "nameday_has_multiple" : "nameday_has_single"),
+						entry.today.contactNames.joinedNames
+					)))
 			}
 		}
 		.frame(maxWidth: .infinity, alignment: .leading)

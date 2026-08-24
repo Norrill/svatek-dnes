@@ -13,6 +13,8 @@ struct PeopleView: View {
 	@State private var toastTask: Task<Void, Never>?
 	@State private var assigningContact: AssignmentTarget?
 
+	@ScaledMetric(relativeTo: .subheadline) private var avatarSize: CGFloat = 40
+
 	var body: some View {
 		NavigationStack {
 			content
@@ -169,7 +171,8 @@ struct PeopleView: View {
 								.font(.subheadline.weight(.semibold))
 								.foregroundStyle(.secondary)
 						}
-						.frame(width: 40, height: 40)
+						.frame(width: avatarSize, height: avatarSize)
+						.accessibilityHidden(true)
 						VStack(alignment: .leading, spacing: 2) {
 							Text(contact.fullName)
 								.foregroundStyle(.primary)
@@ -282,6 +285,8 @@ private struct PersonRow: View {
 	let isToday: Bool
 	let isExported: Bool
 
+	@ScaledMetric(relativeTo: .subheadline) private var avatarSize: CGFloat = 40
+
 	private var showsMatchedName: Bool {
 		contact.matchedName.compare(
 			contact.givenName,
@@ -307,7 +312,9 @@ private struct PersonRow: View {
 					.font(.subheadline.weight(.semibold))
 					.foregroundStyle(.white)
 			}
-			.frame(width: 40, height: 40)
+			.frame(width: avatarSize, height: avatarSize)
+			// Decorative – the full name follows right next to it.
+			.accessibilityHidden(true)
 			VStack(alignment: .leading, spacing: 2) {
 				Text(contact.fullName)
 				if contact.isManual {
@@ -331,7 +338,9 @@ private struct PersonRow: View {
 					.accessibilityLabel("calendar_export_added")
 			}
 			if isToday {
+				// Decorative – the section header already says "Dnes".
 				Text(verbatim: "🎉")
+					.accessibilityHidden(true)
 			}
 		}
 		.padding(.vertical, 2)
@@ -346,11 +355,14 @@ private struct EmptyStateView<Actions: View>: View {
 	let message: LocalizedStringKey
 	@ViewBuilder let actions: () -> Actions
 
+	@ScaledMetric(relativeTo: .largeTitle) private var iconSize: CGFloat = 56
+
 	var body: some View {
 		VStack(spacing: 16) {
 			Image(systemName: systemImage)
-				.font(.system(size: 56))
+				.font(.system(size: iconSize))
 				.foregroundStyle(Color.brandGreen)
+				.accessibilityHidden(true)
 			Text(title)
 				.font(.title3.weight(.semibold))
 				.multilineTextAlignment(.center)
