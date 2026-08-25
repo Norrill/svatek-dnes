@@ -17,3 +17,5 @@ build/
 
 # XcodeGen output is regenerated from project.yml
 SvatekDnes.xcodeproj/
+
+BUILD.md
