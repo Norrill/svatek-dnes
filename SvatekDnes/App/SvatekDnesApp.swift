@@ -6,6 +6,7 @@ struct SvatekDnesApp: App {
 
 	init() {
 		AppBackgroundTasks.register()
+		WatchSync.shared.activate()
 	}
 
 	var body: some Scene {

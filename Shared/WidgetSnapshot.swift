@@ -23,6 +23,11 @@ enum SnapshotStore {
 		AppGroup.dataDirectory.appendingPathComponent("widget-snapshot.json")
 	}
 
+	/// The holiday override file downloaded by `HolidayUpdateService`.
+	static var remoteDataURL: URL {
+		AppGroup.dataDirectory.appendingPathComponent("remote-data.json")
+	}
+
 	static func save(_ snapshot: WidgetSnapshot) {
 		guard let data = try? JSONEncoder().encode(snapshot) else {
 			return
@@ -37,8 +42,9 @@ enum SnapshotStore {
 		return try? JSONDecoder().decode(WidgetSnapshot.self, from: data)
 	}
 
-	/// Rebuilds the snapshot from the current contact matches.
-	static func update(with contacts: [MatchedContact]) {
+	/// Builds a snapshot from contact matches without storing it.
+	/// The watch sync sends this value; `update(with:)` persists it.
+	static func snapshot(from contacts: [MatchedContact]) -> WidgetSnapshot {
 		var byDay: [String: [String]] = [:]
 		for contact in contacts {
 			let key = WidgetSnapshot.key(month: contact.month, day: contact.day)
@@ -49,6 +55,11 @@ enum SnapshotStore {
 			var seen = Set<String>()
 			return names.filter { !$0.isEmpty && seen.insert($0).inserted }
 		}
-		save(WidgetSnapshot(createdAt: Date(), contactsByDay: deduped))
+		return WidgetSnapshot(createdAt: Date(), contactsByDay: deduped)
+	}
+
+	/// Rebuilds the snapshot from the current contact matches.
+	static func update(with contacts: [MatchedContact]) {
+		save(snapshot(from: contacts))
 	}
 }

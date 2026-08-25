@@ -17,6 +17,15 @@ support contact. The page is served by GitHub Pages from `docs/` on
 the repo. App privacy label: **Data Not Collected** – no data types
 declared, because nothing leaves the device.
 
+**Must change when 1.1 (the watch app) ships:** the policy, the three
+store descriptions and `NSContactsUsageDescription` all state that
+contacts never leave the phone. With the watch app they are synced to the
+user's paired Apple Watch, so the wording has to say "to your paired
+Apple Watch and nowhere else" and the policy's effective date must be
+bumped. The **Data Not Collected** label itself stays correct – syncing
+between the user's own devices is not collection, since nothing reaches
+the developer or a third party.
+
 ---
 
 ## Čeština (primary)
