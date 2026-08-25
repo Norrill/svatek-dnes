@@ -176,6 +176,32 @@ python3 -m json.tool data/svatky.json > /dev/null
 - The only network call the app ever makes is the monthly fetch of the
   static data file from `raw.githubusercontent.com`.
 
+The published privacy policy lives in [`docs/index.html`](docs/index.html)
+(cs/en/de in one page, no build step) and is served by GitHub Pages at
+<https://norrill.github.io/svatek-dnes/>. That URL is what App Store
+Connect has for both **Privacy Policy URL** and **Support URL**, so keep
+it stable. Edit the page and push to `main` to publish; the policy's
+effective date in the header must be bumped whenever data handling
+changes.
+
+## This repository must stay public
+
+Two things depend on it and both break silently if the repo goes private
+or is renamed:
+
+- **The holiday data feed.** The app fetches
+  `raw.githubusercontent.com/Norrill/svatek-dnes/main/data/svatky.json`
+  with no credentials – a private repo returns 404, and
+  `HolidayUpdateService` fails soft, so shipped apps just stop getting
+  updates with nothing to notice.
+- **The privacy policy page.** GitHub Pages needs a public repo on the
+  free plan, and an App Store listing with a dead privacy policy URL gets
+  rejected on review.
+
+The repo name `svatek-dnes` is baked into `AppGroup.remoteDataURL` and
+into the App Store URLs. Renaming it means shipping an app update, and
+old installs would never update their data again.
+
 ## CarPlay
 
 CarPlay is intentionally not supported. Apple restricts CarPlay to a fixed

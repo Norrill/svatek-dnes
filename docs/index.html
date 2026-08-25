@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Svátek dnes – Zásady ochrany osobních údajů</title>
+<meta name="description" content="Zásady ochrany osobních údajů aplikace Svátek dnes. Privacy policy for the Svátek dnes iOS app.">
+<style>
+:root {
+	--bg: #ffffff;
+	--fg: #1c1c1e;
+	--muted: #6b6b70;
+	--rule: #e3e3e6;
+	--accent: #2f7d4f;
+	--card: #f5f6f5;
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #131316;
+		--fg: #ececee;
+		--muted: #9b9ba1;
+		--rule: #2c2c31;
+		--accent: #6fc08e;
+		--card: #1c1c20;
+	}
+}
+* { box-sizing: border-box; }
+body {
+	margin: 0;
+	padding: 2.5rem 1.25rem 4rem;
+	background: var(--bg);
+	color: var(--fg);
+	font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	-webkit-text-size-adjust: 100%;
+}
+main { max-width: 44rem; margin: 0 auto; }
+h1 { font-size: 1.75rem; line-height: 1.25; margin: 0 0 .35rem; letter-spacing: -.01em; }
+h2 { font-size: 1.1rem; margin: 2.25rem 0 .6rem; letter-spacing: -.005em; }
+p, li { margin: .6rem 0; }
+ul { padding-left: 1.25rem; }
+a { color: var(--accent); }
+code {
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: .9em;
+	background: var(--card);
+	padding: .1em .35em;
+	border-radius: .25em;
+	word-break: break-all;
+}
+.app { font-weight: 600; }
+.date { color: var(--muted); font-size: .9rem; margin: 0 0 1.75rem; }
+.summary {
+	background: var(--card);
+	border-left: 3px solid var(--accent);
+	border-radius: .25rem;
+	padding: .9rem 1.1rem;
+	margin: 1.5rem 0;
+}
+.summary p { margin: 0; }
+nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .5rem;
+	border-bottom: 1px solid var(--rule);
+	padding-bottom: 1.25rem;
+	margin-bottom: 2rem;
+}
+nav button {
+	font: inherit;
+	font-size: .9rem;
+	color: var(--fg);
+	background: transparent;
+	border: 1px solid var(--rule);
+	border-radius: 2rem;
+	padding: .3rem .9rem;
+	cursor: pointer;
+}
+nav button[aria-current="true"] {
+	background: var(--accent);
+	border-color: var(--accent);
+	color: #fff;
+}
+footer {
+	margin-top: 3rem;
+	padding-top: 1.25rem;
+	border-top: 1px solid var(--rule);
+	color: var(--muted);
+	font-size: .875rem;
+}
+</style>
+</head>
+<body>
+<main>
+
+<nav>
+	<button type="button" data-lang="cs" aria-current="true">Čeština</button>
+	<button type="button" data-lang="en" aria-current="false">English</button>
+	<button type="button" data-lang="de" aria-current="false">Deutsch</button>
+</nav>
+
+<!-- ─────────────────────────────  ČEŠTINA  ───────────────────────────── -->
+<section lang="cs" data-section="cs">
+
+<h1>Zásady ochrany osobních údajů</h1>
+<p class="date">Aplikace <span class="app">Svátek dnes</span> pro iOS · Účinné od 25. 8. 2026</p>
+
+<div class="summary">
+	<p><strong>Stručně:</strong> Aplikace <span class="app">Svátek dnes</span> o vás neshromažďuje žádné údaje. Nemá uživatelské účty, reklamu, analytiku ani sledovací nástroje. Vaše kontakty se zpracovávají výhradně ve vašem zařízení a nikdy je neodesíláme.</p>
+</div>
+
+<h2>1. Kdo zásady vydává</h2>
+<p>Aplikaci <span class="app">Svátek dnes</span> vyvíjí Filip Havlík. V otázkách ochrany soukromí mě kontaktujte na <a href="mailto:fh@dubax.cz">fh@dubax.cz</a>.</p>
+
+<h2>2. Jaké údaje shromažďujeme</h2>
+<p>Žádné. Aplikace neshromažďuje, neodesílá ani nesdílí žádné osobní údaje. Nevyžaduje registraci ani přihlášení a nepoužívá žádné sady nástrojů třetích stran pro analytiku, reklamu ani sledování. Údaje popsané níže zůstávají po celou dobu ve vašem zařízení.</p>
+
+<h2>3. Kontakty</h2>
+<p>Pokud udělíte souhlas s přístupem ke kontaktům, aplikace čte křestní jména a příjmení z vašeho adresáře, aby je porovnala s kalendářem jmenin a upozornila vás, kdo má svátek. Toto porovnání probíhá <strong>výhradně ve vašem zařízení</strong>. Kontakty se nikam neodesílají, neukládají se na žádný server a nesdílí se s nikým dalším.</p>
+<p>Když některému kontaktu přiřadíte svátek ručně, uloží se do zařízení dvojice „identifikátor kontaktu → datum“, aby přiřazení zůstalo zachováno. Tento záznam neopouští vaše zařízení.</p>
+<p>Přístup ke kontaktům můžete kdykoli odebrat v <em>Nastavení → Soukromí a zabezpečení → Kontakty</em>. Aplikace zůstane funkční, jen bez svátků vašich blízkých.</p>
+
+<h2>4. Kalendář</h2>
+<p>Aplikace si vyžádá oprávnění pouze pro <strong>zápis</strong> do kalendáře, a to jen tehdy, když sami zvolíte přidání svátku jako události. Nemá oprávnění číst obsah vašeho kalendáře a žádné události nečte ani neodesílá.</p>
+
+<h2>5. Oznámení</h2>
+<p>Připomínky svátků jsou <strong>lokální oznámení</strong> plánovaná přímo ve vašem zařízení. Neprocházejí žádným serverem – ani mým, ani jiným – a neobsahují žádné údaje, které by opustily telefon.</p>
+
+<h2>6. Síťová komunikace</h2>
+<p>Aplikace provádí jediný druh síťového požadavku: přibližně jednou měsíčně stáhne statický datový soubor s aktualizovaným kalendářem svátků z adresy</p>
+<p><code>https://raw.githubusercontent.com/Norrill/svatek-dnes/main/data/svatky.json</code></p>
+<p>Jde o běžné stažení veřejného souboru. Neodesílají se při něm žádné vaše údaje, žádný identifikátor zařízení ani nic o vašich kontaktech. Jako u každého požadavku na internetu vidí server GitHub, který soubor hostuje, IP adresu vašeho připojení a standardní technické údaje požadavku; tyto záznamy spravuje GitHub podle svého <a href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement" rel="noopener">prohlášení o ochraně osobních údajů</a>. Já k nim přístup nemám.</p>
+<p>Pokud se stažení nezdaří, aplikace funguje dál s vestavěnými daty.</p>
+
+<h2>7. Kde jsou data uložena</h2>
+<p>Vaše nastavení (čas oznámení, zapnuté typy připomínek) a ruční přiřazení svátků se ukládají v úložišti aplikace ve vašem zařízení, sdíleném s widgetem. Neukládáme nic do cloudu a nemáme k těmto datům přístup. Odinstalací aplikace se všechna tato data odstraní.</p>
+
+<h2>8. Třetí strany</h2>
+<p>Aplikace neobsahuje žádné knihovny ani sady nástrojů třetích stran. Neposkytujeme, neprodáváme ani nesdílíme žádné údaje nikomu.</p>
+
+<h2>9. Děti</h2>
+<p>Aplikace je vhodná pro všechny věkové kategorie. Protože neshromažďuje žádné údaje, neshromažďuje je ani od dětí.</p>
+
+<h2>10. Vaše práva</h2>
+<p>Nemám k dispozici žádné vaše osobní údaje, takže neexistuje nic, co bych mohl vydat, opravit nebo smazat. Veškerá data zůstávají pod vaší kontrolou přímo v zařízení: oprávnění spravujete v Nastavení systému iOS a odinstalace aplikace odstraní vše, co si aplikace uložila.</p>
+
+<h2>11. Změny těchto zásad</h2>
+<p>Pokud se zpracování údajů v budoucí verzi změní, aktualizuji tuto stránku a upravím datum účinnosti uvedené v záhlaví.</p>
+
+<h2>12. Kontakt</h2>
+<p>Dotazy k soukromí i podpora aplikace: <a href="mailto:fh@dubax.cz">fh@dubax.cz</a>.</p>
+
+</section>
+
+<!-- ─────────────────────────────  ENGLISH  ───────────────────────────── -->
+<section lang="en" data-section="en" hidden>
+
+<h1>Privacy Policy</h1>
+<p class="date"><span class="app">Svátek dnes</span> for iOS · Effective 25 August 2026</p>
+
+<div class="summary">
+	<p><strong>In short:</strong> <span class="app">Svátek dnes</span> collects no data about you. There are no user accounts, no ads, no analytics and no tracking. Your contacts are processed entirely on your device and are never transmitted.</p>
+</div>
+
+<h2>1. Who publishes this policy</h2>
+<p><span class="app">Svátek dnes</span> is developed by Filip Havlík. For privacy matters, contact me at <a href="mailto:fh@dubax.cz">fh@dubax.cz</a>.</p>
+
+<h2>2. What data we collect</h2>
+<p>None. The app does not collect, transmit or share any personal data. It requires no registration or sign-in and contains no third-party analytics, advertising or tracking kits. Everything described below stays on your device.</p>
+
+<h2>3. Contacts</h2>
+<p>If you grant contacts access, the app reads first and last names from your address book to match them against the name day calendar and tell you whose name day it is. This matching happens <strong>entirely on your device</strong>. Contacts are never uploaded, never stored on any server and never shared with anyone.</p>
+<p>When you assign a name day to a contact manually, a pairing of “contact identifier → date” is saved on the device so the assignment is not lost. This record never leaves your device.</p>
+<p>You can revoke contacts access at any time in <em>Settings → Privacy &amp; Security → Contacts</em>. The app keeps working, just without your contacts' name days.</p>
+
+<h2>4. Calendar</h2>
+<p>The app requests <strong>write-only</strong> calendar access, and only when you choose to add a name day as an event. It has no permission to read your calendar and never reads or transmits any events.</p>
+
+<h2>5. Notifications</h2>
+<p>Name day reminders are <strong>local notifications</strong> scheduled on your device. They pass through no server – mine or anyone else's – and contain no data that leaves your phone.</p>
+
+<h2>6. Network activity</h2>
+<p>The app makes a single kind of network request: roughly once a month it downloads a static data file with the updated holiday calendar from</p>
+<p><code>https://raw.githubusercontent.com/Norrill/svatek-dnes/main/data/svatky.json</code></p>
+<p>This is an ordinary download of a public file. It sends none of your data, no device identifier and nothing about your contacts. As with any request on the internet, GitHub – which hosts the file – sees your connection's IP address and standard technical request details; those logs are handled by GitHub under its <a href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement" rel="noopener">privacy statement</a>. I have no access to them.</p>
+<p>If the download fails, the app carries on with its built-in data.</p>
+
+<h2>7. Where data is stored</h2>
+<p>Your settings (notification time, which reminders are on) and manual name day assignments are stored in the app's own storage on your device, shared with the widget. Nothing is stored in the cloud and I have no access to any of it. Deleting the app removes all of this data.</p>
+
+<h2>8. Third parties</h2>
+<p>The app contains no third-party libraries or SDKs. No data is provided, sold or shared with anyone.</p>
+
+<h2>9. Children</h2>
+<p>The app is suitable for all ages. Because it collects no data at all, it collects none from children.</p>
+
+<h2>10. Your rights</h2>
+<p>I hold none of your personal data, so there is nothing for me to disclose, correct or delete. All data stays under your control on the device: permissions are managed in iOS Settings, and deleting the app removes everything it saved.</p>
+
+<h2>11. Changes to this policy</h2>
+<p>If a future version changes how data is handled, I will update this page and revise the effective date shown in the header.</p>
+
+<h2>12. Contact</h2>
+<p>Privacy questions and app support: <a href="mailto:fh@dubax.cz">fh@dubax.cz</a>.</p>
+
+</section>
+
+<!-- ─────────────────────────────  DEUTSCH  ───────────────────────────── -->
+<section lang="de" data-section="de" hidden>
+
+<h1>Datenschutzerklärung</h1>
+<p class="date"><span class="app">Svátek dnes</span> für iOS · Gültig ab 25. August 2026</p>
+
+<div class="summary">
+	<p><strong>Kurz gesagt:</strong> <span class="app">Svátek dnes</span> erhebt keinerlei Daten über Sie. Es gibt keine Benutzerkonten, keine Werbung, keine Analyse und kein Tracking. Ihre Kontakte werden ausschließlich auf Ihrem Gerät verarbeitet und niemals übertragen.</p>
+</div>
+
+<h2>1. Verantwortlich für diese Erklärung</h2>
+<p><span class="app">Svátek dnes</span> wird von Filip Havlík entwickelt. Bei Fragen zum Datenschutz erreichen Sie mich unter <a href="mailto:fh@dubax.cz">fh@dubax.cz</a>.</p>
+
+<h2>2. Welche Daten wir erheben</h2>
+<p>Keine. Die App erhebt, übermittelt und teilt keine personenbezogenen Daten. Sie erfordert keine Registrierung und keine Anmeldung und enthält keine Analyse-, Werbe- oder Tracking-Bibliotheken von Drittanbietern. Alle nachfolgend beschriebenen Daten verbleiben auf Ihrem Gerät.</p>
+
+<h2>3. Kontakte</h2>
+<p>Wenn Sie den Zugriff auf Kontakte erlauben, liest die App Vor- und Nachnamen aus Ihrem Adressbuch, um sie mit dem Namenstagskalender abzugleichen und Ihnen zu zeigen, wer Namenstag hat. Dieser Abgleich erfolgt <strong>ausschließlich auf Ihrem Gerät</strong>. Kontakte werden nie hochgeladen, nie auf einem Server gespeichert und nie an Dritte weitergegeben.</p>
+<p>Wenn Sie einem Kontakt einen Namenstag manuell zuordnen, wird auf dem Gerät ein Paar aus „Kontaktkennung → Datum“ gespeichert, damit die Zuordnung erhalten bleibt. Dieser Eintrag verlässt Ihr Gerät nicht.</p>
+<p>Sie können den Kontaktzugriff jederzeit unter <em>Einstellungen → Datenschutz &amp; Sicherheit → Kontakte</em> widerrufen. Die App funktioniert weiter, nur ohne die Namenstage Ihrer Kontakte.</p>
+
+<h2>4. Kalender</h2>
+<p>Die App fordert ausschließlich <strong>Schreibzugriff</strong> auf den Kalender an, und zwar nur dann, wenn Sie einen Namenstag als Termin hinzufügen möchten. Sie hat keine Berechtigung, Ihren Kalender zu lesen, und liest oder übermittelt keine Termine.</p>
+
+<h2>5. Mitteilungen</h2>
+<p>Namenstagserinnerungen sind <strong>lokale Mitteilungen</strong>, die auf Ihrem Gerät geplant werden. Sie laufen über keinen Server – weder meinen noch einen fremden – und enthalten keine Daten, die Ihr Telefon verlassen.</p>
+
+<h2>6. Netzwerkverbindungen</h2>
+<p>Die App stellt nur eine Art von Netzwerkanfrage: Etwa einmal im Monat lädt sie eine statische Datendatei mit dem aktualisierten Feiertagskalender von folgender Adresse herunter:</p>
+<p><code>https://raw.githubusercontent.com/Norrill/svatek-dnes/main/data/svatky.json</code></p>
+<p>Es handelt sich um den gewöhnlichen Download einer öffentlichen Datei. Dabei werden keine Ihrer Daten, keine Gerätekennung und nichts über Ihre Kontakte übermittelt. Wie bei jeder Anfrage im Internet sieht GitHub – wo die Datei liegt – die IP-Adresse Ihrer Verbindung sowie technische Standardangaben der Anfrage; diese Protokolle verarbeitet GitHub gemäß seiner <a href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement" rel="noopener">Datenschutzerklärung</a>. Ich habe darauf keinen Zugriff.</p>
+<p>Schlägt der Download fehl, arbeitet die App mit den integrierten Daten weiter.</p>
+
+<h2>7. Wo Daten gespeichert werden</h2>
+<p>Ihre Einstellungen (Uhrzeit der Mitteilungen, aktivierte Erinnerungsarten) und manuelle Namenstagszuordnungen werden im Speicher der App auf Ihrem Gerät abgelegt, gemeinsam mit dem Widget genutzt. Nichts wird in der Cloud gespeichert, und ich habe auf nichts davon Zugriff. Beim Löschen der App werden alle diese Daten entfernt.</p>
+
+<h2>8. Dritte</h2>
+<p>Die App enthält keine Bibliotheken oder SDKs von Drittanbietern. Es werden keine Daten weitergegeben, verkauft oder geteilt.</p>
+
+<h2>9. Kinder</h2>
+<p>Die App ist für alle Altersgruppen geeignet. Da sie überhaupt keine Daten erhebt, erhebt sie auch keine von Kindern.</p>
+
+<h2>10. Ihre Rechte</h2>
+<p>Mir liegen keine personenbezogenen Daten von Ihnen vor, daher gibt es nichts, was ich herausgeben, berichtigen oder löschen könnte. Alle Daten bleiben auf dem Gerät unter Ihrer Kontrolle: Berechtigungen verwalten Sie in den iOS-Einstellungen, und das Löschen der App entfernt alles, was sie gespeichert hat.</p>
+
+<h2>11. Änderungen dieser Erklärung</h2>
+<p>Sollte sich der Umgang mit Daten in einer künftigen Version ändern, aktualisiere ich diese Seite und passe das oben genannte Gültigkeitsdatum an.</p>
+
+<h2>12. Kontakt</h2>
+<p>Fragen zum Datenschutz und Support zur App: <a href="mailto:fh@dubax.cz">fh@dubax.cz</a>.</p>
+
+</section>
+
+<footer>
+	<p>© 2026 Filip Havlík · <a href="mailto:fh@dubax.cz">fh@dubax.cz</a></p>
+</footer>
+
+</main>
+
+<script>
+(function () {
+	var buttons = document.querySelectorAll('nav button');
+	var sections = document.querySelectorAll('section[data-section]');
+
+	function show(lang) {
+		sections.forEach(function (s) {
+			s.hidden = s.dataset.section !== lang;
+		});
+		buttons.forEach(function (b) {
+			b.setAttribute('aria-current', String(b.dataset.lang === lang));
+		});
+		document.documentElement.lang = lang;
+	}
+
+	buttons.forEach(function (b) {
+		b.addEventListener('click', function () {
+			show(b.dataset.lang);
+			history.replaceState(null, '', '#' + b.dataset.lang);
+		});
+	});
+
+	var initial = location.hash.replace('#', '');
+	if (initial !== 'cs' && initial !== 'en' && initial !== 'de') {
+		var preferred = (navigator.language || 'cs').slice(0, 2).toLowerCase();
+		initial = preferred === 'en' || preferred === 'de' ? preferred : 'cs';
+	}
+	show(initial);
+})();
+</script>
+
+</body>
+</html>

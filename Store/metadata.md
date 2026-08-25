@@ -8,6 +8,15 @@ version submission.
 Category: primary Lifestyle, secondary Utilities.
 Age rating: 4+. Copyright: © 2026 Filip Havlík.
 
+Privacy Policy URL (required): <https://norrill.github.io/svatek-dnes/>
+Support URL (required): <https://norrill.github.io/svatek-dnes/>
+
+Both point at the same page – it carries the policy in cs/en/de and the
+support contact. The page is served by GitHub Pages from `docs/` on
+`main` (see the README), so it is edited and deployed like the rest of
+the repo. App privacy label: **Data Not Collected** – no data types
+declared, because nothing leaves the device.
+
 ---
 
 ## Čeština (primary)
