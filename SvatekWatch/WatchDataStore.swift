@@ -2,6 +2,16 @@ import Combine
 import Foundation
 import WatchConnectivity
 
+/// A future day on which at least one contact has their nameday.
+struct UpcomingContactDay: Identifiable {
+	let date: Date
+	let month: Int
+	let day: Int
+	let names: [String]
+
+	var id: Date { date }
+}
+
 /// Holds what the iPhone has pushed over.
 ///
 /// The nameday calendar, the holidays and the Easter computus all ship with
@@ -35,6 +45,35 @@ final class WatchDataStore: NSObject, ObservableObject {
 			return []
 		}
 		return snapshot?.contacts(month: month, day: day) ?? []
+	}
+
+	/// The next days on which one of your contacts celebrates.
+	/// Starts tomorrow – today has its own section on the watch face.
+	func upcomingContacts(limit: Int = 4, from: Date = Date()) -> [UpcomingContactDay] {
+		guard let snapshot, !snapshot.contactsByDay.isEmpty else {
+			return []
+		}
+		let calendar = Calendar.czech
+		let start = calendar.startOfDay(for: from)
+		var result: [UpcomingContactDay] = []
+		for offset in 1...365 {
+			guard let date = calendar.date(byAdding: .day, value: offset, to: start) else {
+				continue
+			}
+			let components = calendar.dateComponents([.month, .day], from: date)
+			guard let month = components.month, let day = components.day else {
+				continue
+			}
+			let names = snapshot.contacts(month: month, day: day)
+			guard !names.isEmpty else {
+				continue
+			}
+			result.append(UpcomingContactDay(date: date, month: month, day: day, names: names))
+			if result.count >= limit {
+				break
+			}
+		}
+		return result
 	}
 
 	private func apply(_ context: [String: Any]) {

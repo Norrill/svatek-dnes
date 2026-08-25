@@ -18,6 +18,9 @@ struct WatchTodayView: View {
 						holidayRow(holiday)
 					}
 					contactsSection
+					upcomingContactsSection
+					// Always last: the crown lands on it after the day
+					// itself, which is what the screen is for.
 					calendarLink
 				}
 				.padding(.horizontal, 4)
@@ -86,6 +89,31 @@ struct WatchTodayView: View {
 				Text(names.joinedNames)
 					.font(.footnote)
 					.fontWeight(.medium)
+			}
+			.frame(maxWidth: .infinity, alignment: .leading)
+		}
+	}
+
+	/// Who is coming up, so the screen is useful before the day itself.
+	@ViewBuilder
+	private var upcomingContactsSection: some View {
+		let upcoming = store.upcomingContacts()
+		if !upcoming.isEmpty {
+			VStack(alignment: .leading, spacing: 3) {
+				Text("watch_upcoming_contacts")
+					.font(.caption2)
+					.foregroundStyle(.secondary)
+				ForEach(upcoming) { day in
+					HStack(alignment: .firstTextBaseline, spacing: 5) {
+						Text(AppFormat.shortDate(month: day.month, day: day.day))
+							.font(.caption2)
+							.foregroundStyle(.secondary)
+						Text(day.names.joinedNames)
+							.font(.footnote)
+							.lineLimit(1)
+						Spacer(minLength: 0)
+					}
+				}
 			}
 			.frame(maxWidth: .infinity, alignment: .leading)
 		}

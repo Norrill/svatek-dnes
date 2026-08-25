@@ -2481,6 +2481,29 @@
         }
       }
     },
+    "watch_upcoming_contacts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brzy slaví"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Celebrating soon"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Demnächst"
+          }
+        }
+      }
+    },
     "widget_description" : {
       "extractionState" : "manual",
       "localizations" : {
