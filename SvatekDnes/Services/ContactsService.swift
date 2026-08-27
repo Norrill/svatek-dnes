@@ -58,15 +58,40 @@ final class ContactsService: ObservableObject {
 		return true
 	}
 
-	func reloadIfAuthorized() async {
+	/// Re-reads the permission after the user may have changed it in the
+	/// system settings. `AppRefresher` is debounced by 30 s and would miss
+	/// the usual trip out to Settings and straight back, so this runs on
+	/// every foreground – it only touches the contacts when the status
+	/// actually flipped.
+	func refreshAuthorization() async {
+		let wasAuthorized = isAuthorized
 		status = CNContactStore.authorizationStatus(for: .contacts)
-		guard isAuthorized else {
-			return
+		switch (wasAuthorized, isAuthorized) {
+		case (false, true):
+			await reload()
+		case (true, false):
+			// Access revoked from the outside – drop the names we still hold.
+			matched = []
+			unmatched = []
+		default:
+			break
 		}
-		await reload()
 	}
 
-	private func reload() async {
+	/// Returns whether the matched set actually changed, so callers can skip
+	/// rewriting the widget snapshot and rescheduling notifications when the
+	/// address book came back identical.
+	@discardableResult
+	func reloadIfAuthorized() async -> Bool {
+		status = CNContactStore.authorizationStatus(for: .contacts)
+		guard isAuthorized else {
+			return false
+		}
+		return await reload()
+	}
+
+	@discardableResult
+	private func reload() async -> Bool {
 		let result = await Task.detached(priority: .userInitiated) { () -> (matched: [MatchedContact], unmatched: [UnmatchedContact])? in
 			let store = CNContactStore()
 			let keys: [CNKeyDescriptor] = [
@@ -151,10 +176,14 @@ final class ContactsService: ObservableObject {
 		}.value
 
 		guard let result else {
-			return
+			return false
+		}
+		guard result.matched != matched || result.unmatched != unmatched else {
+			return false
 		}
 		matched = result.matched
 		unmatched = result.unmatched
+		return true
 	}
 
 	/// Contacts having their nameday on the given calendar day.

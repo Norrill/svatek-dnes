@@ -4,6 +4,9 @@ import Combine
 /// "Dnes" tab: hero card for today, calendar export, contacts teaser
 /// and a preview of the upcoming days.
 struct TodayView: View {
+	/// Switches the tab bar to "Lidé" – see `contactsTeaser`.
+	var showPeople: () -> Void = {}
+
 	@EnvironmentObject var contacts: ContactsService
 	@Environment(\.scenePhase) private var scenePhase
 
@@ -203,27 +206,33 @@ struct TodayView: View {
 
 	// MARK: - Contacts teaser
 
+	/// Advertises the feature and switches to the People tab, where the
+	/// permission is asked for. It must not raise the prompt itself – a
+	/// custom "Allow" button the user can ignore is what App Review
+	/// 5.1.1(iv) objects to.
 	private var contactsTeaser: some View {
-		VStack(alignment: .leading, spacing: 8) {
-			Label("today_teaser_title", systemImage: "person.2.circle")
-				.font(.headline)
-			Text("today_teaser_message")
-				.font(.subheadline)
-				.foregroundStyle(.secondary)
-			Button("today_teaser_allow") {
-				Task {
-					await contacts.requestAccessAndLoad()
-				}
+		Button {
+			showPeople()
+		} label: {
+			VStack(alignment: .leading, spacing: 8) {
+				Label("today_teaser_title", systemImage: "person.2.circle")
+					.font(.headline)
+				Text("today_teaser_message")
+					.font(.subheadline)
+					.foregroundStyle(.secondary)
+				Text("today_teaser_open")
+					.font(.subheadline.weight(.semibold))
+					.foregroundStyle(Color.brandGreen)
+					.padding(.top, 2)
 			}
-			.buttonStyle(.bordered)
-			.tint(Color.brandGreen)
+			.frame(maxWidth: .infinity, alignment: .leading)
+			.padding(16)
+			.background(
+				Color(.secondarySystemGroupedBackground),
+				in: RoundedRectangle(cornerRadius: 16, style: .continuous)
+			)
 		}
-		.frame(maxWidth: .infinity, alignment: .leading)
-		.padding(16)
-		.background(
-			Color(.secondarySystemGroupedBackground),
-			in: RoundedRectangle(cornerRadius: 16, style: .continuous)
-		)
+		.buttonStyle(.plain)
 	}
 
 	// MARK: - Contact namedays
