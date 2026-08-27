@@ -58,6 +58,26 @@ final class ContactsService: ObservableObject {
 		return true
 	}
 
+	/// Re-reads the permission after the user may have changed it in the
+	/// system settings. `AppRefresher` is debounced by 30 s and would miss
+	/// the usual trip out to Settings and straight back, so this runs on
+	/// every foreground – it only touches the contacts when the status
+	/// actually flipped.
+	func refreshAuthorization() async {
+		let wasAuthorized = isAuthorized
+		status = CNContactStore.authorizationStatus(for: .contacts)
+		switch (wasAuthorized, isAuthorized) {
+		case (false, true):
+			await reload()
+		case (true, false):
+			// Access revoked from the outside – drop the names we still hold.
+			matched = []
+			unmatched = []
+		default:
+			break
+		}
+	}
+
 	func reloadIfAuthorized() async {
 		status = CNContactStore.authorizationStatus(for: .contacts)
 		guard isAuthorized else {

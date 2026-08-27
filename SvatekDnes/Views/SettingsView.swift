@@ -1,7 +1,9 @@
 import SwiftUI
+import UIKit
 
 struct SettingsView: View {
 	@EnvironmentObject var settings: AppSettings
+	@EnvironmentObject var contacts: ContactsService
 
 	@State private var isUpdating = false
 	@State private var updateMessage: String?
@@ -53,6 +55,7 @@ struct SettingsView: View {
 				allNamedaysSection
 				dayBeforeSection
 				notificationTimeSection
+				permissionsSection
 				dataSection
 				aboutSection
 			}
@@ -99,6 +102,36 @@ struct SettingsView: View {
 				selection: notificationTime,
 				displayedComponents: .hourAndMinute
 			)
+		}
+	}
+
+	/// Contacts and notifications are both granted outside the app, so the
+	/// only thing we can do here is report the state and hand the user over
+	/// to the system settings.
+	private var permissionsSection: some View {
+		Section {
+			LabeledContent("settings_contacts_access", value: contactsAccessText)
+			if let url = URL(string: UIApplication.openSettingsURLString) {
+				Link("people_open_settings", destination: url)
+			}
+		} header: {
+			Text("settings_permissions_header")
+		} footer: {
+			Text("settings_permissions_footer")
+		}
+	}
+
+	private var contactsAccessText: String {
+		if #available(iOS 18.0, *), contacts.status == .limited {
+			return String(localized: "settings_contacts_limited")
+		}
+		switch contacts.status {
+		case .authorized:
+			return String(localized: "settings_contacts_allowed")
+		case .denied, .restricted:
+			return String(localized: "settings_contacts_denied")
+		default:
+			return String(localized: "settings_contacts_not_asked")
 		}
 	}
 
@@ -181,4 +214,5 @@ struct SettingsView: View {
 #Preview {
 	SettingsView()
 		.environmentObject(AppSettings.shared)
+		.environmentObject(ContactsService.shared)
 }
