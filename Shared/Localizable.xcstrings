@@ -1151,29 +1151,6 @@
         }
       }
     },
-    "people_intro_allow" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Povolit přístup ke kontaktům"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Allow access to contacts"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zugriff auf Kontakte erlauben"
-          }
-        }
-      }
-    },
     "people_intro_message" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2228,29 +2205,6 @@
         }
       }
     },
-    "today_teaser_allow" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Povolit přístup"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Allow access"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zugriff erlauben"
-          }
-        }
-      }
-    },
     "today_teaser_message" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2270,6 +2224,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Die App vergleicht die Vornamen Ihrer Kontakte mit dem Kalender und erinnert Sie daran, wer Namenstag hat."
+          }
+        }
+      }
+    },
+    "today_teaser_open" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zobrazit kontakty"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show contacts"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kontakte anzeigen"
           }
         }
       }

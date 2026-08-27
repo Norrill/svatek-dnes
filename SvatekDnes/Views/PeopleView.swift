@@ -21,6 +21,16 @@ struct PeopleView: View {
 		NavigationStack {
 			content
 				.navigationTitle("people_title")
+				// The system prompt has to follow the explanation on its own:
+				// a custom screen the user can walk away from counts as gating
+				// the request (App Review 5.1.1(iv)). Opening this tab is the
+				// intent to use the feature, so ask right here.
+				.task {
+					guard contacts.canRequestAccess else {
+						return
+					}
+					await contacts.requestAccessAndLoad()
+				}
 				.overlay(alignment: .bottom) {
 					if toastVisible {
 						toast
@@ -41,7 +51,7 @@ struct PeopleView: View {
 	@ViewBuilder
 	private var content: some View {
 		if contacts.canRequestAccess {
-			requestAccessState
+			requestingAccessState
 		} else if !contacts.isAuthorized {
 			deniedState
 		} else if contacts.matched.isEmpty && contacts.unmatched.isEmpty {
@@ -53,22 +63,16 @@ struct PeopleView: View {
 
 	// MARK: - Permission states
 
-	private var requestAccessState: some View {
+	/// Backdrop for the system permission alert raised from `.task` above.
+	/// Deliberately has no button – it explains the request that is already
+	/// on screen rather than standing between the user and it.
+	private var requestingAccessState: some View {
 		EmptyStateView(
 			systemImage: "person.2.badge.plus",
 			title: "people_intro_title",
 			message: "people_intro_message"
 		) {
-			Button {
-				Task {
-					await contacts.requestAccessAndLoad()
-				}
-			} label: {
-				Text("people_intro_allow")
-					.fontWeight(.semibold)
-			}
-			.buttonStyle(.borderedProminent)
-			.controlSize(.large)
+			EmptyView()
 		}
 	}
 
