@@ -78,15 +78,20 @@ final class ContactsService: ObservableObject {
 		}
 	}
 
-	func reloadIfAuthorized() async {
+	/// Returns whether the matched set actually changed, so callers can skip
+	/// rewriting the widget snapshot and rescheduling notifications when the
+	/// address book came back identical.
+	@discardableResult
+	func reloadIfAuthorized() async -> Bool {
 		status = CNContactStore.authorizationStatus(for: .contacts)
 		guard isAuthorized else {
-			return
+			return false
 		}
-		await reload()
+		return await reload()
 	}
 
-	private func reload() async {
+	@discardableResult
+	private func reload() async -> Bool {
 		let result = await Task.detached(priority: .userInitiated) { () -> (matched: [MatchedContact], unmatched: [UnmatchedContact])? in
 			let store = CNContactStore()
 			let keys: [CNKeyDescriptor] = [
@@ -171,10 +176,14 @@ final class ContactsService: ObservableObject {
 		}.value
 
 		guard let result else {
-			return
+			return false
+		}
+		guard result.matched != matched || result.unmatched != unmatched else {
+			return false
 		}
 		matched = result.matched
 		unmatched = result.unmatched
+		return true
 	}
 
 	/// Contacts having their nameday on the given calendar day.

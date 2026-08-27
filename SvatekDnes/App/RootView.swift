@@ -1,4 +1,5 @@
 import SwiftUI
+import Contacts
 
 struct RootView: View {
 	enum Tab: Hashable {
@@ -34,6 +35,11 @@ struct RootView: View {
 		}
 		.environmentObject(contacts)
 		.environmentObject(settings)
+		// Someone added or renamed a contact – in the Contacts app, from a
+		// share sheet, or via iCloud sync on another device.
+		.onReceive(NotificationCenter.default.publisher(for: .CNContactStoreDidChange)) { _ in
+			AppRefresher.contactStoreChanged()
+		}
 	}
 }
 
