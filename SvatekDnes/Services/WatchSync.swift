@@ -11,9 +11,9 @@ import WatchConnectivity
 final class WatchSync: NSObject {
 	static let shared = WatchSync()
 
-	/// Skip sending a context identical to the last one – the refresh runs
-	/// on every activation and the payload usually has not changed.
-	private var lastPayloadHash: Int?
+	// Nil, not empty, until the app has loaded contacts: an early resend
+	// would otherwise wipe the names the watch already has.
+	private var contacts: [MatchedContact]?
 
 	private override init() {
 		super.init()
@@ -30,7 +30,12 @@ final class WatchSync: NSObject {
 
 	/// Sends the current contact matches. Cheap to call often.
 	func push(contacts: [MatchedContact]) {
-		guard WCSession.isSupported() else {
+		self.contacts = contacts
+		send()
+	}
+
+	private func send() {
+		guard let contacts, WCSession.isSupported() else {
 			return
 		}
 		let session = WCSession.default
@@ -47,42 +52,27 @@ final class WatchSync: NSObject {
 		if let remote = try? Data(contentsOf: SnapshotStore.remoteDataURL) {
 			context["remoteData"] = remote
 		}
-		guard !context.isEmpty else {
-			return
-		}
-
-		let hash = (context["snapshot"] as? Data)?.hashValue ?? 0
-			^ ((context["remoteData"] as? Data)?.hashValue ?? 0)
-		guard hash != lastPayloadHash else {
-			return
-		}
-
-		do {
-			try session.updateApplicationContext(context)
-			lastPayloadHash = hash
-		} catch {
-			// Transient – the next refresh tries again.
-			lastPayloadHash = nil
-		}
+		try? session.updateApplicationContext(context)
 	}
 }
 
 extension WatchSync: WCSessionDelegate {
 	func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+		DispatchQueue.main.async {
+			self.send()
+		}
 	}
 
-	/// Switching to a different watch invalidates what we last sent.
 	func sessionDidBecomeInactive(_ session: WCSession) {
-		lastPayloadHash = nil
 	}
 
 	func sessionDidDeactivate(_ session: WCSession) {
-		lastPayloadHash = nil
 		WCSession.default.activate()
 	}
 
 	func sessionWatchStateDidChange(_ session: WCSession) {
-		// A newly paired or freshly installed watch has no context yet.
-		lastPayloadHash = nil
+		DispatchQueue.main.async {
+			self.send()
+		}
 	}
 }
