@@ -100,7 +100,8 @@ tables for 2026–2030.
 ## Privacy
 
 - Contacts are read (with permission) and matched **entirely on-device**;
-  they never leave the phone.
+  only their first names leave the phone, synced to the user's own paired
+  Apple Watch.
 - No analytics, no tracking, no third-party SDKs.
 - The only network call the app ever makes is the monthly fetch of the
   static data file from `raw.githubusercontent.com`.
