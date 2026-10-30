@@ -26,18 +26,26 @@ user's contacts. Localized UI (Czech, English, German), iOS 17+, SwiftUI.
 
 ## Architecture
 
-Three targets, generated from `project.yml` by [XcodeGen](https://github.com/yonaskolb/XcodeGen):
+Four targets, generated from `project.yml` by [XcodeGen](https://github.com/yonaskolb/XcodeGen):
 
 | Target | Purpose |
 | --- | --- |
 | `SvatekDnes` | The app (SwiftUI, `App/`, `Views/`, `Services/`) |
 | `SvatekWidget` | WidgetKit extension (home/lock-screen widgets) |
+| `SvatekWatch` | watchOS app, embedded in the iOS app (`SvatekWatch/`) |
 | `SvatekDnesTests` | Unit tests (`Tests/`) |
 
-Both the app and the widget compile the `Shared/` core: models,
-`NamedayStore`, `HolidayCalendar` + `EasterCalculator`, `CalendarComposer`,
-`NameMatching`, `AppFormat`/design system, and the app-group plumbing
-(`AppGroup`, `WidgetSnapshot`).
+The app, the widget and the watch app all compile the `Shared/` core:
+models, `NamedayStore`, `HolidayCalendar` + `EasterCalculator`,
+`CalendarComposer`, `NameMatching`, `AppFormat`/design system, and the
+app-group plumbing (`AppGroup`, `WidgetSnapshot`). Keeping `Shared/` on
+Foundation, Combine and SwiftUI only – no UIKit, WidgetKit, Contacts or
+EventKit – is what lets it compile for watchOS unchanged. Check it with:
+
+```sh
+xcrun --sdk watchos swiftc -typecheck -target arm64_32-apple-watchos10.0 \
+	-sdk "$(xcrun --sdk watchos --show-sdk-path)" Shared/*.swift
+```
 
 ### Data flow
 
@@ -54,6 +62,29 @@ Both the app and the widget compile the `Shared/` core: models,
    downloaded file is stored in the app group container so the widget sees
    the same data.
 
+### The watch app
+
+App group containers do not span devices, so the watch shares no storage
+with the phone. It is deliberately **not** a mirror: the nameday calendar,
+the holidays and the Easter computus are bundled, so today's nameday and
+the whole year work with the phone off or out of range.
+
+Only what the watch cannot compute is pushed from the phone, via
+`WCSession.updateApplicationContext` (latest-state-wins, delivered
+opportunistically) in `SvatekDnes/Services/WatchSync.swift`:
+
+- **Contact matches** – the `Contacts` framework does not exist on
+  watchOS, so these can only come from the phone. The payload is the
+  existing `WidgetSnapshot`, which already solves the same problem for the
+  widget: given names by day, no contact identifiers, nothing else.
+- **Holiday overrides** – the phone forwards the `svatky.json` it already
+  downloaded (`HolidayUpdateService.adopt(_:)`), so the watch needs no
+  networking of its own.
+
+Out of range the watch degrades to a full calendar without contact names,
+rather than to an empty screen. `AppRefresher` is the single choke point
+that pushes both.
+
 ## Data sources & quality
 
 The nameday calendar was compiled from the Czech Wikipedia article
@@ -69,7 +100,8 @@ tables for 2026–2030.
 ## Privacy
 
 - Contacts are read (with permission) and matched **entirely on-device**;
-  they never leave the phone.
+  only their first names leave the phone, synced to the user's own paired
+  Apple Watch.
 - No analytics, no tracking, no third-party SDKs.
 - The only network call the app ever makes is the monthly fetch of the
   static data file from `raw.githubusercontent.com`.

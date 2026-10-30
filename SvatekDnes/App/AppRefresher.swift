@@ -53,6 +53,7 @@ enum AppRefresher {
 	/// Everything downstream of the matched contacts.
 	private static func propagateContacts() async {
 		SnapshotStore.update(with: ContactsService.shared.matched)
+		WatchSync.shared.push(contacts: ContactsService.shared.matched)
 		await NotificationScheduler.shared.rescheduleAll()
 		WidgetCenter.shared.reloadAllTimelines()
 	}

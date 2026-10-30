@@ -40,7 +40,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>NSContactsUsageDescription</key>
-	<string>Svátek dnes čte křestní jména z vašich kontaktů, aby vám připomněl, kdo má svátek. Kontakty nikam neodesíláme – vše zůstává ve vašem telefonu.</string>
+	<string>Svátek dnes čte křestní jména z vašich kontaktů, aby vám připomněl, kdo má svátek. Kontakty zůstávají ve vašem telefonu – do hodinek Apple Watch se posílají jen křestní jména.</string>
 	<key>NSCalendarsWriteOnlyAccessUsageDescription</key>
 	<string>Aplikace přidá událost se svátkem do vašeho kalendáře.</string>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>

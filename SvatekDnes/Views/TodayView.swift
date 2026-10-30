@@ -273,7 +273,7 @@ struct TodayView: View {
 		let isToday = Calendar.czech.isDate(group.date, inSameDayAs: today)
 		return HStack(spacing: 12) {
 			VStack(alignment: .leading, spacing: 2) {
-				Text(countdownLabel(group.date))
+				Text(AppFormat.countdown(group.date, reference: today))
 					.font(.subheadline.weight(.semibold))
 					.foregroundStyle(isToday ? Color.brandGreen : Color.primary)
 					.lineLimit(1)
@@ -315,16 +315,6 @@ struct TodayView: View {
 		return list.map(\.givenName)
 			.filter { !$0.isEmpty && seen.insert($0).inserted }
 			.joinedNames
-	}
-
-	/// "dnes", "zítra", "za 5 dní" – for the contact nameday rows.
-	private func countdownLabel(_ date: Date) -> String {
-		switch AppFormat.relativeKind(date, reference: today) {
-		case .today, .tomorrow:
-			return AppFormat.relativeDay(date, reference: today)
-		case .other:
-			return AppFormat.inDays(AppFormat.daysUntil(date, reference: today))
-		}
 	}
 
 	// MARK: - Upcoming days

@@ -1157,19 +1157,19 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aplikace porovná křestní jména z vašich kontaktů s kalendářem jmenin a ukáže, kdo má kdy svátek. Vše probíhá jen ve vašem zařízení – kontakty nikam neodesíláme."
+            "value" : "Aplikace porovná křestní jména z vašich kontaktů s kalendářem jmenin a ukáže, kdo má kdy svátek. Vše probíhá jen ve vašem zařízení a kontakty nikam neodesíláme – jedinou výjimkou jsou křestní jména pro vaše hodinky Apple Watch."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The app matches the first names from your contacts with the name day calendar and shows who celebrates when. Everything happens on your device – contacts are never uploaded."
+            "value" : "The app matches the first names from your contacts with the name day calendar and shows who celebrates when. Everything happens on your device and contacts are never uploaded – the only exception is first names for your Apple Watch."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die App vergleicht die Vornamen Ihrer Kontakte mit dem Namenstagskalender und zeigt, wer wann feiert. Alles geschieht nur auf Ihrem Gerät – Kontakte werden nirgendwohin gesendet."
+            "value" : "Die App vergleicht die Vornamen Ihrer Kontakte mit dem Namenstagskalender und zeigt, wer wann feiert. Alles geschieht nur auf Ihrem Gerät und Kontakte werden nirgendwohin gesendet – einzige Ausnahme sind die Vornamen für Ihre Apple Watch."
           }
         }
       }
@@ -2050,19 +2050,19 @@
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kontakty zůstávají ve vašem zařízení. Aplikace neodesílá žádná osobní data."
+            "value" : "Kontakty zůstávají ve vašem zařízení – do hodinek Apple Watch se posílají jen křestní jména. Nám ani nikomu jinému aplikace žádná osobní data neposílá."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contacts stay on your device. The app does not send any personal data."
+            "value" : "Contacts stay on your device – only first names are sent to your Apple Watch. The app sends no personal data to us or anyone else."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kontakte bleiben auf Ihrem Gerät. Die App sendet keine persönlichen Daten."
+            "value" : "Kontakte bleiben auf Ihrem Gerät – an Ihre Apple Watch werden nur die Vornamen gesendet. Die App sendet keine persönlichen Daten an uns oder Dritte."
           }
         }
       }
@@ -2477,6 +2477,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kommende Tage"
+          }
+        }
+      }
+    },
+    "watch_upcoming_contacts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brzy slaví"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Celebrating soon"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Demnächst"
           }
         }
       }

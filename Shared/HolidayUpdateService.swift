@@ -42,6 +42,25 @@ final class HolidayUpdateService {
 		}
 	}
 
+	/// Stores a data file handed over by another device instead of fetching
+	/// it. The watch app has no networking of its own – the phone forwards
+	/// what it already downloaded. Returns true when the file was adopted.
+	@discardableResult
+	func adopt(_ data: Data) -> Bool {
+		guard let decoded = try? JSONDecoder().decode(RemoteDataFile.self, from: data) else {
+			return false
+		}
+		if let current = stored, current.updated >= decoded.updated {
+			return false
+		}
+		try? data.write(to: storageURL, options: .atomic)
+		stored = decoded
+		HolidayCalendar.invalidate()
+		NamedayStore.shared.reloadOverrides()
+		NameMatching.invalidate()
+		return true
+	}
+
 	/// Downloads fresh data when the stored file is stale.
 	/// Returns true when new data was stored.
 	@discardableResult

@@ -56,19 +56,19 @@
         "cs" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Svátek dnes čte křestní jména z vašich kontaktů, aby vám připomněl, kdo má svátek. Kontakty nikam neodesíláme – vše zůstává ve vašem telefonu."
+            "value" : "Svátek dnes čte křestní jména z vašich kontaktů, aby vám připomněl, kdo má svátek. Kontakty zůstávají ve vašem telefonu – do hodinek Apple Watch se posílají jen křestní jména."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Svátek dnes liest die Vornamen aus Ihren Kontakten, um Sie daran zu erinnern, wer Namenstag hat. Kontakte werden nirgendwohin gesendet – alles bleibt auf Ihrem Telefon."
+            "value" : "Svátek dnes liest die Vornamen aus Ihren Kontakten, um Sie daran zu erinnern, wer Namenstag hat. Kontakte bleiben auf Ihrem Telefon – an Ihre Apple Watch werden nur die Vornamen gesendet."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Svátek dnes reads the first names from your contacts to remind you who has a name day. Contacts are never uploaded – everything stays on your phone."
+            "value" : "Svátek dnes reads the first names from your contacts to remind you who has a name day. Contacts stay on your phone – only first names are sent to your Apple Watch."
           }
         }
       }
