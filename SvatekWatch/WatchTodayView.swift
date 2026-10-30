@@ -2,7 +2,7 @@ import SwiftUI
 
 /// Watch entry screen: who has their nameday today, whether it is a holiday,
 /// and which of your people are celebrating. The Digital Crown scrolls the
-/// screen; the calendar below opens the year.
+/// screen; the toolbar opens the year and the name search.
 struct WatchTodayView: View {
 	@EnvironmentObject private var store: WatchDataStore
 	@Environment(\.scenePhase) private var scenePhase
@@ -19,14 +19,27 @@ struct WatchTodayView: View {
 					}
 					contactsSection
 					upcomingContactsSection
-					// Always last: the crown lands on it after the day
-					// itself, which is what the screen is for.
-					calendarLink
 				}
 				.padding(.horizontal, 4)
 				.padding(.bottom, 8)
 			}
 			.navigationTitle("today_title")
+			.toolbar {
+				ToolbarItem(placement: .topBarLeading) {
+					NavigationLink {
+						WatchCalendarView()
+					} label: {
+						Label("calendar_title", systemImage: "calendar")
+					}
+				}
+				ToolbarItem(placement: .topBarTrailing) {
+					NavigationLink {
+						WatchSearchView()
+					} label: {
+						Label("search_name_prompt", systemImage: "magnifyingglass")
+					}
+				}
+			}
 		}
 		.onAppear {
 			today = Date()
@@ -117,14 +130,5 @@ struct WatchTodayView: View {
 			}
 			.frame(maxWidth: .infinity, alignment: .leading)
 		}
-	}
-
-	private var calendarLink: some View {
-		NavigationLink {
-			WatchCalendarView()
-		} label: {
-			Label("calendar_title", systemImage: "calendar")
-		}
-		.padding(.top, 2)
 	}
 }
