@@ -5,8 +5,6 @@ import WatchConnectivity
 /// A future day on which at least one contact has their nameday.
 struct UpcomingContactDay: Identifiable {
 	let date: Date
-	let month: Int
-	let day: Int
 	let names: [String]
 
 	var id: Date { date }
@@ -68,7 +66,7 @@ final class WatchDataStore: NSObject, ObservableObject {
 			guard !names.isEmpty else {
 				continue
 			}
-			result.append(UpcomingContactDay(date: date, month: month, day: day, names: names))
+			result.append(UpcomingContactDay(date: date, names: names))
 			if result.count >= limit {
 				break
 			}

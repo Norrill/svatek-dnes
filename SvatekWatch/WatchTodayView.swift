@@ -110,7 +110,7 @@ struct WatchTodayView: View {
 	/// Who is coming up, so the screen is useful before the day itself.
 	@ViewBuilder
 	private var upcomingContactsSection: some View {
-		let upcoming = store.upcomingContacts()
+		let upcoming = store.upcomingContacts(from: today)
 		if !upcoming.isEmpty {
 			VStack(alignment: .leading, spacing: 3) {
 				Text("watch_upcoming_contacts")
@@ -118,13 +118,13 @@ struct WatchTodayView: View {
 					.foregroundStyle(.secondary)
 				ForEach(upcoming) { day in
 					HStack(alignment: .firstTextBaseline, spacing: 5) {
-						Text(AppFormat.shortDate(month: day.month, day: day.day))
-							.font(.caption2)
-							.foregroundStyle(.secondary)
 						Text(day.names.joinedNames)
 							.font(.footnote)
 							.lineLimit(1)
 						Spacer(minLength: 0)
+						Text(AppFormat.countdown(day.date, reference: today))
+							.font(.caption2)
+							.foregroundStyle(.secondary)
 					}
 				}
 			}

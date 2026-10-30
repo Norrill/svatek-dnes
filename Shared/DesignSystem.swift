@@ -151,4 +151,14 @@ enum AppFormat {
 	static func inDays(_ days: Int) -> String {
 		String.localizedStringWithFormat(String(localized: "relative_in_days"), days)
 	}
+
+	/// "dnes", "zítra", "za 5 dní" – for the contact nameday rows.
+	static func countdown(_ date: Date, reference: Date = Date()) -> String {
+		switch relativeKind(date, reference: reference) {
+		case .today, .tomorrow:
+			return relativeDay(date, reference: reference)
+		case .other:
+			return inDays(daysUntil(date, reference: reference))
+		}
+	}
 }
